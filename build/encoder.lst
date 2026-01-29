@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
   38      4F444552 
   38      4100
   39 005e 0000     		.align	2
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 2
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 2
 
 
   40              	.LC6:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
   63 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
   64              	.LCFI0:
   65              		.cfi_def_cfa_offset 32
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 3
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 3
 
 
   66              		.cfi_offset 4, -32
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
   37:Drivers/CPP/Src/encoder.cpp **** 	bool ENCODERB_rising_edge =		(ENCODERB&0x0F)==3;
  111              		.loc 1 37 2 view .LVU18
   38:Drivers/CPP/Src/encoder.cpp **** 	bool ENCODERB_falling_edge=	  (ENCODERB&0x0F)==14;
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 4
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 4
 
 
  112              		.loc 1 38 2 view .LVU19
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
   53:Drivers/CPP/Src/encoder.cpp **** 	
   54:Drivers/CPP/Src/encoder.cpp **** 	if(encoder_val > upperboundary) encoder_val=upperboundary;
  152              		.loc 1 54 2 is_stmt 1 view .LVU37
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 5
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 5
 
 
  153              		.loc 1 54 17 is_stmt 0 view .LVU38
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
  198 008c 2349     		ldr	r1, .L19+20
   45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
  199              		.loc 1 45 7 view .LVU55
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 6
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 6
 
 
  200 008e 8A42     		cmp	r2, r1
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
  240 00b8 1A60     		str	r2, [r3]
   45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
  241              		.loc 1 45 102 view .LVU70
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 7
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 7
 
 
  242 00ba C6E7     		b	.L3
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
  281 00e4 0A4B     		ldr	r3, .L19+8
  282 00e6 0F4A     		ldr	r2, .L19+28
  283 00e8 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 8
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 8
 
 
   48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
  334              		.align	2
  337              	_ZZ11readEncoderE5state:
  338 0000 00000000 		.space	4
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 9
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 9
 
 
  339              		.section	.bss._ZZ11readEncoderE5event,"aw",%nobits
@@ -507,27 +507,27 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
  370              		.file 9 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
  371              		.file 10 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
  372              		.file 11 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 10
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 encoder.cpp
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:21     .rodata.readEncoder.str1.4:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:49     .text.readEncoder:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:55     .text.readEncoder:00000000 readEncoder
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:310    .text.readEncoder:00000108 $d
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:359    .bss._ZZ11readEncoderE8ENCODERA:00000000 _ZZ11readEncoderE8ENCODERA
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:331    .bss._ZZ11readEncoderE5iniOK:00000000 _ZZ11readEncoderE5iniOK
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:343    .bss._ZZ11readEncoderE5event:00000000 _ZZ11readEncoderE5event
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:337    .bss._ZZ11readEncoderE5state:00000000 _ZZ11readEncoderE5state
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:349    .bss._ZZ11readEncoderE11encoder_val:00000000 _ZZ11readEncoderE11encoder_val
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:354    .bss._ZZ11readEncoderE8ENCODERB:00000000 _ZZ11readEncoderE8ENCODERB
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:332    .bss._ZZ11readEncoderE5iniOK:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:334    .bss._ZZ11readEncoderE5state:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:340    .bss._ZZ11readEncoderE5event:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:346    .bss._ZZ11readEncoderE11encoder_val:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:355    .bss._ZZ11readEncoderE8ENCODERB:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:360    .bss._ZZ11readEncoderE8ENCODERA:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:21     .rodata.readEncoder.str1.4:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:49     .text.readEncoder:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:55     .text.readEncoder:00000000 readEncoder
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:310    .text.readEncoder:00000108 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:359    .bss._ZZ11readEncoderE8ENCODERA:00000000 _ZZ11readEncoderE8ENCODERA
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:331    .bss._ZZ11readEncoderE5iniOK:00000000 _ZZ11readEncoderE5iniOK
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:343    .bss._ZZ11readEncoderE5event:00000000 _ZZ11readEncoderE5event
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:337    .bss._ZZ11readEncoderE5state:00000000 _ZZ11readEncoderE5state
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:349    .bss._ZZ11readEncoderE11encoder_val:00000000 _ZZ11readEncoderE11encoder_val
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:354    .bss._ZZ11readEncoderE8ENCODERB:00000000 _ZZ11readEncoderE8ENCODERB
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:332    .bss._ZZ11readEncoderE5iniOK:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:334    .bss._ZZ11readEncoderE5state:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:340    .bss._ZZ11readEncoderE5event:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:346    .bss._ZZ11readEncoderE11encoder_val:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:355    .bss._ZZ11readEncoderE8ENCODERB:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccP0Kgr3.s:360    .bss._ZZ11readEncoderE8ENCODERA:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_ReadPin
