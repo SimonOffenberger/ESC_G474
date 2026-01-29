@@ -1,0 +1,1431 @@
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"SVM.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Drivers/CPP/Src/SVM.cpp"
+  20              		.section	.text.initSVM,"ax",%progbits
+  21              		.align	1
+  22              		.global	initSVM
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	initSVM:
+  28              	.LVL0:
+  29              	.LFB142:
+   1:Drivers/CPP/Src/SVM.cpp **** /**
+   2:Drivers/CPP/Src/SVM.cpp ****  ******************************************************************************
+   3:Drivers/CPP/Src/SVM.cpp ****  * @file    adc.c
+   4:Drivers/CPP/Src/SVM.cpp ****  * @brief   This file provides code for the configuration
+   5:Drivers/CPP/Src/SVM.cpp ****  *          of the ADC instances.
+   6:Drivers/CPP/Src/SVM.cpp ****  ******************************************************************************
+   7:Drivers/CPP/Src/SVM.cpp ****  * @attention
+   8:Drivers/CPP/Src/SVM.cpp ****  *
+   9:Drivers/CPP/Src/SVM.cpp ****  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
+  10:Drivers/CPP/Src/SVM.cpp ****  * All rights reserved.</center></h2>
+  11:Drivers/CPP/Src/SVM.cpp ****  *
+  12:Drivers/CPP/Src/SVM.cpp ****  * This software component is licensed by ST under BSD 3-Clause license,
+  13:Drivers/CPP/Src/SVM.cpp ****  * the "License"; You may not use this file except in compliance with the
+  14:Drivers/CPP/Src/SVM.cpp ****  * License. You may obtain a copy of the License at:
+  15:Drivers/CPP/Src/SVM.cpp ****  *                        opensource.org/licenses/BSD-3-Clause
+  16:Drivers/CPP/Src/SVM.cpp ****  *
+  17:Drivers/CPP/Src/SVM.cpp ****  ******************************************************************************
+  18:Drivers/CPP/Src/SVM.cpp ****  */
+  19:Drivers/CPP/Src/SVM.cpp **** 
+  20:Drivers/CPP/Src/SVM.cpp **** /* Includes ------------------------------------------------------------------*/
+  21:Drivers/CPP/Src/SVM.cpp **** #include "SVM.h"
+  22:Drivers/CPP/Src/SVM.cpp **** #include "tim.h"
+  23:Drivers/CPP/Src/SVM.cpp **** // #include "adc.h"
+  24:Drivers/CPP/Src/SVM.cpp **** #include "global_var.h"
+  25:Drivers/CPP/Src/SVM.cpp **** #include "Park_u_Clark.h"
+  26:Drivers/CPP/Src/SVM.cpp **** #include <string.h>
+  27:Drivers/CPP/Src/SVM.cpp **** #include <stdio.h>
+  28:Drivers/CPP/Src/SVM.cpp **** #include <stdlib.h>
+  29:Drivers/CPP/Src/SVM.cpp **** 
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 2
+
+
+  30:Drivers/CPP/Src/SVM.cpp **** static uint16_t CCR_U = 0;
+  31:Drivers/CPP/Src/SVM.cpp **** static uint16_t CCR_V = 0;
+  32:Drivers/CPP/Src/SVM.cpp **** static uint16_t CCR_W = 0;
+  33:Drivers/CPP/Src/SVM.cpp **** static uint16_t CCR_CURR_AV1 = 0;
+  34:Drivers/CPP/Src/SVM.cpp **** static uint16_t CCR_CURR_AV2 = 0;
+  35:Drivers/CPP/Src/SVM.cpp **** static uint16_t current_sector = 0;
+  36:Drivers/CPP/Src/SVM.cpp **** 
+  37:Drivers/CPP/Src/SVM.cpp **** const uint16_t SPWM[180] = {
+  38:Drivers/CPP/Src/SVM.cpp **** 
+  39:Drivers/CPP/Src/SVM.cpp **** 		0,
+  40:Drivers/CPP/Src/SVM.cpp **** 		30,
+  41:Drivers/CPP/Src/SVM.cpp **** 		61,
+  42:Drivers/CPP/Src/SVM.cpp **** 		91,
+  43:Drivers/CPP/Src/SVM.cpp **** 		122,
+  44:Drivers/CPP/Src/SVM.cpp **** 		152,
+  45:Drivers/CPP/Src/SVM.cpp **** 		183,
+  46:Drivers/CPP/Src/SVM.cpp **** 		213,
+  47:Drivers/CPP/Src/SVM.cpp **** 		243,
+  48:Drivers/CPP/Src/SVM.cpp **** 		273,
+  49:Drivers/CPP/Src/SVM.cpp **** 		304,
+  50:Drivers/CPP/Src/SVM.cpp **** 		334,
+  51:Drivers/CPP/Src/SVM.cpp **** 		364,
+  52:Drivers/CPP/Src/SVM.cpp **** 		394,
+  53:Drivers/CPP/Src/SVM.cpp **** 		424,
+  54:Drivers/CPP/Src/SVM.cpp **** 		454,
+  55:Drivers/CPP/Src/SVM.cpp **** 		483,
+  56:Drivers/CPP/Src/SVM.cpp **** 		513,
+  57:Drivers/CPP/Src/SVM.cpp **** 		542,
+  58:Drivers/CPP/Src/SVM.cpp **** 		572,
+  59:Drivers/CPP/Src/SVM.cpp **** 		601,
+  60:Drivers/CPP/Src/SVM.cpp **** 		630,
+  61:Drivers/CPP/Src/SVM.cpp **** 		659,
+  62:Drivers/CPP/Src/SVM.cpp **** 		688,
+  63:Drivers/CPP/Src/SVM.cpp **** 		717,
+  64:Drivers/CPP/Src/SVM.cpp **** 		745,
+  65:Drivers/CPP/Src/SVM.cpp **** 		774,
+  66:Drivers/CPP/Src/SVM.cpp **** 		802,
+  67:Drivers/CPP/Src/SVM.cpp **** 		830,
+  68:Drivers/CPP/Src/SVM.cpp **** 		858,
+  69:Drivers/CPP/Src/SVM.cpp **** 		886,
+  70:Drivers/CPP/Src/SVM.cpp **** 		894,
+  71:Drivers/CPP/Src/SVM.cpp **** 		902,
+  72:Drivers/CPP/Src/SVM.cpp **** 		909,
+  73:Drivers/CPP/Src/SVM.cpp **** 		917,
+  74:Drivers/CPP/Src/SVM.cpp **** 		924,
+  75:Drivers/CPP/Src/SVM.cpp **** 		931,
+  76:Drivers/CPP/Src/SVM.cpp **** 		938,
+  77:Drivers/CPP/Src/SVM.cpp **** 		944,
+  78:Drivers/CPP/Src/SVM.cpp **** 		951,
+  79:Drivers/CPP/Src/SVM.cpp **** 		957,
+  80:Drivers/CPP/Src/SVM.cpp **** 		963,
+  81:Drivers/CPP/Src/SVM.cpp **** 		968,
+  82:Drivers/CPP/Src/SVM.cpp **** 		974,
+  83:Drivers/CPP/Src/SVM.cpp **** 		979,
+  84:Drivers/CPP/Src/SVM.cpp **** 		983,
+  85:Drivers/CPP/Src/SVM.cpp **** 		988,
+  86:Drivers/CPP/Src/SVM.cpp **** 		992,
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 3
+
+
+  87:Drivers/CPP/Src/SVM.cpp **** 		997,
+  88:Drivers/CPP/Src/SVM.cpp **** 		1001,
+  89:Drivers/CPP/Src/SVM.cpp **** 		1004,
+  90:Drivers/CPP/Src/SVM.cpp **** 		1007,
+  91:Drivers/CPP/Src/SVM.cpp **** 		1010,
+  92:Drivers/CPP/Src/SVM.cpp **** 		1013,
+  93:Drivers/CPP/Src/SVM.cpp **** 		1015,
+  94:Drivers/CPP/Src/SVM.cpp **** 		1018,
+  95:Drivers/CPP/Src/SVM.cpp **** 		1020,
+  96:Drivers/CPP/Src/SVM.cpp **** 		1021,
+  97:Drivers/CPP/Src/SVM.cpp **** 		1022,
+  98:Drivers/CPP/Src/SVM.cpp **** 		1023,
+  99:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 100:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 101:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 102:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 103:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 104:Drivers/CPP/Src/SVM.cpp **** 		1022,
+ 105:Drivers/CPP/Src/SVM.cpp **** 		1021,
+ 106:Drivers/CPP/Src/SVM.cpp **** 		1020,
+ 107:Drivers/CPP/Src/SVM.cpp **** 		1018,
+ 108:Drivers/CPP/Src/SVM.cpp **** 		1015,
+ 109:Drivers/CPP/Src/SVM.cpp **** 		1013,
+ 110:Drivers/CPP/Src/SVM.cpp **** 		1010,
+ 111:Drivers/CPP/Src/SVM.cpp **** 		1007,
+ 112:Drivers/CPP/Src/SVM.cpp **** 		1003,
+ 113:Drivers/CPP/Src/SVM.cpp **** 		999,
+ 114:Drivers/CPP/Src/SVM.cpp **** 		995,
+ 115:Drivers/CPP/Src/SVM.cpp **** 		990,
+ 116:Drivers/CPP/Src/SVM.cpp **** 		985,
+ 117:Drivers/CPP/Src/SVM.cpp **** 		980,
+ 118:Drivers/CPP/Src/SVM.cpp **** 		974,
+ 119:Drivers/CPP/Src/SVM.cpp **** 		968,
+ 120:Drivers/CPP/Src/SVM.cpp **** 		961,
+ 121:Drivers/CPP/Src/SVM.cpp **** 		954,
+ 122:Drivers/CPP/Src/SVM.cpp **** 		948,
+ 123:Drivers/CPP/Src/SVM.cpp **** 		940,
+ 124:Drivers/CPP/Src/SVM.cpp **** 		932,
+ 125:Drivers/CPP/Src/SVM.cpp **** 		924,
+ 126:Drivers/CPP/Src/SVM.cpp **** 		915,
+ 127:Drivers/CPP/Src/SVM.cpp **** 		906,
+ 128:Drivers/CPP/Src/SVM.cpp **** 		897,
+ 129:Drivers/CPP/Src/SVM.cpp **** 		887,
+ 130:Drivers/CPP/Src/SVM.cpp **** 		897,
+ 131:Drivers/CPP/Src/SVM.cpp **** 		906,
+ 132:Drivers/CPP/Src/SVM.cpp **** 		915,
+ 133:Drivers/CPP/Src/SVM.cpp **** 		924,
+ 134:Drivers/CPP/Src/SVM.cpp **** 		932,
+ 135:Drivers/CPP/Src/SVM.cpp **** 		940,
+ 136:Drivers/CPP/Src/SVM.cpp **** 		948,
+ 137:Drivers/CPP/Src/SVM.cpp **** 		954,
+ 138:Drivers/CPP/Src/SVM.cpp **** 		961,
+ 139:Drivers/CPP/Src/SVM.cpp **** 		968,
+ 140:Drivers/CPP/Src/SVM.cpp **** 		974,
+ 141:Drivers/CPP/Src/SVM.cpp **** 		980,
+ 142:Drivers/CPP/Src/SVM.cpp **** 		985,
+ 143:Drivers/CPP/Src/SVM.cpp **** 		990,
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 4
+
+
+ 144:Drivers/CPP/Src/SVM.cpp **** 		995,
+ 145:Drivers/CPP/Src/SVM.cpp **** 		999,
+ 146:Drivers/CPP/Src/SVM.cpp **** 		1003,
+ 147:Drivers/CPP/Src/SVM.cpp **** 		1007,
+ 148:Drivers/CPP/Src/SVM.cpp **** 		1010,
+ 149:Drivers/CPP/Src/SVM.cpp **** 		1013,
+ 150:Drivers/CPP/Src/SVM.cpp **** 		1015,
+ 151:Drivers/CPP/Src/SVM.cpp **** 		1018,
+ 152:Drivers/CPP/Src/SVM.cpp **** 		1020,
+ 153:Drivers/CPP/Src/SVM.cpp **** 		1021,
+ 154:Drivers/CPP/Src/SVM.cpp **** 		1022,
+ 155:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 156:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 157:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 158:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 159:Drivers/CPP/Src/SVM.cpp **** 		1024,
+ 160:Drivers/CPP/Src/SVM.cpp **** 		1023,
+ 161:Drivers/CPP/Src/SVM.cpp **** 		1022,
+ 162:Drivers/CPP/Src/SVM.cpp **** 		1021,
+ 163:Drivers/CPP/Src/SVM.cpp **** 		1020,
+ 164:Drivers/CPP/Src/SVM.cpp **** 		1018,
+ 165:Drivers/CPP/Src/SVM.cpp **** 		1015,
+ 166:Drivers/CPP/Src/SVM.cpp **** 		1013,
+ 167:Drivers/CPP/Src/SVM.cpp **** 		1010,
+ 168:Drivers/CPP/Src/SVM.cpp **** 		1007,
+ 169:Drivers/CPP/Src/SVM.cpp **** 		1004,
+ 170:Drivers/CPP/Src/SVM.cpp **** 		1001,
+ 171:Drivers/CPP/Src/SVM.cpp **** 		997,
+ 172:Drivers/CPP/Src/SVM.cpp **** 		992,
+ 173:Drivers/CPP/Src/SVM.cpp **** 		988,
+ 174:Drivers/CPP/Src/SVM.cpp **** 		983,
+ 175:Drivers/CPP/Src/SVM.cpp **** 		979,
+ 176:Drivers/CPP/Src/SVM.cpp **** 		974,
+ 177:Drivers/CPP/Src/SVM.cpp **** 		968,
+ 178:Drivers/CPP/Src/SVM.cpp **** 		963,
+ 179:Drivers/CPP/Src/SVM.cpp **** 		957,
+ 180:Drivers/CPP/Src/SVM.cpp **** 		951,
+ 181:Drivers/CPP/Src/SVM.cpp **** 		944,
+ 182:Drivers/CPP/Src/SVM.cpp **** 		938,
+ 183:Drivers/CPP/Src/SVM.cpp **** 		931,
+ 184:Drivers/CPP/Src/SVM.cpp **** 		924,
+ 185:Drivers/CPP/Src/SVM.cpp **** 		917,
+ 186:Drivers/CPP/Src/SVM.cpp **** 		909,
+ 187:Drivers/CPP/Src/SVM.cpp **** 		902,
+ 188:Drivers/CPP/Src/SVM.cpp **** 		894,
+ 189:Drivers/CPP/Src/SVM.cpp **** 		886,
+ 190:Drivers/CPP/Src/SVM.cpp **** 		858,
+ 191:Drivers/CPP/Src/SVM.cpp **** 		830,
+ 192:Drivers/CPP/Src/SVM.cpp **** 		802,
+ 193:Drivers/CPP/Src/SVM.cpp **** 		774,
+ 194:Drivers/CPP/Src/SVM.cpp **** 		745,
+ 195:Drivers/CPP/Src/SVM.cpp **** 		717,
+ 196:Drivers/CPP/Src/SVM.cpp **** 		688,
+ 197:Drivers/CPP/Src/SVM.cpp **** 		659,
+ 198:Drivers/CPP/Src/SVM.cpp **** 		630,
+ 199:Drivers/CPP/Src/SVM.cpp **** 		601,
+ 200:Drivers/CPP/Src/SVM.cpp **** 		572,
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 5
+
+
+ 201:Drivers/CPP/Src/SVM.cpp **** 		542,
+ 202:Drivers/CPP/Src/SVM.cpp **** 		513,
+ 203:Drivers/CPP/Src/SVM.cpp **** 		483,
+ 204:Drivers/CPP/Src/SVM.cpp **** 		454,
+ 205:Drivers/CPP/Src/SVM.cpp **** 		424,
+ 206:Drivers/CPP/Src/SVM.cpp **** 		394,
+ 207:Drivers/CPP/Src/SVM.cpp **** 		364,
+ 208:Drivers/CPP/Src/SVM.cpp **** 		334,
+ 209:Drivers/CPP/Src/SVM.cpp **** 		304,
+ 210:Drivers/CPP/Src/SVM.cpp **** 		273,
+ 211:Drivers/CPP/Src/SVM.cpp **** 		243,
+ 212:Drivers/CPP/Src/SVM.cpp **** 		213,
+ 213:Drivers/CPP/Src/SVM.cpp **** 		183,
+ 214:Drivers/CPP/Src/SVM.cpp **** 		152,
+ 215:Drivers/CPP/Src/SVM.cpp **** 		122,
+ 216:Drivers/CPP/Src/SVM.cpp **** 		91,
+ 217:Drivers/CPP/Src/SVM.cpp **** 		61,
+ 218:Drivers/CPP/Src/SVM.cpp **** 		30
+ 219:Drivers/CPP/Src/SVM.cpp **** 
+ 220:Drivers/CPP/Src/SVM.cpp **** };
+ 221:Drivers/CPP/Src/SVM.cpp **** 
+ 222:Drivers/CPP/Src/SVM.cpp **** void initSVM(uint16_t switching_frequency)
+ 223:Drivers/CPP/Src/SVM.cpp **** {
+  30              		.loc 1 223 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 223 1 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+ 224:Drivers/CPP/Src/SVM.cpp **** 
+ 225:Drivers/CPP/Src/SVM.cpp **** 	HAL_NVIC_EnableIRQ(TIM1_UP_TIM16_IRQn);
+  40              		.loc 1 225 2 is_stmt 1 view .LVU2
+  41              		.loc 1 225 20 is_stmt 0 view .LVU3
+  42 0002 1920     		movs	r0, #25
+  43              	.LVL1:
+  44              		.loc 1 225 20 view .LVU4
+  45 0004 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  46              	.LVL2:
+ 226:Drivers/CPP/Src/SVM.cpp **** 	HAL_NVIC_SetPriority(TIM1_UP_TIM16_IRQn, 0, 0);
+  47              		.loc 1 226 2 is_stmt 1 view .LVU5
+  48              		.loc 1 226 22 is_stmt 0 view .LVU6
+  49 0008 0022     		movs	r2, #0
+  50 000a 1146     		mov	r1, r2
+  51 000c 1920     		movs	r0, #25
+  52 000e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  53              	.LVL3:
+ 227:Drivers/CPP/Src/SVM.cpp **** 	__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_UPDATE);
+  54              		.loc 1 227 2 is_stmt 1 view .LVU7
+  55 0012 1A4C     		ldr	r4, .L3
+  56 0014 2268     		ldr	r2, [r4]
+  57 0016 D368     		ldr	r3, [r2, #12]
+  58 0018 43F00103 		orr	r3, r3, #1
+  59 001c D360     		str	r3, [r2, #12]
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 6
+
+
+ 228:Drivers/CPP/Src/SVM.cpp **** 
+ 229:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);		 // W
+  60              		.loc 1 229 2 view .LVU8
+  61              		.loc 1 229 19 is_stmt 0 view .LVU9
+  62 001e 0021     		movs	r1, #0
+  63 0020 2046     		mov	r0, r4
+  64 0022 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+  65              	.LVL4:
+ 230:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);		 // V
+  66              		.loc 1 230 2 is_stmt 1 view .LVU10
+  67              		.loc 1 230 19 is_stmt 0 view .LVU11
+  68 0026 0421     		movs	r1, #4
+  69 0028 2046     		mov	r0, r4
+  70 002a FFF7FEFF 		bl	HAL_TIM_PWM_Start
+  71              	.LVL5:
+ 231:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_3); // U
+  72              		.loc 1 231 2 is_stmt 1 view .LVU12
+  73              		.loc 1 231 22 is_stmt 0 view .LVU13
+  74 002e 0821     		movs	r1, #8
+  75 0030 2046     		mov	r0, r4
+  76 0032 FFF7FEFF 		bl	HAL_TIM_PWM_Start_IT
+  77              	.LVL6:
+ 232:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_5);
+  78              		.loc 1 232 2 is_stmt 1 view .LVU14
+  79              		.loc 1 232 19 is_stmt 0 view .LVU15
+  80 0036 1021     		movs	r1, #16
+  81 0038 2046     		mov	r0, r4
+  82 003a FFF7FEFF 		bl	HAL_TIM_PWM_Start
+  83              	.LVL7:
+ 233:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_6);
+  84              		.loc 1 233 2 is_stmt 1 view .LVU16
+  85              		.loc 1 233 19 is_stmt 0 view .LVU17
+  86 003e 1421     		movs	r1, #20
+  87 0040 2046     		mov	r0, r4
+  88 0042 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+  89              	.LVL8:
+ 234:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
+  90              		.loc 1 234 2 is_stmt 1 view .LVU18
+  91              		.loc 1 234 22 is_stmt 0 view .LVU19
+  92 0046 0021     		movs	r1, #0
+  93 0048 2046     		mov	r0, r4
+  94 004a FFF7FEFF 		bl	HAL_TIMEx_PWMN_Start
+  95              	.LVL9:
+ 235:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+  96              		.loc 1 235 2 is_stmt 1 view .LVU20
+  97              		.loc 1 235 22 is_stmt 0 view .LVU21
+  98 004e 0421     		movs	r1, #4
+  99 0050 2046     		mov	r0, r4
+ 100 0052 FFF7FEFF 		bl	HAL_TIMEx_PWMN_Start
+ 101              	.LVL10:
+ 236:Drivers/CPP/Src/SVM.cpp **** 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
+ 102              		.loc 1 236 2 is_stmt 1 view .LVU22
+ 103              		.loc 1 236 22 is_stmt 0 view .LVU23
+ 104 0056 0821     		movs	r1, #8
+ 105 0058 2046     		mov	r0, r4
+ 106 005a FFF7FEFF 		bl	HAL_TIMEx_PWMN_Start
+ 107              	.LVL11:
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 7
+
+
+ 237:Drivers/CPP/Src/SVM.cpp **** 
+ 238:Drivers/CPP/Src/SVM.cpp **** 	PWM_TIM->BDTR &= ~(255);
+ 108              		.loc 1 238 2 is_stmt 1 view .LVU24
+ 109              		.loc 1 238 11 is_stmt 0 view .LVU25
+ 110 005e 084B     		ldr	r3, .L3+4
+ 111 0060 5A6C     		ldr	r2, [r3, #68]
+ 112              		.loc 1 238 16 view .LVU26
+ 113 0062 22F0FF02 		bic	r2, r2, #255
+ 114 0066 5A64     		str	r2, [r3, #68]
+ 239:Drivers/CPP/Src/SVM.cpp **** 	PWM_TIM->BDTR |= 128;
+ 115              		.loc 1 239 2 is_stmt 1 view .LVU27
+ 116              		.loc 1 239 11 is_stmt 0 view .LVU28
+ 117 0068 5A6C     		ldr	r2, [r3, #68]
+ 118              		.loc 1 239 16 view .LVU29
+ 119 006a 42F08002 		orr	r2, r2, #128
+ 120 006e 5A64     		str	r2, [r3, #68]
+ 240:Drivers/CPP/Src/SVM.cpp **** 	PWM_TIM->ARR = PWM_TIM_ARR;
+ 121              		.loc 1 240 2 is_stmt 1 view .LVU30
+ 122              		.loc 1 240 15 is_stmt 0 view .LVU31
+ 123 0070 4FF4B462 		mov	r2, #1440
+ 124 0074 DA62     		str	r2, [r3, #44]
+ 241:Drivers/CPP/Src/SVM.cpp **** 
+ 242:Drivers/CPP/Src/SVM.cpp **** 	__enable_irq();
+ 125              		.loc 1 242 2 is_stmt 1 view .LVU32
+ 126              	.LBB4:
+ 127              	.LBI4:
+ 128              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+   1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
+   2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
+   3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
+   4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V5.2.0
+   5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     08. May 2019
+   6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
+   7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
+   8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
+   9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  10:Drivers/CMSIS/Include/cmsis_gcc.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  12:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:Drivers/CMSIS/Include/cmsis_gcc.h ****  * not use this file except in compliance with the License.
+  14:Drivers/CMSIS/Include/cmsis_gcc.h ****  * You may obtain a copy of the License at
+  15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
+  17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
+  22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
+  23:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  24:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  25:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
+  26:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
+  27:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
+  29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 8
+
+
+  31:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
+  32:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
+  33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  34:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Fallback for __has_builtin */
+  35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __has_builtin
+  36:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __has_builtin(x) (0)
+  37:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  38:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  39:Drivers/CMSIS/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
+  40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
+  41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
+  42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
+  44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
+  45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  46:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
+  47:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_INLINE                        static inline
+  48:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  49:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE                 
+  50:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
+  51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
+  52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
+  53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
+  54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
+  56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
+  57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  58:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __WEAK
+  59:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __WEAK                                 __attribute__((weak))
+  60:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  61:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
+  62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
+  63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
+  65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
+  66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  67:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_UNION
+  68:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_UNION                         union __attribute__((packed, aligned(1)))
+  69:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  70:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32        /* deprecated */
+  71:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
+  75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
+  77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
+  79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  80:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  81:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  82:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
+  83:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  84:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))-
+  85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
+  87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 9
+
+
+  88:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  89:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  90:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
+  91:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  92:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(add
+  93:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  94:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_WRITE
+  95:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  96:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
+  99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
+ 101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
+ 103:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+ 104:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+ 105:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+ 106:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
+ 107:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
+ 109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
+ 111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
+ 112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
+ 114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
+ 115:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 116:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __COMPILER_BARRIER
+ 117:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __COMPILER_BARRIER()                   __ASM volatile("":::"memory")
+ 118:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 119:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 120:Drivers/CMSIS/Include/cmsis_gcc.h **** /* #########################  Startup and Lowlevel Init  ######################## */
+ 121:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 122:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __PROGRAM_START
+ 123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 124:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 125:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Initializes data and bss sections
+ 126:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details This default implementations initialized all data and additional bss
+ 127:Drivers/CMSIS/Include/cmsis_gcc.h ****            sections relying on .copy.table and .zero.table specified properly
+ 128:Drivers/CMSIS/Include/cmsis_gcc.h ****            in the used linker script.
+ 129:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 130:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 131:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE __NO_RETURN void __cmsis_start(void)
+ 132:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 133:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern void _start(void) __NO_RETURN;
+ 134:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 135:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
+ 136:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t const* src;
+ 137:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t* dest;
+ 138:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t  wlen;
+ 139:Drivers/CMSIS/Include/cmsis_gcc.h ****   } __copy_table_t;
+ 140:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 141:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
+ 142:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t* dest;
+ 143:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t  wlen;
+ 144:Drivers/CMSIS/Include/cmsis_gcc.h ****   } __zero_table_t;
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 10
+
+
+ 145:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 146:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __copy_table_t __copy_table_start__;
+ 147:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __copy_table_t __copy_table_end__;
+ 148:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __zero_table_t __zero_table_start__;
+ 149:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __zero_table_t __zero_table_end__;
+ 150:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 151:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (__copy_table_t const* pTable = &__copy_table_start__; pTable < &__copy_table_end__; ++pTable
+ 152:Drivers/CMSIS/Include/cmsis_gcc.h ****     for(uint32_t i=0u; i<pTable->wlen; ++i) {
+ 153:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = pTable->src[i];
+ 154:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
+ 155:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
+ 156:Drivers/CMSIS/Include/cmsis_gcc.h ****  
+ 157:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (__zero_table_t const* pTable = &__zero_table_start__; pTable < &__zero_table_end__; ++pTable
+ 158:Drivers/CMSIS/Include/cmsis_gcc.h ****     for(uint32_t i=0u; i<pTable->wlen; ++i) {
+ 159:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = 0u;
+ 160:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
+ 161:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
+ 162:Drivers/CMSIS/Include/cmsis_gcc.h ****  
+ 163:Drivers/CMSIS/Include/cmsis_gcc.h ****   _start();
+ 164:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 165:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 166:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __PROGRAM_START           __cmsis_start
+ 167:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 168:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 169:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __INITIAL_SP
+ 170:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __INITIAL_SP              __StackTop
+ 171:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 172:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 173:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __STACK_LIMIT
+ 174:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __STACK_LIMIT             __StackLimit
+ 175:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 177:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE
+ 178:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE            __Vectors
+ 179:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 180:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 181:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE_ATTRIBUTE
+ 182:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE_ATTRIBUTE  __attribute((used, section(".vectors")))
+ 183:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 184:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 185:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
+ 186:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
+ 187:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+ 188:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
+ 189:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 190:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 191:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 192:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
+ 193:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+ 194:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+ 195:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 196:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __enable_irq(void)
+ 129              		.loc 2 196 27 view .LVU33
+ 130              	.LBB5:
+ 197:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 198:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
+ 131              		.loc 2 198 3 view .LVU34
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 11
+
+
+ 132              		.syntax unified
+ 133              	@ 198 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 134 0076 62B6     		cpsie i
+ 135              	@ 0 "" 2
+ 136              		.thumb
+ 137              		.syntax unified
+ 138              	.LBE5:
+ 139              	.LBE4:
+ 243:Drivers/CPP/Src/SVM.cpp **** }
+ 140              		.loc 1 243 1 is_stmt 0 view .LVU35
+ 141 0078 10BD     		pop	{r4, pc}
+ 142              	.L4:
+ 143 007a 00BF     		.align	2
+ 144              	.L3:
+ 145 007c 00000000 		.word	htim1
+ 146 0080 002C0140 		.word	1073818624
+ 147              		.cfi_endproc
+ 148              	.LFE142:
+ 150              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 151              		.align	1
+ 152              		.global	HAL_TIM_PeriodElapsedCallback
+ 153              		.syntax unified
+ 154              		.thumb
+ 155              		.thumb_func
+ 157              	HAL_TIM_PeriodElapsedCallback:
+ 158              	.LVL12:
+ 159              	.LFB143:
+ 244:Drivers/CPP/Src/SVM.cpp **** 
+ 245:Drivers/CPP/Src/SVM.cpp **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+ 246:Drivers/CPP/Src/SVM.cpp **** {
+ 160              		.loc 1 246 1 is_stmt 1 view -0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164              		.loc 1 246 1 is_stmt 0 view .LVU37
+ 165 0000 38B5     		push	{r3, r4, r5, lr}
+ 166              	.LCFI1:
+ 167              		.cfi_def_cfa_offset 16
+ 168              		.cfi_offset 3, -16
+ 169              		.cfi_offset 4, -12
+ 170              		.cfi_offset 5, -8
+ 171              		.cfi_offset 14, -4
+ 247:Drivers/CPP/Src/SVM.cpp **** 	PWM_U = CCR_U;
+ 172              		.loc 1 247 2 is_stmt 1 view .LVU38
+ 173              		.loc 1 247 10 is_stmt 0 view .LVU39
+ 174 0002 154B     		ldr	r3, .L7
+ 175 0004 1A88     		ldrh	r2, [r3]
+ 176              		.loc 1 247 8 view .LVU40
+ 177 0006 154B     		ldr	r3, .L7+4
+ 178 0008 DA63     		str	r2, [r3, #60]
+ 248:Drivers/CPP/Src/SVM.cpp **** 	PWM_V = CCR_V;
+ 179              		.loc 1 248 2 is_stmt 1 view .LVU41
+ 180              		.loc 1 248 10 is_stmt 0 view .LVU42
+ 181 000a 154A     		ldr	r2, .L7+8
+ 182 000c 1288     		ldrh	r2, [r2]
+ 183              		.loc 1 248 8 view .LVU43
+ 184 000e 9A63     		str	r2, [r3, #56]
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 12
+
+
+ 249:Drivers/CPP/Src/SVM.cpp **** 	PWM_W = CCR_W;
+ 185              		.loc 1 249 2 is_stmt 1 view .LVU44
+ 186              		.loc 1 249 10 is_stmt 0 view .LVU45
+ 187 0010 144A     		ldr	r2, .L7+12
+ 188 0012 1288     		ldrh	r2, [r2]
+ 189              		.loc 1 249 8 view .LVU46
+ 190 0014 5A63     		str	r2, [r3, #52]
+ 250:Drivers/CPP/Src/SVM.cpp **** 
+ 251:Drivers/CPP/Src/SVM.cpp **** 	Motor.MotorCurrents.PhaseCurrents[0] = (((Motor.MotorCurrents.ADC_VAL_PhaseCurrents[0] - 1970) * 1
+ 191              		.loc 1 251 2 is_stmt 1 view .LVU47
+ 192              		.loc 1 251 87 is_stmt 0 view .LVU48
+ 193 0016 144C     		ldr	r4, .L7+16
+ 194 0018 226A     		ldr	r2, [r4, #32]
+ 195              		.loc 1 251 107 view .LVU49
+ 196 001a 1449     		ldr	r1, .L7+20
+ 197 001c 144B     		ldr	r3, .L7+24
+ 198 001e 01FB0232 		mla	r2, r1, r2, r3
+ 199 0022 120B     		lsrs	r2, r2, #12
+ 200              		.loc 1 251 39 view .LVU50
+ 201 0024 6261     		str	r2, [r4, #20]
+ 252:Drivers/CPP/Src/SVM.cpp **** 	Motor.MotorCurrents.PhaseCurrents[1] = (((Motor.MotorCurrents.ADC_VAL_PhaseCurrents[1] - 1970) * 1
+ 202              		.loc 1 252 2 is_stmt 1 view .LVU51
+ 203              		.loc 1 252 87 is_stmt 0 view .LVU52
+ 204 0026 626A     		ldr	r2, [r4, #36]
+ 205              		.loc 1 252 107 view .LVU53
+ 206 0028 01FB0232 		mla	r2, r1, r2, r3
+ 207 002c 120B     		lsrs	r2, r2, #12
+ 208              		.loc 1 252 39 view .LVU54
+ 209 002e A261     		str	r2, [r4, #24]
+ 253:Drivers/CPP/Src/SVM.cpp **** 	Motor.MotorCurrents.PhaseCurrents[2] = (((Motor.MotorCurrents.ADC_VAL_PhaseCurrents[2] - 1970) * 1
+ 210              		.loc 1 253 2 is_stmt 1 view .LVU55
+ 211              		.loc 1 253 87 is_stmt 0 view .LVU56
+ 212 0030 A26A     		ldr	r2, [r4, #40]
+ 213              		.loc 1 253 107 view .LVU57
+ 214 0032 01FB0233 		mla	r3, r1, r2, r3
+ 215 0036 1B0B     		lsrs	r3, r3, #12
+ 216              		.loc 1 253 39 view .LVU58
+ 217 0038 E361     		str	r3, [r4, #28]
+ 254:Drivers/CPP/Src/SVM.cpp **** 
+ 255:Drivers/CPP/Src/SVM.cpp **** 	transform_to_Clark_domain(Motor.MotorCurrents.PhaseCurrents, Motor.MotorCurrents.AlphaBetaCurrents
+ 218              		.loc 1 255 2 is_stmt 1 view .LVU59
+ 219              		.loc 1 255 27 is_stmt 0 view .LVU60
+ 220 003a 04F10C05 		add	r5, r4, #12
+ 221 003e 2946     		mov	r1, r5
+ 222 0040 04F11400 		add	r0, r4, #20
+ 223              	.LVL13:
+ 224              		.loc 1 255 27 view .LVU61
+ 225 0044 FFF7FEFF 		bl	transform_to_Clark_domain
+ 226              	.LVL14:
+ 256:Drivers/CPP/Src/SVM.cpp **** 	transform_to_Park_domain(Motor.MotorCurrents.AlphaBetaCurrents, Motor.MotorCurrents.DQCurrenst, Mo
+ 227              		.loc 1 256 2 is_stmt 1 view .LVU62
+ 228              		.loc 1 256 104 is_stmt 0 view .LVU63
+ 229 0048 2146     		mov	r1, r4
+ 230              		.loc 1 256 26 view .LVU64
+ 231 004a 31F8042B 		ldrh	r2, [r1], #4
+ 232 004e 2846     		mov	r0, r5
+ 233 0050 FFF7FEFF 		bl	transform_to_Park_domain
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 13
+
+
+ 234              	.LVL15:
+ 257:Drivers/CPP/Src/SVM.cpp **** }
+ 235              		.loc 1 257 1 view .LVU65
+ 236 0054 38BD     		pop	{r3, r4, r5, pc}
+ 237              	.L8:
+ 238 0056 00BF     		.align	2
+ 239              	.L7:
+ 240 0058 00000000 		.word	_ZL5CCR_U
+ 241 005c 002C0140 		.word	1073818624
+ 242 0060 00000000 		.word	_ZL5CCR_V
+ 243 0064 00000000 		.word	_ZL5CCR_W
+ 244 0068 00000000 		.word	Motor
+ 245 006c B0AD0100 		.word	110000
+ 246 0070 A06B15F3 		.word	-216700000
+ 247              		.cfi_endproc
+ 248              	.LFE143:
+ 250              		.section	.text.setVoltageVector,"ax",%progbits
+ 251              		.align	1
+ 252              		.global	setVoltageVector
+ 253              		.syntax unified
+ 254              		.thumb
+ 255              		.thumb_func
+ 257              	setVoltageVector:
+ 258              	.LVL16:
+ 259              	.LFB144:
+ 258:Drivers/CPP/Src/SVM.cpp **** 
+ 259:Drivers/CPP/Src/SVM.cpp **** // setpoint 0..100% => 0..256
+ 260:Drivers/CPP/Src/SVM.cpp **** 
+ 261:Drivers/CPP/Src/SVM.cpp **** void setVoltageVector(int phase, int phaseshift, uint16_t setpoint)
+ 262:Drivers/CPP/Src/SVM.cpp **** {
+ 260              		.loc 1 262 1 is_stmt 1 view -0
+ 261              		.cfi_startproc
+ 262              		@ args = 0, pretend = 0, frame = 0
+ 263              		@ frame_needed = 0, uses_anonymous_args = 0
+ 264              		@ link register save eliminated.
+ 263:Drivers/CPP/Src/SVM.cpp **** 	phase = phase + phaseshift;
+ 265              		.loc 1 263 2 view .LVU67
+ 266              		.loc 1 263 8 is_stmt 0 view .LVU68
+ 267 0000 0144     		add	r1, r1, r0
+ 268              	.LVL17:
+ 264:Drivers/CPP/Src/SVM.cpp **** 
+ 265:Drivers/CPP/Src/SVM.cpp **** 	uint16_t active_vectors_time = PWM_TIM_ARR * setpoint >> 8;
+ 269              		.loc 1 265 2 is_stmt 1 view .LVU69
+ 266:Drivers/CPP/Src/SVM.cpp **** 	uint16_t inactive_vector_time = PWM_TIM_ARR - active_vectors_time;
+ 270              		.loc 1 266 2 view .LVU70
+ 267:Drivers/CPP/Src/SVM.cpp **** 
+ 268:Drivers/CPP/Src/SVM.cpp **** 	uint16_t active_vector1_time = 0;
+ 271              		.loc 1 268 2 view .LVU71
+ 269:Drivers/CPP/Src/SVM.cpp **** 	uint16_t active_vector2_time = 0;
+ 272              		.loc 1 269 2 view .LVU72
+ 270:Drivers/CPP/Src/SVM.cpp **** 
+ 271:Drivers/CPP/Src/SVM.cpp **** 	uint16_t CCR_AV1 = 0;
+ 273              		.loc 1 271 2 view .LVU73
+ 272:Drivers/CPP/Src/SVM.cpp **** 	uint16_t CCR_AV2 = 0;
+ 274              		.loc 1 272 2 view .LVU74
+ 273:Drivers/CPP/Src/SVM.cpp **** 	uint16_t CCR_IAV = 0;
+ 275              		.loc 1 273 2 view .LVU75
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 14
+
+
+ 274:Drivers/CPP/Src/SVM.cpp **** 
+ 275:Drivers/CPP/Src/SVM.cpp **** 	if (phase >= 360)
+ 276              		.loc 1 275 2 view .LVU76
+ 277 0002 B1F5B47F 		cmp	r1, #360
+ 278 0006 39DB     		blt	.L10
+ 276:Drivers/CPP/Src/SVM.cpp **** 		phase = phase - 360;
+ 279              		.loc 1 276 3 view .LVU77
+ 280              		.loc 1 276 9 is_stmt 0 view .LVU78
+ 281 0008 A1F5B471 		sub	r1, r1, #360
+ 282              	.LVL18:
+ 277:Drivers/CPP/Src/SVM.cpp **** 	if (phase < 0)
+ 283              		.loc 1 277 2 is_stmt 1 view .LVU79
+ 284              	.L11:
+ 278:Drivers/CPP/Src/SVM.cpp **** 		phase = phase + 360;
+ 279:Drivers/CPP/Src/SVM.cpp **** 
+ 280:Drivers/CPP/Src/SVM.cpp **** 	current_sector = (uint16_t)phase / 60;
+ 285              		.loc 1 280 2 view .LVU80
+ 286              		.loc 1 280 35 is_stmt 0 view .LVU81
+ 287 000c 8BB2     		uxth	r3, r1
+ 288 000e 4748     		ldr	r0, .L20
+ 289 0010 A0FB0303 		umull	r0, r3, r0, r3
+ 290 0014 5B09     		lsrs	r3, r3, #5
+ 291              		.loc 1 280 17 view .LVU82
+ 292 0016 4648     		ldr	r0, .L20+4
+ 293 0018 0380     		strh	r3, [r0]	@ movhi
+ 281:Drivers/CPP/Src/SVM.cpp **** 
+ 282:Drivers/CPP/Src/SVM.cpp **** 	//	switch(current_sector){
+ 283:Drivers/CPP/Src/SVM.cpp **** 	//		case(0):										// phase 0-59�
+ 284:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV1= inactive_vector_time>>1;									// start of active vector 1
+ 285:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector2_time= ((active_vectors_time * phase)/60);
+ 286:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector1_time= active_vectors_time-active_vector2_time;
+ 287:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV1=	CCR_AV1+(active_vector1_time>>1);		// middle of active vector 1 to sample curre
+ 288:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV2= active_vector1_time + CCR_AV1;							// start of active vector 2
+ 289:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV2 =CCR_AV2 + (active_vector2_time>>1);	// middle of active vector 2 to sample curr
+ 290:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_IAV = active_vector2_time+ CCR_AV2;
+ 291:Drivers/CPP/Src/SVM.cpp **** 	//
+ 292:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_U = CCR_AV1;
+ 293:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_V = CCR_AV2;
+ 294:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_W = CCR_IAV;
+ 295:Drivers/CPP/Src/SVM.cpp **** 	//			break;
+ 296:Drivers/CPP/Src/SVM.cpp **** 	//		case(1):										// phase 60-119�
+ 297:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV1= inactive_vector_time>>1;									// start of active vector 1
+ 298:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector2_time= ((active_vectors_time * (phase-60))/60);
+ 299:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector1_time= active_vectors_time-active_vector2_time;
+ 300:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV1=	CCR_AV1+(active_vector2_time>>1);		// middle of active vector 1 to sample curre
+ 301:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV2= active_vector2_time + CCR_AV1;							// start of active vector 2
+ 302:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV2 =CCR_AV2 + (active_vector1_time>>1);	// middle of active vector 2 to sample curr
+ 303:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_IAV = active_vector1_time+ CCR_AV2;
+ 304:Drivers/CPP/Src/SVM.cpp **** 	//
+ 305:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_U = CCR_AV2;
+ 306:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_V = CCR_AV1;
+ 307:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_W = CCR_IAV;
+ 308:Drivers/CPP/Src/SVM.cpp **** 	//			break;
+ 309:Drivers/CPP/Src/SVM.cpp **** 	//		case(2):										// phase 120-179�
+ 310:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV1= inactive_vector_time>>1;									// start of active vector 1
+ 311:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector2_time= ((active_vectors_time * (phase-120))/60);
+ 312:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector1_time= active_vectors_time-active_vector2_time;
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 15
+
+
+ 313:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV1=	CCR_AV1+(active_vector1_time>>1);		// middle of active vector 1 to sample curre
+ 314:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV2= active_vector1_time + CCR_AV1;							// start of active vector 2
+ 315:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV2 =CCR_AV2 + (active_vector2_time>>1);	// middle of active vector 2 to sample curr
+ 316:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_IAV = active_vector2_time+ CCR_AV2;
+ 317:Drivers/CPP/Src/SVM.cpp **** 	//
+ 318:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_U = CCR_IAV;
+ 319:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_V = CCR_AV1;
+ 320:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_W = CCR_AV2;
+ 321:Drivers/CPP/Src/SVM.cpp **** 	//			break;
+ 322:Drivers/CPP/Src/SVM.cpp **** 	//		case(3):										// phase 180-239�
+ 323:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV1= inactive_vector_time>>1;									// start of active vector 1
+ 324:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector2_time= ((active_vectors_time * (phase-180))/60);
+ 325:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector1_time= active_vectors_time-active_vector2_time;
+ 326:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV1=	CCR_AV1+(active_vector2_time>>1);		// middle of active vector 1 to sample curre
+ 327:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV2= active_vector2_time + CCR_AV1;							// start of active vector 2
+ 328:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV2 =CCR_AV2 + (active_vector1_time>>1);	// middle of active vector 2 to sample curr
+ 329:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_IAV = active_vector1_time+ CCR_AV2;
+ 330:Drivers/CPP/Src/SVM.cpp **** 	//
+ 331:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_U = CCR_IAV;
+ 332:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_V = CCR_AV2;
+ 333:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_W = CCR_AV1;
+ 334:Drivers/CPP/Src/SVM.cpp **** 	//			break;
+ 335:Drivers/CPP/Src/SVM.cpp **** 	//		case(4):										// phase 240-299�
+ 336:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV1= inactive_vector_time>>1;									// start of active vector 1
+ 337:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector2_time= ((active_vectors_time * (phase-240))/60);
+ 338:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector1_time= active_vectors_time-active_vector2_time;
+ 339:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV1=	CCR_AV1+(active_vector1_time>>1);		// middle of active vector 1 to sample curre
+ 340:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV2= active_vector1_time + CCR_AV1;							// start of active vector 2
+ 341:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV2 =CCR_AV2 + (active_vector2_time>>1);	// middle of active vector 2 to sample curr
+ 342:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_IAV = active_vector2_time+ CCR_AV2;
+ 343:Drivers/CPP/Src/SVM.cpp **** 	//
+ 344:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_U = CCR_AV2;
+ 345:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_V = CCR_IAV;
+ 346:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_W = CCR_AV1;
+ 347:Drivers/CPP/Src/SVM.cpp **** 	//			break;
+ 348:Drivers/CPP/Src/SVM.cpp **** 	//		case(5):										// phase 300-359�
+ 349:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV1= inactive_vector_time>>1;									// start of active vector 1
+ 350:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector2_time= ((active_vectors_time * (phase-300))/60);
+ 351:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector1_time= active_vectors_time-active_vector2_time;
+ 352:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV1=	CCR_AV1+(active_vector2_time>>1);		// middle of active vector 1 to sample curre
+ 353:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV2= active_vector2_time + CCR_AV1;							// start of active vector 2
+ 354:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV2 =CCR_AV2 + (active_vector1_time>>1);	// middle of active vector 2 to sample curr
+ 355:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_IAV = active_vector1_time+ CCR_AV2;
+ 356:Drivers/CPP/Src/SVM.cpp **** 	//
+ 357:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_U = CCR_AV1;
+ 358:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_V = CCR_IAV;
+ 359:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_W = CCR_AV2;
+ 360:Drivers/CPP/Src/SVM.cpp **** 	//			break;
+ 361:Drivers/CPP/Src/SVM.cpp **** 	//	}
+ 362:Drivers/CPP/Src/SVM.cpp **** 
+ 363:Drivers/CPP/Src/SVM.cpp **** 	if (phase < 180)
+ 294              		.loc 1 363 2 is_stmt 1 view .LVU83
+ 295 001a B329     		cmp	r1, #179
+ 296 001c 33DC     		bgt	.L12
+ 364:Drivers/CPP/Src/SVM.cpp **** 		CCR_U = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 297              		.loc 1 364 3 view .LVU84
+ 298              		.loc 1 364 52 is_stmt 0 view .LVU85
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 16
+
+
+ 299 001e 454B     		ldr	r3, .L20+8
+ 300 0020 33F81130 		ldrh	r3, [r3, r1, lsl #1]
+ 301              		.loc 1 364 54 view .LVU86
+ 302 0024 02FB03F3 		mul	r3, r2, r3
+ 303              		.loc 1 364 65 view .LVU87
+ 304 0028 4FF43470 		mov	r0, #720
+ 305 002c 00FB03F3 		mul	r3, r0, r3
+ 306              		.loc 1 364 85 view .LVU88
+ 307 0030 9B0C     		lsrs	r3, r3, #18
+ 308              		.loc 1 364 28 view .LVU89
+ 309 0032 0344     		add	r3, r3, r0
+ 310              		.loc 1 364 9 view .LVU90
+ 311 0034 4048     		ldr	r0, .L20+12
+ 312 0036 0380     		strh	r3, [r0]	@ movhi
+ 313              	.L13:
+ 365:Drivers/CPP/Src/SVM.cpp **** 	else
+ 366:Drivers/CPP/Src/SVM.cpp **** 		CCR_U = PWM_TIM_ARR_half - ((uint32_t)(SPWM[phase - 180] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 367:Drivers/CPP/Src/SVM.cpp **** 
+ 368:Drivers/CPP/Src/SVM.cpp **** 	if (phase < 120)
+ 314              		.loc 1 368 2 is_stmt 1 view .LVU91
+ 315 0038 7729     		cmp	r1, #119
+ 316 003a 34DC     		bgt	.L14
+ 369:Drivers/CPP/Src/SVM.cpp **** 		CCR_V = PWM_TIM_ARR_half - ((uint32_t)(SPWM[phase + 60] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 317              		.loc 1 369 3 view .LVU92
+ 318              		.loc 1 369 53 is_stmt 0 view .LVU93
+ 319 003c 01F13C03 		add	r3, r1, #60
+ 320              		.loc 1 369 57 view .LVU94
+ 321 0040 3C48     		ldr	r0, .L20+8
+ 322 0042 30F81330 		ldrh	r3, [r0, r3, lsl #1]
+ 323              		.loc 1 369 59 view .LVU95
+ 324 0046 02FB03F3 		mul	r3, r2, r3
+ 325              		.loc 1 369 70 view .LVU96
+ 326 004a 4FF43470 		mov	r0, #720
+ 327 004e 00FB03F3 		mul	r3, r0, r3
+ 328              		.loc 1 369 90 view .LVU97
+ 329 0052 9B0C     		lsrs	r3, r3, #18
+ 330              		.loc 1 369 28 view .LVU98
+ 331 0054 C31A     		subs	r3, r0, r3
+ 332              		.loc 1 369 9 view .LVU99
+ 333 0056 3948     		ldr	r0, .L20+16
+ 334 0058 0380     		strh	r3, [r0]	@ movhi
+ 335              	.L15:
+ 370:Drivers/CPP/Src/SVM.cpp **** 	else if ((phase < 300))
+ 371:Drivers/CPP/Src/SVM.cpp **** 		CCR_V = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase - 120] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 372:Drivers/CPP/Src/SVM.cpp **** 	else
+ 373:Drivers/CPP/Src/SVM.cpp **** 		CCR_V = PWM_TIM_ARR_half - ((uint32_t)(SPWM[phase - 300] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 374:Drivers/CPP/Src/SVM.cpp **** 
+ 375:Drivers/CPP/Src/SVM.cpp **** 	if (phase < 60)
+ 336              		.loc 1 375 2 is_stmt 1 view .LVU100
+ 337 005a 3B29     		cmp	r1, #59
+ 338 005c 46DC     		bgt	.L17
+ 376:Drivers/CPP/Src/SVM.cpp **** 		CCR_W = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase + 120] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 339              		.loc 1 376 3 view .LVU101
+ 340              		.loc 1 376 53 is_stmt 0 view .LVU102
+ 341 005e 7831     		adds	r1, r1, #120
+ 342              	.LVL19:
+ 343              		.loc 1 376 58 view .LVU103
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 17
+
+
+ 344 0060 344B     		ldr	r3, .L20+8
+ 345 0062 33F81130 		ldrh	r3, [r3, r1, lsl #1]
+ 346              		.loc 1 376 60 view .LVU104
+ 347 0066 02FB03F3 		mul	r3, r2, r3
+ 348              		.loc 1 376 71 view .LVU105
+ 349 006a 4FF43472 		mov	r2, #720
+ 350              	.LVL20:
+ 351              		.loc 1 376 71 view .LVU106
+ 352 006e 02FB03F3 		mul	r3, r2, r3
+ 353              		.loc 1 376 91 view .LVU107
+ 354 0072 9B0C     		lsrs	r3, r3, #18
+ 355              		.loc 1 376 28 view .LVU108
+ 356 0074 1344     		add	r3, r3, r2
+ 357              		.loc 1 376 9 view .LVU109
+ 358 0076 324A     		ldr	r2, .L20+20
+ 359 0078 1380     		strh	r3, [r2]	@ movhi
+ 360 007a 7047     		bx	lr
+ 361              	.LVL21:
+ 362              	.L10:
+ 277:Drivers/CPP/Src/SVM.cpp **** 		phase = phase + 360;
+ 363              		.loc 1 277 2 is_stmt 1 view .LVU110
+ 364 007c 0029     		cmp	r1, #0
+ 365 007e C5DA     		bge	.L11
+ 278:Drivers/CPP/Src/SVM.cpp **** 
+ 366              		.loc 1 278 3 view .LVU111
+ 278:Drivers/CPP/Src/SVM.cpp **** 
+ 367              		.loc 1 278 9 is_stmt 0 view .LVU112
+ 368 0080 01F5B471 		add	r1, r1, #360
+ 369              	.LVL22:
+ 278:Drivers/CPP/Src/SVM.cpp **** 
+ 370              		.loc 1 278 9 view .LVU113
+ 371 0084 C2E7     		b	.L11
+ 372              	.L12:
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 373              		.loc 1 366 3 is_stmt 1 view .LVU114
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 374              		.loc 1 366 53 is_stmt 0 view .LVU115
+ 375 0086 A1F1B403 		sub	r3, r1, #180
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 376              		.loc 1 366 58 view .LVU116
+ 377 008a 2A48     		ldr	r0, .L20+8
+ 378 008c 30F81330 		ldrh	r3, [r0, r3, lsl #1]
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 379              		.loc 1 366 60 view .LVU117
+ 380 0090 02FB03F3 		mul	r3, r2, r3
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 381              		.loc 1 366 71 view .LVU118
+ 382 0094 4FF43470 		mov	r0, #720
+ 383 0098 00FB03F3 		mul	r3, r0, r3
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 384              		.loc 1 366 91 view .LVU119
+ 385 009c 9B0C     		lsrs	r3, r3, #18
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 386              		.loc 1 366 28 view .LVU120
+ 387 009e C31A     		subs	r3, r0, r3
+ 366:Drivers/CPP/Src/SVM.cpp **** 
+ 388              		.loc 1 366 9 view .LVU121
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 18
+
+
+ 389 00a0 2548     		ldr	r0, .L20+12
+ 390 00a2 0380     		strh	r3, [r0]	@ movhi
+ 391 00a4 C8E7     		b	.L13
+ 392              	.L14:
+ 370:Drivers/CPP/Src/SVM.cpp **** 		CCR_V = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase - 120] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 393              		.loc 1 370 7 is_stmt 1 view .LVU122
+ 394 00a6 B1F5967F 		cmp	r1, #300
+ 395 00aa 0FDA     		bge	.L16
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 396              		.loc 1 371 3 view .LVU123
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 397              		.loc 1 371 53 is_stmt 0 view .LVU124
+ 398 00ac A1F17803 		sub	r3, r1, #120
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 399              		.loc 1 371 58 view .LVU125
+ 400 00b0 2048     		ldr	r0, .L20+8
+ 401 00b2 30F81330 		ldrh	r3, [r0, r3, lsl #1]
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 402              		.loc 1 371 60 view .LVU126
+ 403 00b6 02FB03F3 		mul	r3, r2, r3
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 404              		.loc 1 371 71 view .LVU127
+ 405 00ba 4FF43470 		mov	r0, #720
+ 406 00be 00FB03F3 		mul	r3, r0, r3
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 407              		.loc 1 371 91 view .LVU128
+ 408 00c2 9B0C     		lsrs	r3, r3, #18
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 409              		.loc 1 371 28 view .LVU129
+ 410 00c4 0344     		add	r3, r3, r0
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 411              		.loc 1 371 9 view .LVU130
+ 412 00c6 1D48     		ldr	r0, .L20+16
+ 413 00c8 0380     		strh	r3, [r0]	@ movhi
+ 414 00ca C6E7     		b	.L15
+ 415              	.L16:
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 416              		.loc 1 373 3 is_stmt 1 view .LVU131
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 417              		.loc 1 373 53 is_stmt 0 view .LVU132
+ 418 00cc A1F59673 		sub	r3, r1, #300
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 419              		.loc 1 373 58 view .LVU133
+ 420 00d0 1848     		ldr	r0, .L20+8
+ 421 00d2 30F81330 		ldrh	r3, [r0, r3, lsl #1]
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 422              		.loc 1 373 60 view .LVU134
+ 423 00d6 02FB03F3 		mul	r3, r2, r3
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 424              		.loc 1 373 71 view .LVU135
+ 425 00da 4FF43470 		mov	r0, #720
+ 426 00de 00FB03F3 		mul	r3, r0, r3
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 427              		.loc 1 373 91 view .LVU136
+ 428 00e2 9B0C     		lsrs	r3, r3, #18
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 429              		.loc 1 373 28 view .LVU137
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 19
+
+
+ 430 00e4 C31A     		subs	r3, r0, r3
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 431              		.loc 1 373 9 view .LVU138
+ 432 00e6 1548     		ldr	r0, .L20+16
+ 433 00e8 0380     		strh	r3, [r0]	@ movhi
+ 434 00ea B6E7     		b	.L15
+ 435              	.L17:
+ 377:Drivers/CPP/Src/SVM.cpp **** 	else if ((phase < 240))
+ 436              		.loc 1 377 7 is_stmt 1 view .LVU139
+ 437 00ec EF29     		cmp	r1, #239
+ 438 00ee 0EDC     		bgt	.L19
+ 378:Drivers/CPP/Src/SVM.cpp **** 		CCR_W = PWM_TIM_ARR_half - ((uint32_t)(SPWM[phase - 60] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 439              		.loc 1 378 3 view .LVU140
+ 440              		.loc 1 378 53 is_stmt 0 view .LVU141
+ 441 00f0 3C39     		subs	r1, r1, #60
+ 442              	.LVL23:
+ 443              		.loc 1 378 57 view .LVU142
+ 444 00f2 104B     		ldr	r3, .L20+8
+ 445 00f4 33F81130 		ldrh	r3, [r3, r1, lsl #1]
+ 446              		.loc 1 378 59 view .LVU143
+ 447 00f8 02FB03F3 		mul	r3, r2, r3
+ 448              		.loc 1 378 70 view .LVU144
+ 449 00fc 4FF43472 		mov	r2, #720
+ 450              	.LVL24:
+ 451              		.loc 1 378 70 view .LVU145
+ 452 0100 02FB03F3 		mul	r3, r2, r3
+ 453              		.loc 1 378 90 view .LVU146
+ 454 0104 9B0C     		lsrs	r3, r3, #18
+ 455              		.loc 1 378 28 view .LVU147
+ 456 0106 D31A     		subs	r3, r2, r3
+ 457              		.loc 1 378 9 view .LVU148
+ 458 0108 0D4A     		ldr	r2, .L20+20
+ 459 010a 1380     		strh	r3, [r2]	@ movhi
+ 460 010c 7047     		bx	lr
+ 461              	.LVL25:
+ 462              	.L19:
+ 379:Drivers/CPP/Src/SVM.cpp **** 	else
+ 380:Drivers/CPP/Src/SVM.cpp **** 		CCR_W = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase - 240] * setpoint * PWM_TIM_ARR_half) >> 18);
+ 463              		.loc 1 380 3 is_stmt 1 view .LVU149
+ 464              		.loc 1 380 53 is_stmt 0 view .LVU150
+ 465 010e F039     		subs	r1, r1, #240
+ 466              	.LVL26:
+ 467              		.loc 1 380 58 view .LVU151
+ 468 0110 084B     		ldr	r3, .L20+8
+ 469 0112 33F81130 		ldrh	r3, [r3, r1, lsl #1]
+ 470              		.loc 1 380 60 view .LVU152
+ 471 0116 02FB03F3 		mul	r3, r2, r3
+ 472              		.loc 1 380 71 view .LVU153
+ 473 011a 4FF43472 		mov	r2, #720
+ 474              	.LVL27:
+ 475              		.loc 1 380 71 view .LVU154
+ 476 011e 02FB03F3 		mul	r3, r2, r3
+ 477              		.loc 1 380 91 view .LVU155
+ 478 0122 9B0C     		lsrs	r3, r3, #18
+ 479              		.loc 1 380 28 view .LVU156
+ 480 0124 1344     		add	r3, r3, r2
+ 481              		.loc 1 380 9 view .LVU157
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 20
+
+
+ 482 0126 064A     		ldr	r2, .L20+20
+ 483 0128 1380     		strh	r3, [r2]	@ movhi
+ 381:Drivers/CPP/Src/SVM.cpp **** 
+ 382:Drivers/CPP/Src/SVM.cpp **** 	// calculte the CCR5 und CCR6 register to determine when the current is sampled
+ 383:Drivers/CPP/Src/SVM.cpp **** 	// these CCR registers must be set in die middel of the active vectors
+ 384:Drivers/CPP/Src/SVM.cpp **** 
+ 385:Drivers/CPP/Src/SVM.cpp **** 	//	if(phase<)
+ 386:Drivers/CPP/Src/SVM.cpp **** }
+ 484              		.loc 1 386 1 view .LVU158
+ 485 012a 7047     		bx	lr
+ 486              	.L21:
+ 487              		.align	2
+ 488              	.L20:
+ 489 012c 89888888 		.word	-2004318071
+ 490 0130 00000000 		.word	_ZL14current_sector
+ 491 0134 00000000 		.word	_ZL4SPWM
+ 492 0138 00000000 		.word	_ZL5CCR_U
+ 493 013c 00000000 		.word	_ZL5CCR_V
+ 494 0140 00000000 		.word	_ZL5CCR_W
+ 495              		.cfi_endproc
+ 496              	.LFE144:
+ 498              		.section	.rodata._ZL4SPWM,"a"
+ 499              		.align	2
+ 502              	_ZL4SPWM:
+ 503 0000 0000     		.short	0
+ 504 0002 1E00     		.short	30
+ 505 0004 3D00     		.short	61
+ 506 0006 5B00     		.short	91
+ 507 0008 7A00     		.short	122
+ 508 000a 9800     		.short	152
+ 509 000c B700     		.short	183
+ 510 000e D500     		.short	213
+ 511 0010 F300     		.short	243
+ 512 0012 1101     		.short	273
+ 513 0014 3001     		.short	304
+ 514 0016 4E01     		.short	334
+ 515 0018 6C01     		.short	364
+ 516 001a 8A01     		.short	394
+ 517 001c A801     		.short	424
+ 518 001e C601     		.short	454
+ 519 0020 E301     		.short	483
+ 520 0022 0102     		.short	513
+ 521 0024 1E02     		.short	542
+ 522 0026 3C02     		.short	572
+ 523 0028 5902     		.short	601
+ 524 002a 7602     		.short	630
+ 525 002c 9302     		.short	659
+ 526 002e B002     		.short	688
+ 527 0030 CD02     		.short	717
+ 528 0032 E902     		.short	745
+ 529 0034 0603     		.short	774
+ 530 0036 2203     		.short	802
+ 531 0038 3E03     		.short	830
+ 532 003a 5A03     		.short	858
+ 533 003c 7603     		.short	886
+ 534 003e 7E03     		.short	894
+ 535 0040 8603     		.short	902
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 21
+
+
+ 536 0042 8D03     		.short	909
+ 537 0044 9503     		.short	917
+ 538 0046 9C03     		.short	924
+ 539 0048 A303     		.short	931
+ 540 004a AA03     		.short	938
+ 541 004c B003     		.short	944
+ 542 004e B703     		.short	951
+ 543 0050 BD03     		.short	957
+ 544 0052 C303     		.short	963
+ 545 0054 C803     		.short	968
+ 546 0056 CE03     		.short	974
+ 547 0058 D303     		.short	979
+ 548 005a D703     		.short	983
+ 549 005c DC03     		.short	988
+ 550 005e E003     		.short	992
+ 551 0060 E503     		.short	997
+ 552 0062 E903     		.short	1001
+ 553 0064 EC03     		.short	1004
+ 554 0066 EF03     		.short	1007
+ 555 0068 F203     		.short	1010
+ 556 006a F503     		.short	1013
+ 557 006c F703     		.short	1015
+ 558 006e FA03     		.short	1018
+ 559 0070 FC03     		.short	1020
+ 560 0072 FD03     		.short	1021
+ 561 0074 FE03     		.short	1022
+ 562 0076 FF03     		.short	1023
+ 563 0078 0004     		.short	1024
+ 564 007a 0004     		.short	1024
+ 565 007c 0004     		.short	1024
+ 566 007e 0004     		.short	1024
+ 567 0080 0004     		.short	1024
+ 568 0082 FE03     		.short	1022
+ 569 0084 FD03     		.short	1021
+ 570 0086 FC03     		.short	1020
+ 571 0088 FA03     		.short	1018
+ 572 008a F703     		.short	1015
+ 573 008c F503     		.short	1013
+ 574 008e F203     		.short	1010
+ 575 0090 EF03     		.short	1007
+ 576 0092 EB03     		.short	1003
+ 577 0094 E703     		.short	999
+ 578 0096 E303     		.short	995
+ 579 0098 DE03     		.short	990
+ 580 009a D903     		.short	985
+ 581 009c D403     		.short	980
+ 582 009e CE03     		.short	974
+ 583 00a0 C803     		.short	968
+ 584 00a2 C103     		.short	961
+ 585 00a4 BA03     		.short	954
+ 586 00a6 B403     		.short	948
+ 587 00a8 AC03     		.short	940
+ 588 00aa A403     		.short	932
+ 589 00ac 9C03     		.short	924
+ 590 00ae 9303     		.short	915
+ 591 00b0 8A03     		.short	906
+ 592 00b2 8103     		.short	897
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 22
+
+
+ 593 00b4 7703     		.short	887
+ 594 00b6 8103     		.short	897
+ 595 00b8 8A03     		.short	906
+ 596 00ba 9303     		.short	915
+ 597 00bc 9C03     		.short	924
+ 598 00be A403     		.short	932
+ 599 00c0 AC03     		.short	940
+ 600 00c2 B403     		.short	948
+ 601 00c4 BA03     		.short	954
+ 602 00c6 C103     		.short	961
+ 603 00c8 C803     		.short	968
+ 604 00ca CE03     		.short	974
+ 605 00cc D403     		.short	980
+ 606 00ce D903     		.short	985
+ 607 00d0 DE03     		.short	990
+ 608 00d2 E303     		.short	995
+ 609 00d4 E703     		.short	999
+ 610 00d6 EB03     		.short	1003
+ 611 00d8 EF03     		.short	1007
+ 612 00da F203     		.short	1010
+ 613 00dc F503     		.short	1013
+ 614 00de F703     		.short	1015
+ 615 00e0 FA03     		.short	1018
+ 616 00e2 FC03     		.short	1020
+ 617 00e4 FD03     		.short	1021
+ 618 00e6 FE03     		.short	1022
+ 619 00e8 0004     		.short	1024
+ 620 00ea 0004     		.short	1024
+ 621 00ec 0004     		.short	1024
+ 622 00ee 0004     		.short	1024
+ 623 00f0 0004     		.short	1024
+ 624 00f2 FF03     		.short	1023
+ 625 00f4 FE03     		.short	1022
+ 626 00f6 FD03     		.short	1021
+ 627 00f8 FC03     		.short	1020
+ 628 00fa FA03     		.short	1018
+ 629 00fc F703     		.short	1015
+ 630 00fe F503     		.short	1013
+ 631 0100 F203     		.short	1010
+ 632 0102 EF03     		.short	1007
+ 633 0104 EC03     		.short	1004
+ 634 0106 E903     		.short	1001
+ 635 0108 E503     		.short	997
+ 636 010a E003     		.short	992
+ 637 010c DC03     		.short	988
+ 638 010e D703     		.short	983
+ 639 0110 D303     		.short	979
+ 640 0112 CE03     		.short	974
+ 641 0114 C803     		.short	968
+ 642 0116 C303     		.short	963
+ 643 0118 BD03     		.short	957
+ 644 011a B703     		.short	951
+ 645 011c B003     		.short	944
+ 646 011e AA03     		.short	938
+ 647 0120 A303     		.short	931
+ 648 0122 9C03     		.short	924
+ 649 0124 9503     		.short	917
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 23
+
+
+ 650 0126 8D03     		.short	909
+ 651 0128 8603     		.short	902
+ 652 012a 7E03     		.short	894
+ 653 012c 7603     		.short	886
+ 654 012e 5A03     		.short	858
+ 655 0130 3E03     		.short	830
+ 656 0132 2203     		.short	802
+ 657 0134 0603     		.short	774
+ 658 0136 E902     		.short	745
+ 659 0138 CD02     		.short	717
+ 660 013a B002     		.short	688
+ 661 013c 9302     		.short	659
+ 662 013e 7602     		.short	630
+ 663 0140 5902     		.short	601
+ 664 0142 3C02     		.short	572
+ 665 0144 1E02     		.short	542
+ 666 0146 0102     		.short	513
+ 667 0148 E301     		.short	483
+ 668 014a C601     		.short	454
+ 669 014c A801     		.short	424
+ 670 014e 8A01     		.short	394
+ 671 0150 6C01     		.short	364
+ 672 0152 4E01     		.short	334
+ 673 0154 3001     		.short	304
+ 674 0156 1101     		.short	273
+ 675 0158 F300     		.short	243
+ 676 015a D500     		.short	213
+ 677 015c B700     		.short	183
+ 678 015e 9800     		.short	152
+ 679 0160 7A00     		.short	122
+ 680 0162 5B00     		.short	91
+ 681 0164 3D00     		.short	61
+ 682 0166 1E00     		.short	30
+ 683              		.section	.bss._ZL14current_sector,"aw",%nobits
+ 684              		.align	1
+ 687              	_ZL14current_sector:
+ 688 0000 0000     		.space	2
+ 689              		.section	.bss._ZL5CCR_W,"aw",%nobits
+ 690              		.align	1
+ 693              	_ZL5CCR_W:
+ 694 0000 0000     		.space	2
+ 695              		.section	.bss._ZL5CCR_V,"aw",%nobits
+ 696              		.align	1
+ 699              	_ZL5CCR_V:
+ 700 0000 0000     		.space	2
+ 701              		.section	.bss._ZL5CCR_U,"aw",%nobits
+ 702              		.align	1
+ 705              	_ZL5CCR_U:
+ 706 0000 0000     		.space	2
+ 707              		.text
+ 708              	.Letext0:
+ 709              		.file 3 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 710              		.file 4 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 711              		.file 5 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 712              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 713              		.file 7 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/in
+ 714              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 24
+
+
+ 715              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 716              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 717              		.file 11 "Drivers/BSP/STM32G4xx_Nucleo/stm32g4xx_nucleo.h"
+ 718              		.file 12 "Drivers/CPP/Inc/global_var.h"
+ 719              		.file 13 "Core/Inc/tim.h"
+ 720              		.file 14 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 721              		.file 15 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 722              		.file 16 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 723              		.file 17 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 724              		.file 18 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 725              		.file 19 "Drivers/CPP/Inc/Park_u_Clark.h"
+ 726              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h"
+ 727              		.file 21 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s 			page 25
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 SVM.cpp
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:21     .text.initSVM:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:27     .text.initSVM:00000000 initSVM
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:145    .text.initSVM:0000007c $d
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:151    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:157    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:240    .text.HAL_TIM_PeriodElapsedCallback:00000058 $d
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:705    .bss._ZL5CCR_U:00000000 _ZL5CCR_U
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:699    .bss._ZL5CCR_V:00000000 _ZL5CCR_V
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:693    .bss._ZL5CCR_W:00000000 _ZL5CCR_W
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:251    .text.setVoltageVector:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:257    .text.setVoltageVector:00000000 setVoltageVector
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:489    .text.setVoltageVector:0000012c $d
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:687    .bss._ZL14current_sector:00000000 _ZL14current_sector
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:502    .rodata._ZL4SPWM:00000000 _ZL4SPWM
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:499    .rodata._ZL4SPWM:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:684    .bss._ZL14current_sector:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:690    .bss._ZL5CCR_W:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:696    .bss._ZL5CCR_V:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\ccBV5zFf.s:702    .bss._ZL5CCR_U:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_NVIC_EnableIRQ
+HAL_NVIC_SetPriority
+HAL_TIM_PWM_Start
+HAL_TIM_PWM_Start_IT
+HAL_TIMEx_PWMN_Start
+htim1
+transform_to_Clark_domain
+transform_to_Park_domain
+Motor

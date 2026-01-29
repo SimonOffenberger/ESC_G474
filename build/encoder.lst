@@ -1,0 +1,533 @@
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"encoder.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Drivers/CPP/Src/encoder.cpp"
+  20              		.section	.rodata.readEncoder.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 706F7765 		.ascii	"power on\000"
+  23      72206F6E 
+  23      00
+  24 0009 000000   		.align	2
+  25              	.LC1:
+  26 000c 69646C65 		.ascii	"idle\000"
+  26      00
+  27 0011 000000   		.align	2
+  28              	.LC2:
+  29 0014 454E434F 		.ascii	"ENCODERA rising\000"
+  29      44455241 
+  29      20726973 
+  29      696E6700 
+  30              		.align	2
+  31              	.LC3:
+  32 0024 77616974 		.ascii	"wait for ENCODERB\000"
+  32      20666F72 
+  32      20454E43 
+  32      4F444552 
+  32      4200
+  33 0036 0000     		.align	2
+  34              	.LC4:
+  35 0038 454E434F 		.ascii	"ENCODERB falling\000"
+  35      44455242 
+  35      2066616C 
+  35      6C696E67 
+  35      00
+  36 0049 000000   		.align	2
+  37              	.LC5:
+  38 004c 77616974 		.ascii	"wait for ENCODERA\000"
+  38      20666F72 
+  38      20454E43 
+  38      4F444552 
+  38      4100
+  39 005e 0000     		.align	2
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 2
+
+
+  40              	.LC6:
+  41 0060 636F756E 		.ascii	"count up\000"
+  41      74207570 
+  41      00
+  42 0069 000000   		.align	2
+  43              	.LC7:
+  44 006c 636F756E 		.ascii	"count down\000"
+  44      7420646F 
+  44      776E00
+  45 0077 00       		.align	2
+  46              	.LC8:
+  47 0078 6E6F6E65 		.ascii	"none\000"
+  47      00
+  48              		.section	.text.readEncoder,"ax",%progbits
+  49              		.align	1
+  50              		.global	readEncoder
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	readEncoder:
+  56              	.LVL0:
+  57              	.LFB142:
+   1:Drivers/CPP/Src/encoder.cpp **** /**
+   2:Drivers/CPP/Src/encoder.cpp ****   ******************************************************************************
+   3:Drivers/CPP/Src/encoder.cpp ****   * @file    adc.c
+   4:Drivers/CPP/Src/encoder.cpp ****   * @brief   This file provides code for the configuration
+   5:Drivers/CPP/Src/encoder.cpp ****   *          of the ADC instances.
+   6:Drivers/CPP/Src/encoder.cpp ****   ******************************************************************************
+   7:Drivers/CPP/Src/encoder.cpp ****   * @attention
+   8:Drivers/CPP/Src/encoder.cpp ****   *
+   9:Drivers/CPP/Src/encoder.cpp ****   * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
+  10:Drivers/CPP/Src/encoder.cpp ****   * All rights reserved.</center></h2>
+  11:Drivers/CPP/Src/encoder.cpp ****   *
+  12:Drivers/CPP/Src/encoder.cpp ****   * This software component is licensed by ST under BSD 3-Clause license,
+  13:Drivers/CPP/Src/encoder.cpp ****   * the "License"; You may not use this file except in compliance with the
+  14:Drivers/CPP/Src/encoder.cpp ****   * License. You may obtain a copy of the License at:
+  15:Drivers/CPP/Src/encoder.cpp ****   *                        opensource.org/licenses/BSD-3-Clause
+  16:Drivers/CPP/Src/encoder.cpp ****   *
+  17:Drivers/CPP/Src/encoder.cpp ****   ******************************************************************************
+  18:Drivers/CPP/Src/encoder.cpp ****   */
+  19:Drivers/CPP/Src/encoder.cpp **** 
+  20:Drivers/CPP/Src/encoder.cpp **** /* Includes ------------------------------------------------------------------*/
+  21:Drivers/CPP/Src/encoder.cpp **** #include "encoder.h"
+  22:Drivers/CPP/Src/encoder.cpp **** #include <string.h>
+  23:Drivers/CPP/Src/encoder.cpp **** #include <stdio.h>
+  24:Drivers/CPP/Src/encoder.cpp **** #include <stdlib.h>
+  25:Drivers/CPP/Src/encoder.cpp **** #include <stdbool.h>
+  26:Drivers/CPP/Src/encoder.cpp **** 
+  27:Drivers/CPP/Src/encoder.cpp **** int readEncoder(GPIO_TypeDef* PORT_A, uint16_t PIN_A , GPIO_TypeDef* PORT_B, uint16_t PIN_B,int upp
+  58              		.loc 1 27 130 view -0
+  59              		.cfi_startproc
+  60              		@ args = 8, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		.loc 1 27 130 is_stmt 0 view .LVU1
+  63 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  64              	.LCFI0:
+  65              		.cfi_def_cfa_offset 32
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 3
+
+
+  66              		.cfi_offset 4, -32
+  67              		.cfi_offset 5, -28
+  68              		.cfi_offset 6, -24
+  69              		.cfi_offset 7, -20
+  70              		.cfi_offset 8, -16
+  71              		.cfi_offset 9, -12
+  72              		.cfi_offset 10, -8
+  73              		.cfi_offset 14, -4
+  74 0004 1546     		mov	r5, r2
+  75 0006 9946     		mov	r9, r3
+  76 0008 089F     		ldr	r7, [sp, #32]
+  77 000a 099E     		ldr	r6, [sp, #36]
+  28:Drivers/CPP/Src/encoder.cpp **** 	static uint8_t ENCODERA =0;
+  78              		.loc 1 28 2 is_stmt 1 view .LVU2
+  29:Drivers/CPP/Src/encoder.cpp **** 	static uint8_t ENCODERB =0;
+  79              		.loc 1 29 2 view .LVU3
+  30:Drivers/CPP/Src/encoder.cpp **** 	static int encoder_val=0;
+  80              		.loc 1 30 2 view .LVU4
+  31:Drivers/CPP/Src/encoder.cpp **** 	
+  32:Drivers/CPP/Src/encoder.cpp **** 	ENCODERA=(ENCODERA<<1)|HAL_GPIO_ReadPin(PORT_A,PIN_A);
+  81              		.loc 1 32 2 view .LVU5
+  82              		.loc 1 32 24 is_stmt 0 view .LVU6
+  83 000c 3E4C     		ldr	r4, .L19
+  84 000e 94F80080 		ldrb	r8, [r4]	@ zero_extendqisi2
+  85              		.loc 1 32 41 view .LVU7
+  86 0012 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  87              	.LVL1:
+  88              		.loc 1 32 24 discriminator 1 view .LVU8
+  89 0016 40EA4800 		orr	r0, r0, r8, lsl #1
+  90              		.loc 1 32 10 discriminator 1 view .LVU9
+  91 001a 2070     		strb	r0, [r4]
+  33:Drivers/CPP/Src/encoder.cpp **** 	ENCODERB=(ENCODERB<<1)|HAL_GPIO_ReadPin(PORT_B,PIN_B);
+  92              		.loc 1 33 2 is_stmt 1 view .LVU10
+  93              		.loc 1 33 24 is_stmt 0 view .LVU11
+  94 001c DFF82081 		ldr	r8, .L19+56
+  95 0020 98F800A0 		ldrb	r10, [r8]	@ zero_extendqisi2
+  96              		.loc 1 33 41 view .LVU12
+  97 0024 4946     		mov	r1, r9
+  98 0026 2846     		mov	r0, r5
+  99 0028 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 100              	.LVL2:
+ 101              		.loc 1 33 24 discriminator 1 view .LVU13
+ 102 002c 40EA4A00 		orr	r0, r0, r10, lsl #1
+ 103 0030 C0B2     		uxtb	r0, r0
+ 104              		.loc 1 33 10 discriminator 1 view .LVU14
+ 105 0032 88F80000 		strb	r0, [r8]
+  34:Drivers/CPP/Src/encoder.cpp **** 	
+  35:Drivers/CPP/Src/encoder.cpp **** 	bool ENCODERA_rising_edge =		(ENCODERA&0x0F)==3;
+ 106              		.loc 1 35 2 is_stmt 1 view .LVU15
+ 107              		.loc 1 35 40 is_stmt 0 view .LVU16
+ 108 0036 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 109              	.LVL3:
+  36:Drivers/CPP/Src/encoder.cpp **** 	bool ENCODERA_falling_edge=	  (ENCODERA&0x0F)==14;
+ 110              		.loc 1 36 2 is_stmt 1 view .LVU17
+  37:Drivers/CPP/Src/encoder.cpp **** 	bool ENCODERB_rising_edge =		(ENCODERB&0x0F)==3;
+ 111              		.loc 1 37 2 view .LVU18
+  38:Drivers/CPP/Src/encoder.cpp **** 	bool ENCODERB_falling_edge=	  (ENCODERB&0x0F)==14;
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 4
+
+
+ 112              		.loc 1 38 2 view .LVU19
+  39:Drivers/CPP/Src/encoder.cpp **** 	
+  40:Drivers/CPP/Src/encoder.cpp **** 	static const char * event;
+ 113              		.loc 1 40 2 view .LVU20
+  41:Drivers/CPP/Src/encoder.cpp **** 	static const char * state;
+ 114              		.loc 1 41 2 view .LVU21
+  42:Drivers/CPP/Src/encoder.cpp **** 	static bool iniOK=false;
+ 115              		.loc 1 42 2 view .LVU22
+  43:Drivers/CPP/Src/encoder.cpp **** 	
+  44:Drivers/CPP/Src/encoder.cpp **** 	if(!iniOK)																														{event="power on";											  state="idle";}
+ 116              		.loc 1 44 2 view .LVU23
+ 117              		.loc 1 44 5 is_stmt 0 view .LVU24
+ 118 0038 344A     		ldr	r2, .L19+4
+ 119 003a 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 120              		.loc 1 44 2 view .LVU25
+ 121 003c 02BB     		cbnz	r2, .L2
+ 122              		.loc 1 44 43 is_stmt 1 discriminator 1 view .LVU26
+ 123              		.loc 1 44 48 is_stmt 0 discriminator 1 view .LVU27
+ 124 003e 344B     		ldr	r3, .L19+8
+ 125              	.LVL4:
+ 126              		.loc 1 44 48 discriminator 1 view .LVU28
+ 127 0040 344A     		ldr	r2, .L19+12
+ 128 0042 1A60     		str	r2, [r3]
+ 129              		.loc 1 44 73 is_stmt 1 discriminator 1 view .LVU29
+ 130              		.loc 1 44 78 is_stmt 0 discriminator 1 view .LVU30
+ 131 0044 344B     		ldr	r3, .L19+16
+ 132 0046 354A     		ldr	r2, .L19+20
+ 133 0048 1A60     		str	r2, [r3]
+ 134              	.LVL5:
+ 135              	.L3:
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERA_rising_edge)											{event="ENCODERA rising";											sta
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+  48:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+  49:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+  50:Drivers/CPP/Src/encoder.cpp **** 	
+  51:Drivers/CPP/Src/encoder.cpp **** 	if(event_occured("count up")) 	encoder_val++;
+ 136              		.loc 1 51 2 is_stmt 1 view .LVU31
+ 137              		.loc 1 51 5 is_stmt 0 view .LVU32
+ 138 004a 314B     		ldr	r3, .L19+8
+ 139 004c 1B68     		ldr	r3, [r3]
+ 140 004e 344A     		ldr	r2, .L19+24
+ 141              		.loc 1 51 2 view .LVU33
+ 142 0050 9342     		cmp	r3, r2
+ 143 0052 4ED0     		beq	.L13
+ 144              	.L8:
+  52:Drivers/CPP/Src/encoder.cpp **** 	if(event_occured("count down")) encoder_val--;
+ 145              		.loc 1 52 2 is_stmt 1 view .LVU34
+ 146              		.loc 1 52 5 is_stmt 0 view .LVU35
+ 147 0054 334A     		ldr	r2, .L19+28
+ 148              		.loc 1 52 2 view .LVU36
+ 149 0056 9342     		cmp	r3, r2
+ 150 0058 50D0     		beq	.L14
+ 151              	.L9:
+  53:Drivers/CPP/Src/encoder.cpp **** 	
+  54:Drivers/CPP/Src/encoder.cpp **** 	if(encoder_val > upperboundary) encoder_val=upperboundary;
+ 152              		.loc 1 54 2 is_stmt 1 view .LVU37
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 5
+
+
+ 153              		.loc 1 54 17 is_stmt 0 view .LVU38
+ 154 005a 334B     		ldr	r3, .L19+32
+ 155 005c 1B68     		ldr	r3, [r3]
+ 156              		.loc 1 54 2 view .LVU39
+ 157 005e BB42     		cmp	r3, r7
+ 158 0060 01DD     		ble	.L10
+ 159              		.loc 1 54 34 is_stmt 1 discriminator 1 view .LVU40
+ 160              		.loc 1 54 45 is_stmt 0 discriminator 1 view .LVU41
+ 161 0062 314B     		ldr	r3, .L19+32
+ 162 0064 1F60     		str	r7, [r3]
+ 163              	.L10:
+  55:Drivers/CPP/Src/encoder.cpp **** 	if(encoder_val < lowerboundary)	encoder_val=lowerboundary;
+ 164              		.loc 1 55 2 is_stmt 1 view .LVU42
+ 165              		.loc 1 55 17 is_stmt 0 view .LVU43
+ 166 0066 304B     		ldr	r3, .L19+32
+ 167 0068 1B68     		ldr	r3, [r3]
+ 168              		.loc 1 55 2 view .LVU44
+ 169 006a B342     		cmp	r3, r6
+ 170 006c 01DA     		bge	.L11
+ 171              		.loc 1 55 34 is_stmt 1 discriminator 1 view .LVU45
+ 172              		.loc 1 55 45 is_stmt 0 discriminator 1 view .LVU46
+ 173 006e 2E4B     		ldr	r3, .L19+32
+ 174 0070 1E60     		str	r6, [r3]
+ 175              	.L11:
+  56:Drivers/CPP/Src/encoder.cpp **** 
+  57:Drivers/CPP/Src/encoder.cpp **** 	
+  58:Drivers/CPP/Src/encoder.cpp **** 	iniOK=true;
+ 176              		.loc 1 58 2 is_stmt 1 view .LVU47
+ 177              		.loc 1 58 7 is_stmt 0 view .LVU48
+ 178 0072 264B     		ldr	r3, .L19+4
+ 179 0074 0122     		movs	r2, #1
+ 180 0076 1A70     		strb	r2, [r3]
+  59:Drivers/CPP/Src/encoder.cpp **** 	
+  60:Drivers/CPP/Src/encoder.cpp **** 	return encoder_val;
+ 181              		.loc 1 60 2 is_stmt 1 view .LVU49
+  61:Drivers/CPP/Src/encoder.cpp **** }
+ 182              		.loc 1 61 1 is_stmt 0 view .LVU50
+ 183 0078 2B4B     		ldr	r3, .L19+32
+ 184 007a 1868     		ldr	r0, [r3]
+ 185 007c BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 186              	.LVL6:
+ 187              	.L2:
+ 188              		.loc 1 61 1 view .LVU51
+ 189 0080 03F00F03 		and	r3, r3, #15
+ 190              	.LVL7:
+ 191              		.loc 1 61 1 view .LVU52
+ 192 0084 00F00F00 		and	r0, r0, #15
+ 193              	.LVL8:
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 194              		.loc 1 45 7 is_stmt 1 view .LVU53
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 195              		.loc 1 45 11 is_stmt 0 view .LVU54
+ 196 0088 234A     		ldr	r2, .L19+16
+ 197 008a 1268     		ldr	r2, [r2]
+ 198 008c 2349     		ldr	r1, .L19+20
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 199              		.loc 1 45 7 view .LVU55
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 6
+
+
+ 200 008e 8A42     		cmp	r2, r1
+ 201 0090 0BD0     		beq	.L15
+ 202              	.L4:
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+ 203              		.loc 1 46 7 is_stmt 1 view .LVU56
+ 204 0092 8A42     		cmp	r2, r1
+ 205 0094 12D0     		beq	.L16
+ 206              	.L5:
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 207              		.loc 1 47 7 view .LVU57
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 208              		.loc 1 47 11 is_stmt 0 view .LVU58
+ 209 0096 2549     		ldr	r1, .L19+36
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 210              		.loc 1 47 7 view .LVU59
+ 211 0098 8A42     		cmp	r2, r1
+ 212 009a 18D0     		beq	.L17
+ 213              	.L6:
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 214              		.loc 1 48 7 is_stmt 1 view .LVU60
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 215              		.loc 1 48 11 is_stmt 0 view .LVU61
+ 216 009c 2449     		ldr	r1, .L19+40
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 217              		.loc 1 48 7 view .LVU62
+ 218 009e 8A42     		cmp	r2, r1
+ 219 00a0 1ED0     		beq	.L18
+ 220              	.L7:
+  49:Drivers/CPP/Src/encoder.cpp **** 	
+ 221              		.loc 1 49 41 is_stmt 1 view .LVU63
+  49:Drivers/CPP/Src/encoder.cpp **** 	
+ 222              		.loc 1 49 46 is_stmt 0 view .LVU64
+ 223 00a2 1B4B     		ldr	r3, .L19+8
+ 224 00a4 234A     		ldr	r2, .L19+44
+ 225 00a6 1A60     		str	r2, [r3]
+ 226 00a8 CFE7     		b	.L3
+ 227              	.L15:
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 228              		.loc 1 45 27 discriminator 1 view .LVU65
+ 229 00aa 032B     		cmp	r3, #3
+ 230 00ac F1D1     		bne	.L4
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 231              		.loc 1 45 62 is_stmt 1 discriminator 2 view .LVU66
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 232              		.loc 1 45 67 is_stmt 0 discriminator 2 view .LVU67
+ 233 00ae 184B     		ldr	r3, .L19+8
+ 234 00b0 214A     		ldr	r2, .L19+48
+ 235 00b2 1A60     		str	r2, [r3]
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 236              		.loc 1 45 97 is_stmt 1 discriminator 2 view .LVU68
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 237              		.loc 1 45 102 is_stmt 0 discriminator 2 view .LVU69
+ 238 00b4 184B     		ldr	r3, .L19+16
+ 239 00b6 1D4A     		ldr	r2, .L19+36
+ 240 00b8 1A60     		str	r2, [r3]
+  45:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("idle")&&ENCODERB_falling_edge)											{event="ENCODERB falling";											s
+ 241              		.loc 1 45 102 view .LVU70
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 7
+
+
+ 242 00ba C6E7     		b	.L3
+ 243              	.L16:
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+ 244              		.loc 1 46 27 discriminator 1 view .LVU71
+ 245 00bc 0E28     		cmp	r0, #14
+ 246 00be EAD1     		bne	.L5
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+ 247              		.loc 1 46 63 is_stmt 1 discriminator 2 view .LVU72
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+ 248              		.loc 1 46 68 is_stmt 0 discriminator 2 view .LVU73
+ 249 00c0 134B     		ldr	r3, .L19+8
+ 250 00c2 1E4A     		ldr	r2, .L19+52
+ 251 00c4 1A60     		str	r2, [r3]
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+ 252              		.loc 1 46 99 is_stmt 1 discriminator 2 view .LVU74
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+ 253              		.loc 1 46 104 is_stmt 0 discriminator 2 view .LVU75
+ 254 00c6 144B     		ldr	r3, .L19+16
+ 255 00c8 194A     		ldr	r2, .L19+40
+ 256 00ca 1A60     		str	r2, [r3]
+  46:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERB")&&ENCODERB_rising_edge)					{event="count up";											  s
+ 257              		.loc 1 46 104 view .LVU76
+ 258 00cc BDE7     		b	.L3
+ 259              	.L17:
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 260              		.loc 1 47 40 discriminator 1 view .LVU77
+ 261 00ce 0328     		cmp	r0, #3
+ 262 00d0 E4D1     		bne	.L6
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 263              		.loc 1 47 69 is_stmt 1 discriminator 2 view .LVU78
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 264              		.loc 1 47 74 is_stmt 0 discriminator 2 view .LVU79
+ 265 00d2 0F4B     		ldr	r3, .L19+8
+ 266 00d4 124A     		ldr	r2, .L19+24
+ 267 00d6 1A60     		str	r2, [r3]
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 268              		.loc 1 47 99 is_stmt 1 discriminator 2 view .LVU80
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 269              		.loc 1 47 104 is_stmt 0 discriminator 2 view .LVU81
+ 270 00d8 0F4B     		ldr	r3, .L19+16
+ 271 00da 104A     		ldr	r2, .L19+20
+ 272 00dc 1A60     		str	r2, [r3]
+  47:Drivers/CPP/Src/encoder.cpp **** 	else if (state_is("wait for ENCODERA")&&ENCODERA_falling_edge)				{event="count down";											s
+ 273              		.loc 1 47 104 view .LVU82
+ 274 00de B4E7     		b	.L3
+ 275              	.L18:
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 276              		.loc 1 48 40 discriminator 1 view .LVU83
+ 277 00e0 0E2B     		cmp	r3, #14
+ 278 00e2 DED1     		bne	.L7
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 279              		.loc 1 48 69 is_stmt 1 discriminator 2 view .LVU84
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 280              		.loc 1 48 74 is_stmt 0 discriminator 2 view .LVU85
+ 281 00e4 0A4B     		ldr	r3, .L19+8
+ 282 00e6 0F4A     		ldr	r2, .L19+28
+ 283 00e8 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 8
+
+
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 284              		.loc 1 48 99 is_stmt 1 discriminator 2 view .LVU86
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 285              		.loc 1 48 104 is_stmt 0 discriminator 2 view .LVU87
+ 286 00ea 0B4B     		ldr	r3, .L19+16
+ 287 00ec 0B4A     		ldr	r2, .L19+20
+ 288 00ee 1A60     		str	r2, [r3]
+  48:Drivers/CPP/Src/encoder.cpp **** 	else 																																	{event="none";}
+ 289              		.loc 1 48 104 view .LVU88
+ 290 00f0 ABE7     		b	.L3
+ 291              	.L13:
+  51:Drivers/CPP/Src/encoder.cpp **** 	if(event_occured("count down")) encoder_val--;
+ 292              		.loc 1 51 33 is_stmt 1 discriminator 1 view .LVU89
+  51:Drivers/CPP/Src/encoder.cpp **** 	if(event_occured("count down")) encoder_val--;
+ 293              		.loc 1 51 44 is_stmt 0 discriminator 1 view .LVU90
+ 294 00f2 0D49     		ldr	r1, .L19+32
+ 295 00f4 0A68     		ldr	r2, [r1]
+ 296 00f6 0132     		adds	r2, r2, #1
+ 297 00f8 0A60     		str	r2, [r1]
+ 298 00fa ABE7     		b	.L8
+ 299              	.L14:
+  52:Drivers/CPP/Src/encoder.cpp **** 	
+ 300              		.loc 1 52 34 is_stmt 1 discriminator 1 view .LVU91
+  52:Drivers/CPP/Src/encoder.cpp **** 	
+ 301              		.loc 1 52 45 is_stmt 0 discriminator 1 view .LVU92
+ 302 00fc 0A4A     		ldr	r2, .L19+32
+ 303 00fe 1368     		ldr	r3, [r2]
+ 304 0100 013B     		subs	r3, r3, #1
+ 305 0102 1360     		str	r3, [r2]
+ 306 0104 A9E7     		b	.L9
+ 307              	.L20:
+ 308 0106 00BF     		.align	2
+ 309              	.L19:
+ 310 0108 00000000 		.word	_ZZ11readEncoderE8ENCODERA
+ 311 010c 00000000 		.word	_ZZ11readEncoderE5iniOK
+ 312 0110 00000000 		.word	_ZZ11readEncoderE5event
+ 313 0114 00000000 		.word	.LC0
+ 314 0118 00000000 		.word	_ZZ11readEncoderE5state
+ 315 011c 0C000000 		.word	.LC1
+ 316 0120 60000000 		.word	.LC6
+ 317 0124 6C000000 		.word	.LC7
+ 318 0128 00000000 		.word	_ZZ11readEncoderE11encoder_val
+ 319 012c 24000000 		.word	.LC3
+ 320 0130 4C000000 		.word	.LC5
+ 321 0134 78000000 		.word	.LC8
+ 322 0138 14000000 		.word	.LC2
+ 323 013c 38000000 		.word	.LC4
+ 324 0140 00000000 		.word	_ZZ11readEncoderE8ENCODERB
+ 325              		.cfi_endproc
+ 326              	.LFE142:
+ 328              		.section	.bss._ZZ11readEncoderE5iniOK,"aw",%nobits
+ 331              	_ZZ11readEncoderE5iniOK:
+ 332 0000 00       		.space	1
+ 333              		.section	.bss._ZZ11readEncoderE5state,"aw",%nobits
+ 334              		.align	2
+ 337              	_ZZ11readEncoderE5state:
+ 338 0000 00000000 		.space	4
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 9
+
+
+ 339              		.section	.bss._ZZ11readEncoderE5event,"aw",%nobits
+ 340              		.align	2
+ 343              	_ZZ11readEncoderE5event:
+ 344 0000 00000000 		.space	4
+ 345              		.section	.bss._ZZ11readEncoderE11encoder_val,"aw",%nobits
+ 346              		.align	2
+ 349              	_ZZ11readEncoderE11encoder_val:
+ 350 0000 00000000 		.space	4
+ 351              		.section	.bss._ZZ11readEncoderE8ENCODERB,"aw",%nobits
+ 354              	_ZZ11readEncoderE8ENCODERB:
+ 355 0000 00       		.space	1
+ 356              		.section	.bss._ZZ11readEncoderE8ENCODERA,"aw",%nobits
+ 359              	_ZZ11readEncoderE8ENCODERA:
+ 360 0000 00       		.space	1
+ 361              		.text
+ 362              	.Letext0:
+ 363              		.file 2 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 364              		.file 3 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 365              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 366              		.file 5 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/in
+ 367              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 368              		.file 7 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 369              		.file 8 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 370              		.file 9 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 371              		.file 10 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 372              		.file 11 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 encoder.cpp
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:21     .rodata.readEncoder.str1.4:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:49     .text.readEncoder:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:55     .text.readEncoder:00000000 readEncoder
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:310    .text.readEncoder:00000108 $d
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:359    .bss._ZZ11readEncoderE8ENCODERA:00000000 _ZZ11readEncoderE8ENCODERA
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:331    .bss._ZZ11readEncoderE5iniOK:00000000 _ZZ11readEncoderE5iniOK
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:343    .bss._ZZ11readEncoderE5event:00000000 _ZZ11readEncoderE5event
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:337    .bss._ZZ11readEncoderE5state:00000000 _ZZ11readEncoderE5state
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:349    .bss._ZZ11readEncoderE11encoder_val:00000000 _ZZ11readEncoderE11encoder_val
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:354    .bss._ZZ11readEncoderE8ENCODERB:00000000 _ZZ11readEncoderE8ENCODERB
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:332    .bss._ZZ11readEncoderE5iniOK:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:334    .bss._ZZ11readEncoderE5state:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:340    .bss._ZZ11readEncoderE5event:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:346    .bss._ZZ11readEncoderE11encoder_val:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:355    .bss._ZZ11readEncoderE8ENCODERB:00000000 $d
+C:\Users\Simon\AppData\Local\Temp\cck7WAIe.s:360    .bss._ZZ11readEncoderE8ENCODERA:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin

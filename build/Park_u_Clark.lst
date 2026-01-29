@@ -1,0 +1,730 @@
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"Park_u_Clark.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Drivers/CPP/Src/Park_u_Clark.cpp"
+  20              		.section	.text._Z14sin_from_tablet,"ax",%progbits
+  21              		.align	1
+  22              		.global	_Z14sin_from_tablet
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	_Z14sin_from_tablet:
+  28              	.LVL0:
+  29              	.LFB1275:
+   1:Drivers/CPP/Src/Park_u_Clark.cpp **** /**
+   2:Drivers/CPP/Src/Park_u_Clark.cpp ****   ******************************************************************************
+   3:Drivers/CPP/Src/Park_u_Clark.cpp ****   * @file    adc.c
+   4:Drivers/CPP/Src/Park_u_Clark.cpp ****   * @brief   This file provides code for the configuration
+   5:Drivers/CPP/Src/Park_u_Clark.cpp ****   *          of the ADC instances.
+   6:Drivers/CPP/Src/Park_u_Clark.cpp ****   ******************************************************************************
+   7:Drivers/CPP/Src/Park_u_Clark.cpp ****   * @attention
+   8:Drivers/CPP/Src/Park_u_Clark.cpp ****   *
+   9:Drivers/CPP/Src/Park_u_Clark.cpp ****   * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
+  10:Drivers/CPP/Src/Park_u_Clark.cpp ****   * All rights reserved.</center></h2>
+  11:Drivers/CPP/Src/Park_u_Clark.cpp ****   *
+  12:Drivers/CPP/Src/Park_u_Clark.cpp ****   * This software component is licensed by ST under BSD 3-Clause license,
+  13:Drivers/CPP/Src/Park_u_Clark.cpp ****   * the "License"; You may not use this file except in compliance with the
+  14:Drivers/CPP/Src/Park_u_Clark.cpp ****   * License. You may obtain a copy of the License at:
+  15:Drivers/CPP/Src/Park_u_Clark.cpp ****   *                        opensource.org/licenses/BSD-3-Clause
+  16:Drivers/CPP/Src/Park_u_Clark.cpp ****   *
+  17:Drivers/CPP/Src/Park_u_Clark.cpp ****   ******************************************************************************
+  18:Drivers/CPP/Src/Park_u_Clark.cpp ****   */
+  19:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+  20:Drivers/CPP/Src/Park_u_Clark.cpp **** /* Includes ------------------------------------------------------------------*/
+  21:Drivers/CPP/Src/Park_u_Clark.cpp **** #include "Park_u_Clark.h"
+  22:Drivers/CPP/Src/Park_u_Clark.cpp **** #include "global_var.h"
+  23:Drivers/CPP/Src/Park_u_Clark.cpp **** #include <string.h>
+  24:Drivers/CPP/Src/Park_u_Clark.cpp **** #include <stdio.h>
+  25:Drivers/CPP/Src/Park_u_Clark.cpp **** #include <stdlib.h>
+  26:Drivers/CPP/Src/Park_u_Clark.cpp **** #include <math.h>
+  27:Drivers/CPP/Src/Park_u_Clark.cpp ****  
+  28:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+  29:Drivers/CPP/Src/Park_u_Clark.cpp **** const uint16_t SIN_TABLE[91]={
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 2
+
+
+  30:Drivers/CPP/Src/Park_u_Clark.cpp **** 		0		 ,
+  31:Drivers/CPP/Src/Park_u_Clark.cpp **** 		18       ,
+  32:Drivers/CPP/Src/Park_u_Clark.cpp **** 		36       ,
+  33:Drivers/CPP/Src/Park_u_Clark.cpp **** 		54       ,
+  34:Drivers/CPP/Src/Park_u_Clark.cpp **** 		71       ,
+  35:Drivers/CPP/Src/Park_u_Clark.cpp **** 		89       ,
+  36:Drivers/CPP/Src/Park_u_Clark.cpp **** 		107      ,
+  37:Drivers/CPP/Src/Park_u_Clark.cpp **** 		125      ,
+  38:Drivers/CPP/Src/Park_u_Clark.cpp **** 		143      ,
+  39:Drivers/CPP/Src/Park_u_Clark.cpp **** 		160      ,
+  40:Drivers/CPP/Src/Park_u_Clark.cpp **** 		178      ,
+  41:Drivers/CPP/Src/Park_u_Clark.cpp **** 		195      ,
+  42:Drivers/CPP/Src/Park_u_Clark.cpp **** 		213      ,
+  43:Drivers/CPP/Src/Park_u_Clark.cpp **** 		230      ,
+  44:Drivers/CPP/Src/Park_u_Clark.cpp **** 		248      ,
+  45:Drivers/CPP/Src/Park_u_Clark.cpp **** 		265      ,
+  46:Drivers/CPP/Src/Park_u_Clark.cpp **** 		282      ,
+  47:Drivers/CPP/Src/Park_u_Clark.cpp **** 		299      ,
+  48:Drivers/CPP/Src/Park_u_Clark.cpp **** 		316      ,
+  49:Drivers/CPP/Src/Park_u_Clark.cpp **** 		333      ,
+  50:Drivers/CPP/Src/Park_u_Clark.cpp **** 		350      ,
+  51:Drivers/CPP/Src/Park_u_Clark.cpp **** 		367      ,
+  52:Drivers/CPP/Src/Park_u_Clark.cpp **** 		384      ,
+  53:Drivers/CPP/Src/Park_u_Clark.cpp **** 		400      ,
+  54:Drivers/CPP/Src/Park_u_Clark.cpp **** 		416      ,
+  55:Drivers/CPP/Src/Park_u_Clark.cpp **** 		433      ,
+  56:Drivers/CPP/Src/Park_u_Clark.cpp **** 		449      ,
+  57:Drivers/CPP/Src/Park_u_Clark.cpp **** 		465      ,
+  58:Drivers/CPP/Src/Park_u_Clark.cpp **** 		481      ,
+  59:Drivers/CPP/Src/Park_u_Clark.cpp **** 		496      ,
+  60:Drivers/CPP/Src/Park_u_Clark.cpp **** 		512      ,
+  61:Drivers/CPP/Src/Park_u_Clark.cpp **** 		527      ,
+  62:Drivers/CPP/Src/Park_u_Clark.cpp **** 		543      ,
+  63:Drivers/CPP/Src/Park_u_Clark.cpp **** 		558      ,
+  64:Drivers/CPP/Src/Park_u_Clark.cpp **** 		573      ,
+  65:Drivers/CPP/Src/Park_u_Clark.cpp **** 		587      ,
+  66:Drivers/CPP/Src/Park_u_Clark.cpp **** 		602      ,
+  67:Drivers/CPP/Src/Park_u_Clark.cpp **** 		616      ,
+  68:Drivers/CPP/Src/Park_u_Clark.cpp **** 		630      ,
+  69:Drivers/CPP/Src/Park_u_Clark.cpp **** 		644      ,
+  70:Drivers/CPP/Src/Park_u_Clark.cpp **** 		658      ,
+  71:Drivers/CPP/Src/Park_u_Clark.cpp **** 		672      ,
+  72:Drivers/CPP/Src/Park_u_Clark.cpp **** 		685      ,
+  73:Drivers/CPP/Src/Park_u_Clark.cpp **** 		698      ,
+  74:Drivers/CPP/Src/Park_u_Clark.cpp **** 		711      ,
+  75:Drivers/CPP/Src/Park_u_Clark.cpp **** 		724      ,
+  76:Drivers/CPP/Src/Park_u_Clark.cpp **** 		737      ,
+  77:Drivers/CPP/Src/Park_u_Clark.cpp **** 		749      ,
+  78:Drivers/CPP/Src/Park_u_Clark.cpp **** 		761      ,
+  79:Drivers/CPP/Src/Park_u_Clark.cpp **** 		773      ,
+  80:Drivers/CPP/Src/Park_u_Clark.cpp **** 		784      ,
+  81:Drivers/CPP/Src/Park_u_Clark.cpp **** 		796      ,
+  82:Drivers/CPP/Src/Park_u_Clark.cpp **** 		807      ,
+  83:Drivers/CPP/Src/Park_u_Clark.cpp **** 		818      ,
+  84:Drivers/CPP/Src/Park_u_Clark.cpp **** 		828      ,
+  85:Drivers/CPP/Src/Park_u_Clark.cpp **** 		839      ,
+  86:Drivers/CPP/Src/Park_u_Clark.cpp **** 		849      ,
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 3
+
+
+  87:Drivers/CPP/Src/Park_u_Clark.cpp **** 		859      ,
+  88:Drivers/CPP/Src/Park_u_Clark.cpp **** 		868      ,
+  89:Drivers/CPP/Src/Park_u_Clark.cpp **** 		878      ,
+  90:Drivers/CPP/Src/Park_u_Clark.cpp **** 		887      ,
+  91:Drivers/CPP/Src/Park_u_Clark.cpp **** 		896      ,
+  92:Drivers/CPP/Src/Park_u_Clark.cpp **** 		904      ,
+  93:Drivers/CPP/Src/Park_u_Clark.cpp **** 		912      ,
+  94:Drivers/CPP/Src/Park_u_Clark.cpp **** 		920      ,
+  95:Drivers/CPP/Src/Park_u_Clark.cpp **** 		928      ,
+  96:Drivers/CPP/Src/Park_u_Clark.cpp **** 		935      ,
+  97:Drivers/CPP/Src/Park_u_Clark.cpp **** 		943      ,
+  98:Drivers/CPP/Src/Park_u_Clark.cpp **** 		949      ,
+  99:Drivers/CPP/Src/Park_u_Clark.cpp **** 		956      ,
+ 100:Drivers/CPP/Src/Park_u_Clark.cpp **** 		962      ,
+ 101:Drivers/CPP/Src/Park_u_Clark.cpp **** 		968      ,
+ 102:Drivers/CPP/Src/Park_u_Clark.cpp **** 		974      ,
+ 103:Drivers/CPP/Src/Park_u_Clark.cpp **** 		979      ,
+ 104:Drivers/CPP/Src/Park_u_Clark.cpp **** 		984      ,
+ 105:Drivers/CPP/Src/Park_u_Clark.cpp **** 		989      ,
+ 106:Drivers/CPP/Src/Park_u_Clark.cpp **** 		994      ,
+ 107:Drivers/CPP/Src/Park_u_Clark.cpp **** 		998      ,
+ 108:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1002     ,
+ 109:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1005     ,
+ 110:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1008     ,
+ 111:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1011     ,
+ 112:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1014     ,
+ 113:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1016     ,
+ 114:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1018     ,
+ 115:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1020     ,
+ 116:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1022     ,
+ 117:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1023     ,
+ 118:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1023     ,
+ 119:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1024     ,
+ 120:Drivers/CPP/Src/Park_u_Clark.cpp **** 		1024
+ 121:Drivers/CPP/Src/Park_u_Clark.cpp **** };
+ 122:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 123:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 124:Drivers/CPP/Src/Park_u_Clark.cpp **** int16_t sin_from_table(uint16_t phase){
+  30              		.loc 1 124 39 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+ 125:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 126:Drivers/CPP/Src/Park_u_Clark.cpp **** 	if(phase>=360) phase = phase -360;
+  35              		.loc 1 126 2 view .LVU1
+  36 0000 B0F5B47F 		cmp	r0, #360
+  37 0004 02D3     		bcc	.L2
+  38              		.loc 1 126 17 discriminator 1 view .LVU2
+  39              		.loc 1 126 23 is_stmt 0 discriminator 1 view .LVU3
+  40 0006 A0F5B470 		sub	r0, r0, #360
+  41              	.LVL1:
+  42              		.loc 1 126 23 discriminator 1 view .LVU4
+  43 000a 80B2     		uxth	r0, r0
+  44              	.LVL2:
+  45              	.L2:
+ 127:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 4
+
+
+ 128:Drivers/CPP/Src/Park_u_Clark.cpp **** 	if(phase>=0 && phase <90){
+  46              		.loc 1 128 2 is_stmt 1 view .LVU5
+  47 000c 5928     		cmp	r0, #89
+  48 000e 16D9     		bls	.L8
+ 129:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return SIN_TABLE[phase];
+ 130:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 131:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else if(phase>=90 && phase<180){
+  49              		.loc 1 131 7 view .LVU6
+  50              		.loc 1 131 20 is_stmt 0 view .LVU7
+  51 0010 A0F15A03 		sub	r3, r0, #90
+  52 0014 9BB2     		uxth	r3, r3
+  53              		.loc 1 131 7 view .LVU8
+  54 0016 592B     		cmp	r3, #89
+  55 0018 15D9     		bls	.L9
+ 132:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return SIN_TABLE[90-(phase-90)];
+ 133:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 134:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else if(phase>=180 && phase <270){
+  56              		.loc 1 134 7 is_stmt 1 view .LVU9
+  57              		.loc 1 134 21 is_stmt 0 view .LVU10
+  58 001a A0F1B403 		sub	r3, r0, #180
+  59 001e 9BB2     		uxth	r3, r3
+  60              		.loc 1 134 7 view .LVU11
+  61 0020 592B     		cmp	r3, #89
+  62 0022 16D9     		bls	.L10
+ 135:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return -SIN_TABLE[phase-180];
+ 136:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 137:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else if(phase>=270 && phase<360){
+  63              		.loc 1 137 7 is_stmt 1 view .LVU12
+  64              		.loc 1 137 21 is_stmt 0 view .LVU13
+  65 0024 A0F58773 		sub	r3, r0, #270
+  66 0028 9BB2     		uxth	r3, r3
+  67              		.loc 1 137 7 view .LVU14
+  68 002a 592B     		cmp	r3, #89
+  69 002c 18D8     		bhi	.L7
+ 138:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return -SIN_TABLE[90-((phase-180)-90)];
+  70              		.loc 1 138 3 is_stmt 1 view .LVU15
+  71              		.loc 1 138 23 is_stmt 0 view .LVU16
+  72 002e C0F5B470 		rsb	r0, r0, #360
+  73              	.LVL3:
+  74              		.loc 1 138 40 view .LVU17
+  75 0032 0C4B     		ldr	r3, .L11
+  76 0034 33F81000 		ldrh	r0, [r3, r0, lsl #1]
+  77 0038 4042     		rsbs	r0, r0, #0
+  78 003a 00B2     		sxth	r0, r0
+  79 003c 7047     		bx	lr
+  80              	.LVL4:
+  81              	.L8:
+ 129:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+  82              		.loc 1 129 3 is_stmt 1 view .LVU18
+ 129:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+  83              		.loc 1 129 25 is_stmt 0 view .LVU19
+  84 003e 094B     		ldr	r3, .L11
+  85 0040 33F91000 		ldrsh	r0, [r3, r0, lsl #1]
+  86              	.LVL5:
+ 129:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+  87              		.loc 1 129 25 view .LVU20
+  88 0044 7047     		bx	lr
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 5
+
+
+  89              	.LVL6:
+  90              	.L9:
+ 132:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+  91              		.loc 1 132 3 is_stmt 1 view .LVU21
+ 132:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+  92              		.loc 1 132 22 is_stmt 0 view .LVU22
+  93 0046 C0F1B400 		rsb	r0, r0, #180
+  94              	.LVL7:
+ 132:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+  95              		.loc 1 132 33 view .LVU23
+  96 004a 064B     		ldr	r3, .L11
+  97 004c 33F91000 		ldrsh	r0, [r3, r0, lsl #1]
+  98 0050 7047     		bx	lr
+  99              	.LVL8:
+ 100              	.L10:
+ 135:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 101              		.loc 1 135 3 is_stmt 1 view .LVU24
+ 135:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 102              		.loc 1 135 26 is_stmt 0 view .LVU25
+ 103 0052 B438     		subs	r0, r0, #180
+ 104              	.LVL9:
+ 135:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 105              		.loc 1 135 30 view .LVU26
+ 106 0054 034B     		ldr	r3, .L11
+ 107 0056 33F81000 		ldrh	r0, [r3, r0, lsl #1]
+ 108              	.LVL10:
+ 135:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 109              		.loc 1 135 30 view .LVU27
+ 110 005a 4042     		rsbs	r0, r0, #0
+ 111 005c 00B2     		sxth	r0, r0
+ 112 005e 7047     		bx	lr
+ 113              	.LVL11:
+ 114              	.L7:
+ 139:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 140:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else {
+ 141:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return 0;
+ 115              		.loc 1 141 10 view .LVU28
+ 116 0060 0020     		movs	r0, #0
+ 117              	.LVL12:
+ 142:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 143:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 144:Drivers/CPP/Src/Park_u_Clark.cpp **** }
+ 118              		.loc 1 144 1 view .LVU29
+ 119 0062 7047     		bx	lr
+ 120              	.L12:
+ 121              		.align	2
+ 122              	.L11:
+ 123 0064 00000000 		.word	_ZL9SIN_TABLE
+ 124              		.cfi_endproc
+ 125              	.LFE1275:
+ 127              		.section	.text._Z14cos_from_tablet,"ax",%progbits
+ 128              		.align	1
+ 129              		.global	_Z14cos_from_tablet
+ 130              		.syntax unified
+ 131              		.thumb
+ 132              		.thumb_func
+ 134              	_Z14cos_from_tablet:
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 6
+
+
+ 135              	.LVL13:
+ 136              	.LFB1276:
+ 145:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 146:Drivers/CPP/Src/Park_u_Clark.cpp **** int16_t cos_from_table(uint16_t phase){
+ 137              		.loc 1 146 39 is_stmt 1 view -0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141              		@ link register save eliminated.
+ 147:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 148:Drivers/CPP/Src/Park_u_Clark.cpp **** 	phase = phase+90;
+ 142              		.loc 1 148 2 view .LVU31
+ 143              		.loc 1 148 8 is_stmt 0 view .LVU32
+ 144 0000 00F15A03 		add	r3, r0, #90
+ 145 0004 9BB2     		uxth	r3, r3
+ 146              	.LVL14:
+ 149:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 150:Drivers/CPP/Src/Park_u_Clark.cpp **** 	if(phase>=360) phase = phase -360;
+ 147              		.loc 1 150 2 is_stmt 1 view .LVU33
+ 148 0006 B3F5B47F 		cmp	r3, #360
+ 149 000a 02D3     		bcc	.L14
+ 150              		.loc 1 150 17 discriminator 1 view .LVU34
+ 151              		.loc 1 150 23 is_stmt 0 discriminator 1 view .LVU35
+ 152 000c A0F58770 		sub	r0, r0, #270
+ 153 0010 83B2     		uxth	r3, r0
+ 154              	.LVL15:
+ 155              	.L14:
+ 151:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 152:Drivers/CPP/Src/Park_u_Clark.cpp **** 	if(phase>=0 && phase <90){
+ 156              		.loc 1 152 2 is_stmt 1 view .LVU36
+ 157 0012 592B     		cmp	r3, #89
+ 158 0014 16D9     		bls	.L20
+ 153:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return SIN_TABLE[phase];
+ 154:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 155:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else if(phase>=90 && phase<180){
+ 159              		.loc 1 155 7 view .LVU37
+ 160              		.loc 1 155 20 is_stmt 0 view .LVU38
+ 161 0016 A3F15A02 		sub	r2, r3, #90
+ 162 001a 92B2     		uxth	r2, r2
+ 163              		.loc 1 155 7 view .LVU39
+ 164 001c 592A     		cmp	r2, #89
+ 165 001e 15D9     		bls	.L21
+ 156:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return SIN_TABLE[90-(phase-90)];
+ 157:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 158:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else if(phase>=180 && phase <270){
+ 166              		.loc 1 158 7 is_stmt 1 view .LVU40
+ 167              		.loc 1 158 21 is_stmt 0 view .LVU41
+ 168 0020 A3F1B402 		sub	r2, r3, #180
+ 169 0024 92B2     		uxth	r2, r2
+ 170              		.loc 1 158 7 view .LVU42
+ 171 0026 592A     		cmp	r2, #89
+ 172 0028 16D9     		bls	.L22
+ 159:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return -SIN_TABLE[phase-180];
+ 160:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 161:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else if(phase>=270 && phase<360){
+ 173              		.loc 1 161 7 is_stmt 1 view .LVU43
+ 174              		.loc 1 161 21 is_stmt 0 view .LVU44
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 7
+
+
+ 175 002a A3F58772 		sub	r2, r3, #270
+ 176 002e 92B2     		uxth	r2, r2
+ 177              		.loc 1 161 7 view .LVU45
+ 178 0030 592A     		cmp	r2, #89
+ 179 0032 18D8     		bhi	.L19
+ 162:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return -SIN_TABLE[90-((phase-180)-90)];
+ 180              		.loc 1 162 3 is_stmt 1 view .LVU46
+ 181              		.loc 1 162 23 is_stmt 0 view .LVU47
+ 182 0034 C3F5B473 		rsb	r3, r3, #360
+ 183              	.LVL16:
+ 184              		.loc 1 162 40 view .LVU48
+ 185 0038 0C4A     		ldr	r2, .L23
+ 186 003a 32F81300 		ldrh	r0, [r2, r3, lsl #1]
+ 187 003e 4042     		rsbs	r0, r0, #0
+ 188 0040 00B2     		sxth	r0, r0
+ 189 0042 7047     		bx	lr
+ 190              	.LVL17:
+ 191              	.L20:
+ 153:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 192              		.loc 1 153 3 is_stmt 1 view .LVU49
+ 153:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 193              		.loc 1 153 25 is_stmt 0 view .LVU50
+ 194 0044 094A     		ldr	r2, .L23
+ 195 0046 32F91300 		ldrsh	r0, [r2, r3, lsl #1]
+ 196 004a 7047     		bx	lr
+ 197              	.L21:
+ 156:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 198              		.loc 1 156 3 is_stmt 1 view .LVU51
+ 156:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 199              		.loc 1 156 22 is_stmt 0 view .LVU52
+ 200 004c C3F1B403 		rsb	r3, r3, #180
+ 201              	.LVL18:
+ 156:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 202              		.loc 1 156 33 view .LVU53
+ 203 0050 064A     		ldr	r2, .L23
+ 204 0052 32F91300 		ldrsh	r0, [r2, r3, lsl #1]
+ 205 0056 7047     		bx	lr
+ 206              	.LVL19:
+ 207              	.L22:
+ 159:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 208              		.loc 1 159 3 is_stmt 1 view .LVU54
+ 159:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 209              		.loc 1 159 26 is_stmt 0 view .LVU55
+ 210 0058 B43B     		subs	r3, r3, #180
+ 211              	.LVL20:
+ 159:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 212              		.loc 1 159 30 view .LVU56
+ 213 005a 044A     		ldr	r2, .L23
+ 214 005c 32F81300 		ldrh	r0, [r2, r3, lsl #1]
+ 215 0060 4042     		rsbs	r0, r0, #0
+ 216 0062 00B2     		sxth	r0, r0
+ 217 0064 7047     		bx	lr
+ 218              	.LVL21:
+ 219              	.L19:
+ 163:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 164:Drivers/CPP/Src/Park_u_Clark.cpp **** 	else {
+ 165:Drivers/CPP/Src/Park_u_Clark.cpp **** 		return 0;
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 8
+
+
+ 220              		.loc 1 165 10 view .LVU57
+ 221 0066 0020     		movs	r0, #0
+ 166:Drivers/CPP/Src/Park_u_Clark.cpp **** 	}
+ 167:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 168:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 169:Drivers/CPP/Src/Park_u_Clark.cpp **** }
+ 222              		.loc 1 169 1 view .LVU58
+ 223 0068 7047     		bx	lr
+ 224              	.L24:
+ 225 006a 00BF     		.align	2
+ 226              	.L23:
+ 227 006c 00000000 		.word	_ZL9SIN_TABLE
+ 228              		.cfi_endproc
+ 229              	.LFE1276:
+ 231              		.global	__aeabi_ldivmod
+ 232              		.section	.text.transform_to_Clark_domain,"ax",%progbits
+ 233              		.align	1
+ 234              		.global	transform_to_Clark_domain
+ 235              		.syntax unified
+ 236              		.thumb
+ 237              		.thumb_func
+ 239              	transform_to_Clark_domain:
+ 240              	.LVL22:
+ 241              	.LFB1277:
+ 170:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 171:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 172:Drivers/CPP/Src/Park_u_Clark.cpp **** void transform_to_Clark_domain(int * PhaseCurrents, int * AlphaBetaCurrents){
+ 242              		.loc 1 172 77 is_stmt 1 view -0
+ 243              		.cfi_startproc
+ 244              		@ args = 0, pretend = 0, frame = 0
+ 245              		@ frame_needed = 0, uses_anonymous_args = 0
+ 246              		.loc 1 172 77 is_stmt 0 view .LVU60
+ 247 0000 10B5     		push	{r4, lr}
+ 248              	.LCFI0:
+ 249              		.cfi_def_cfa_offset 8
+ 250              		.cfi_offset 4, -8
+ 251              		.cfi_offset 14, -4
+ 252 0002 0C46     		mov	r4, r1
+ 173:Drivers/CPP/Src/Park_u_Clark.cpp **** 		// iapha = Ia
+ 174:Drivers/CPP/Src/Park_u_Clark.cpp **** 		// ibeta = (Ib - Ic)/wurzel(3)
+ 175:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 176:Drivers/CPP/Src/Park_u_Clark.cpp **** 	//PhaseCurrents[0]= sin_from_table(Motor.rotorphase);
+ 177:Drivers/CPP/Src/Park_u_Clark.cpp **** 	//PhaseCurrents[1]= sin_from_table(Motor.rotorphase+240);
+ 178:Drivers/CPP/Src/Park_u_Clark.cpp **** 	//PhaseCurrents[2]= sin_from_table(Motor.rotorphase+120);
+ 179:Drivers/CPP/Src/Park_u_Clark.cpp **** 	
+ 180:Drivers/CPP/Src/Park_u_Clark.cpp **** 	AlphaBetaCurrents[0] = PhaseCurrents[0];
+ 253              		.loc 1 180 2 is_stmt 1 view .LVU61
+ 254              		.loc 1 180 40 is_stmt 0 view .LVU62
+ 255 0004 0368     		ldr	r3, [r0]
+ 256              		.loc 1 180 23 view .LVU63
+ 257 0006 0B60     		str	r3, [r1]
+ 181:Drivers/CPP/Src/Park_u_Clark.cpp **** 	AlphaBetaCurrents[1] = (((int64_t)(PhaseCurrents[1] - PhaseCurrents[2])<<10)/1773);
+ 258              		.loc 1 181 2 is_stmt 1 view .LVU64
+ 259              		.loc 1 181 52 is_stmt 0 view .LVU65
+ 260 0008 4168     		ldr	r1, [r0, #4]
+ 261              	.LVL23:
+ 262              		.loc 1 181 71 view .LVU66
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 9
+
+
+ 263 000a 8368     		ldr	r3, [r0, #8]
+ 264              		.loc 1 181 54 view .LVU67
+ 265 000c C91A     		subs	r1, r1, r3
+ 266              		.loc 1 181 78 view .LVU68
+ 267 000e 40F2ED62 		movw	r2, #1773
+ 268 0012 0023     		movs	r3, #0
+ 269 0014 8802     		lsls	r0, r1, #10
+ 270              	.LVL24:
+ 271              		.loc 1 181 78 view .LVU69
+ 272 0016 8915     		asrs	r1, r1, #22
+ 273 0018 FFF7FEFF 		bl	__aeabi_ldivmod
+ 274              	.LVL25:
+ 275              		.loc 1 181 23 view .LVU70
+ 276 001c 6060     		str	r0, [r4, #4]
+ 182:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 183:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 184:Drivers/CPP/Src/Park_u_Clark.cpp **** }
+ 277              		.loc 1 184 1 view .LVU71
+ 278 001e 10BD     		pop	{r4, pc}
+ 279              		.loc 1 184 1 view .LVU72
+ 280              		.cfi_endproc
+ 281              	.LFE1277:
+ 283              		.section	.text.transform_to_Park_domain,"ax",%progbits
+ 284              		.align	1
+ 285              		.global	transform_to_Park_domain
+ 286              		.syntax unified
+ 287              		.thumb
+ 288              		.thumb_func
+ 290              	transform_to_Park_domain:
+ 291              	.LVL26:
+ 292              	.LFB1278:
+ 185:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 186:Drivers/CPP/Src/Park_u_Clark.cpp **** void transform_to_Park_domain(int * AlphaBetaCurrents,int * DQCurrents, uint32_t phase){
+ 293              		.loc 1 186 88 is_stmt 1 view -0
+ 294              		.cfi_startproc
+ 295              		@ args = 0, pretend = 0, frame = 0
+ 296              		@ frame_needed = 0, uses_anonymous_args = 0
+ 297              		.loc 1 186 88 is_stmt 0 view .LVU74
+ 298 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 299              	.LCFI1:
+ 300              		.cfi_def_cfa_offset 24
+ 301              		.cfi_offset 4, -24
+ 302              		.cfi_offset 5, -20
+ 303              		.cfi_offset 6, -16
+ 304              		.cfi_offset 7, -12
+ 305              		.cfi_offset 8, -8
+ 306              		.cfi_offset 14, -4
+ 307 0004 0746     		mov	r7, r0
+ 308 0006 0D46     		mov	r5, r1
+ 187:Drivers/CPP/Src/Park_u_Clark.cpp **** //		// iq = -sin(phase)*ialpha + cos(phase)*ibeta
+ 188:Drivers/CPP/Src/Park_u_Clark.cpp **** //		// id =  cos(phase)*ialpha + sin(phase)*ibeta
+ 189:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 190:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 191:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 192:Drivers/CPP/Src/Park_u_Clark.cpp **** 	DQCurrents[0] = (-(sin_from_table(phase)*AlphaBetaCurrents[0]) + (cos_from_table(phase)*AlphaBetaC
+ 309              		.loc 1 192 2 is_stmt 1 view .LVU75
+ 310              		.loc 1 192 82 is_stmt 0 view .LVU76
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 10
+
+
+ 311 0008 1FFA82F8 		uxth	r8, r2
+ 312 000c 4046     		mov	r0, r8
+ 313              	.LVL27:
+ 314              		.loc 1 192 82 view .LVU77
+ 315 000e FFF7FEFF 		bl	_Z14cos_from_tablet
+ 316              	.LVL28:
+ 317              		.loc 1 192 82 view .LVU78
+ 318 0012 0646     		mov	r6, r0
+ 319              		.loc 1 192 109 discriminator 1 view .LVU79
+ 320 0014 7C68     		ldr	r4, [r7, #4]
+ 321              		.loc 1 192 89 discriminator 1 view .LVU80
+ 322 0016 00FB04F4 		mul	r4, r0, r4
+ 323              		.loc 1 192 35 discriminator 1 view .LVU81
+ 324 001a 4046     		mov	r0, r8
+ 325 001c FFF7FEFF 		bl	_Z14sin_from_tablet
+ 326              	.LVL29:
+ 327              		.loc 1 192 62 discriminator 2 view .LVU82
+ 328 0020 3B68     		ldr	r3, [r7]
+ 329              		.loc 1 192 65 discriminator 2 view .LVU83
+ 330 0022 03FB1044 		mls	r4, r3, r0, r4
+ 331              		.loc 1 192 112 discriminator 2 view .LVU84
+ 332 0026 A412     		asrs	r4, r4, #10
+ 333              		.loc 1 192 16 discriminator 2 view .LVU85
+ 334 0028 2C60     		str	r4, [r5]
+ 193:Drivers/CPP/Src/Park_u_Clark.cpp **** 	DQCurrents[1] = ( (cos_from_table(phase)*AlphaBetaCurrents[0]) + (sin_from_table(phase)*AlphaBetaC
+ 335              		.loc 1 193 2 is_stmt 1 view .LVU86
+ 336              		.loc 1 193 62 is_stmt 0 discriminator 1 view .LVU87
+ 337 002a 3B68     		ldr	r3, [r7]
+ 338              		.loc 1 193 109 discriminator 2 view .LVU88
+ 339 002c 7A68     		ldr	r2, [r7, #4]
+ 340              		.loc 1 193 89 discriminator 2 view .LVU89
+ 341 002e 02FB00F0 		mul	r0, r2, r0
+ 342              		.loc 1 193 65 discriminator 2 view .LVU90
+ 343 0032 03FB0600 		mla	r0, r3, r6, r0
+ 344              		.loc 1 193 112 discriminator 2 view .LVU91
+ 345 0036 8012     		asrs	r0, r0, #10
+ 346              		.loc 1 193 16 discriminator 2 view .LVU92
+ 347 0038 6860     		str	r0, [r5, #4]
+ 194:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 195:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 196:Drivers/CPP/Src/Park_u_Clark.cpp **** 
+ 197:Drivers/CPP/Src/Park_u_Clark.cpp **** }
+ 348              		.loc 1 197 1 view .LVU93
+ 349 003a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 350              		.loc 1 197 1 view .LVU94
+ 351              		.cfi_endproc
+ 352              	.LFE1278:
+ 354              		.section	.rodata._ZL9SIN_TABLE,"a"
+ 355              		.align	2
+ 358              	_ZL9SIN_TABLE:
+ 359 0000 0000     		.short	0
+ 360 0002 1200     		.short	18
+ 361 0004 2400     		.short	36
+ 362 0006 3600     		.short	54
+ 363 0008 4700     		.short	71
+ 364 000a 5900     		.short	89
+ 365 000c 6B00     		.short	107
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 11
+
+
+ 366 000e 7D00     		.short	125
+ 367 0010 8F00     		.short	143
+ 368 0012 A000     		.short	160
+ 369 0014 B200     		.short	178
+ 370 0016 C300     		.short	195
+ 371 0018 D500     		.short	213
+ 372 001a E600     		.short	230
+ 373 001c F800     		.short	248
+ 374 001e 0901     		.short	265
+ 375 0020 1A01     		.short	282
+ 376 0022 2B01     		.short	299
+ 377 0024 3C01     		.short	316
+ 378 0026 4D01     		.short	333
+ 379 0028 5E01     		.short	350
+ 380 002a 6F01     		.short	367
+ 381 002c 8001     		.short	384
+ 382 002e 9001     		.short	400
+ 383 0030 A001     		.short	416
+ 384 0032 B101     		.short	433
+ 385 0034 C101     		.short	449
+ 386 0036 D101     		.short	465
+ 387 0038 E101     		.short	481
+ 388 003a F001     		.short	496
+ 389 003c 0002     		.short	512
+ 390 003e 0F02     		.short	527
+ 391 0040 1F02     		.short	543
+ 392 0042 2E02     		.short	558
+ 393 0044 3D02     		.short	573
+ 394 0046 4B02     		.short	587
+ 395 0048 5A02     		.short	602
+ 396 004a 6802     		.short	616
+ 397 004c 7602     		.short	630
+ 398 004e 8402     		.short	644
+ 399 0050 9202     		.short	658
+ 400 0052 A002     		.short	672
+ 401 0054 AD02     		.short	685
+ 402 0056 BA02     		.short	698
+ 403 0058 C702     		.short	711
+ 404 005a D402     		.short	724
+ 405 005c E102     		.short	737
+ 406 005e ED02     		.short	749
+ 407 0060 F902     		.short	761
+ 408 0062 0503     		.short	773
+ 409 0064 1003     		.short	784
+ 410 0066 1C03     		.short	796
+ 411 0068 2703     		.short	807
+ 412 006a 3203     		.short	818
+ 413 006c 3C03     		.short	828
+ 414 006e 4703     		.short	839
+ 415 0070 5103     		.short	849
+ 416 0072 5B03     		.short	859
+ 417 0074 6403     		.short	868
+ 418 0076 6E03     		.short	878
+ 419 0078 7703     		.short	887
+ 420 007a 8003     		.short	896
+ 421 007c 8803     		.short	904
+ 422 007e 9003     		.short	912
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 12
+
+
+ 423 0080 9803     		.short	920
+ 424 0082 A003     		.short	928
+ 425 0084 A703     		.short	935
+ 426 0086 AF03     		.short	943
+ 427 0088 B503     		.short	949
+ 428 008a BC03     		.short	956
+ 429 008c C203     		.short	962
+ 430 008e C803     		.short	968
+ 431 0090 CE03     		.short	974
+ 432 0092 D303     		.short	979
+ 433 0094 D803     		.short	984
+ 434 0096 DD03     		.short	989
+ 435 0098 E203     		.short	994
+ 436 009a E603     		.short	998
+ 437 009c EA03     		.short	1002
+ 438 009e ED03     		.short	1005
+ 439 00a0 F003     		.short	1008
+ 440 00a2 F303     		.short	1011
+ 441 00a4 F603     		.short	1014
+ 442 00a6 F803     		.short	1016
+ 443 00a8 FA03     		.short	1018
+ 444 00aa FC03     		.short	1020
+ 445 00ac FE03     		.short	1022
+ 446 00ae FF03     		.short	1023
+ 447 00b0 FF03     		.short	1023
+ 448 00b2 0004     		.short	1024
+ 449 00b4 0004     		.short	1024
+ 450              		.text
+ 451              	.Letext0:
+ 452              		.file 2 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 453              		.file 3 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 454              		.file 4 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/in
+ 455              		.file 5 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 456              		.file 6 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 457              		.file 7 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 458              		.file 8 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 459              		.file 9 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 460              		.file 10 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 461              		.file 11 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 462              		.file 12 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 463              		.file 13 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 464              		.file 14 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 465              		.file 15 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 466              		.file 16 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 467              		.file 17 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 468              		.file 18 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ 469              		.file 19 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
+ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Park_u_Clark.cpp
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:21     .text._Z14sin_from_tablet:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:27     .text._Z14sin_from_tablet:00000000 _Z14sin_from_tablet
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:123    .text._Z14sin_from_tablet:00000064 $d
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:358    .rodata._ZL9SIN_TABLE:00000000 _ZL9SIN_TABLE
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:128    .text._Z14cos_from_tablet:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:134    .text._Z14cos_from_tablet:00000000 _Z14cos_from_tablet
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:227    .text._Z14cos_from_tablet:0000006c $d
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:233    .text.transform_to_Clark_domain:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:239    .text.transform_to_Clark_domain:00000000 transform_to_Clark_domain
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:284    .text.transform_to_Park_domain:00000000 $t
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:290    .text.transform_to_Park_domain:00000000 transform_to_Park_domain
+C:\Users\Simon\AppData\Local\Temp\ccv4AWca.s:355    .rodata._ZL9SIN_TABLE:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_ldivmod
