@@ -27,7 +27,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-#define F_TIM (144 MHz)
+#define F_TIM (170 MHz)
 
 #define PWM_Frequency (50 kHz)
 

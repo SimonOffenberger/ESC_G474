@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
   27:Drivers/CPP/Src/SVM.cpp **** #include <stdio.h>
   28:Drivers/CPP/Src/SVM.cpp **** #include <stdlib.h>
   29:Drivers/CPP/Src/SVM.cpp **** 
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 2
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 2
 
 
   30:Drivers/CPP/Src/SVM.cpp **** static uint16_t CCR_U = 0;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
   84:Drivers/CPP/Src/SVM.cpp **** 		983,
   85:Drivers/CPP/Src/SVM.cpp **** 		988,
   86:Drivers/CPP/Src/SVM.cpp **** 		992,
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 3
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 3
 
 
   87:Drivers/CPP/Src/SVM.cpp **** 		997,
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  141:Drivers/CPP/Src/SVM.cpp **** 		980,
  142:Drivers/CPP/Src/SVM.cpp **** 		985,
  143:Drivers/CPP/Src/SVM.cpp **** 		990,
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 4
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 4
 
 
  144:Drivers/CPP/Src/SVM.cpp **** 		995,
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  198:Drivers/CPP/Src/SVM.cpp **** 		630,
  199:Drivers/CPP/Src/SVM.cpp **** 		601,
  200:Drivers/CPP/Src/SVM.cpp **** 		572,
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 5
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 5
 
 
  201:Drivers/CPP/Src/SVM.cpp **** 		542,
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
   57 0016 D368     		ldr	r3, [r2, #12]
   58 0018 43F00103 		orr	r3, r3, #1
   59 001c D360     		str	r3, [r2, #12]
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 6
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 6
 
 
  228:Drivers/CPP/Src/SVM.cpp **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  105 0058 2046     		mov	r0, r4
  106 005a FFF7FEFF 		bl	HAL_TIMEx_PWMN_Start
  107              	.LVL11:
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 7
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 7
 
 
  237:Drivers/CPP/Src/SVM.cpp **** 
@@ -380,7 +380,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  240:Drivers/CPP/Src/SVM.cpp **** 	PWM_TIM->ARR = PWM_TIM_ARR;
  121              		.loc 1 240 2 is_stmt 1 view .LVU30
  122              		.loc 1 240 15 is_stmt 0 view .LVU31
- 123 0070 4FF4B462 		mov	r2, #1440
+ 123 0070 40F2A462 		movw	r2, #1700
  124 0074 DA62     		str	r2, [r3, #44]
  241:Drivers/CPP/Src/SVM.cpp **** 
  242:Drivers/CPP/Src/SVM.cpp **** 	__enable_irq();
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
   28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
   29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
   30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 8
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 8
 
 
   31:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
   85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
   87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 9
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 9
 
 
   88:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  142:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t* dest;
  143:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t  wlen;
  144:Drivers/CMSIS/Include/cmsis_gcc.h ****   } __zero_table_t;
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 10
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 10
 
 
  145:Drivers/CMSIS/Include/cmsis_gcc.h ****   
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  197:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  198:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
  131              		.loc 2 198 3 view .LVU34
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 11
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 11
 
 
  132              		.syntax unified
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  182 000c 1288     		ldrh	r2, [r2]
  183              		.loc 1 248 8 view .LVU43
  184 000e 9A63     		str	r2, [r3, #56]
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 12
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 12
 
 
  249:Drivers/CPP/Src/SVM.cpp **** 	PWM_W = CCR_W;
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  231 004a 31F8042B 		ldrh	r2, [r1], #4
  232 004e 2846     		mov	r0, r5
  233 0050 FFF7FEFF 		bl	transform_to_Park_domain
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 13
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 13
 
 
  234              	.LVL15:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  274              		.loc 1 272 2 view .LVU74
  273:Drivers/CPP/Src/SVM.cpp **** 	uint16_t CCR_IAV = 0;
  275              		.loc 1 273 2 view .LVU75
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 14
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 14
 
 
  274:Drivers/CPP/Src/SVM.cpp **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  310:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_AV1= inactive_vector_time>>1;									// start of active vector 1
  311:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector2_time= ((active_vectors_time * (phase-120))/60);
  312:Drivers/CPP/Src/SVM.cpp **** 	//			active_vector1_time= active_vectors_time-active_vector2_time;
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 15
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 15
 
 
  313:Drivers/CPP/Src/SVM.cpp **** 	//			CCR_CURR_AV1=	CCR_AV1+(active_vector1_time>>1);		// middle of active vector 1 to sample curre
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  364:Drivers/CPP/Src/SVM.cpp **** 		CCR_U = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase] * setpoint * PWM_TIM_ARR_half) >> 18);
  297              		.loc 1 364 3 view .LVU84
  298              		.loc 1 364 52 is_stmt 0 view .LVU85
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 16
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 16
 
 
  299 001e 454B     		ldr	r3, .L20+8
@@ -906,7 +906,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  301              		.loc 1 364 54 view .LVU86
  302 0024 02FB03F3 		mul	r3, r2, r3
  303              		.loc 1 364 65 view .LVU87
- 304 0028 4FF43470 		mov	r0, #720
+ 304 0028 40F25230 		movw	r0, #850
  305 002c 00FB03F3 		mul	r3, r0, r3
  306              		.loc 1 364 85 view .LVU88
  307 0030 9B0C     		lsrs	r3, r3, #18
@@ -933,491 +933,481 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 1
  323              		.loc 1 369 59 view .LVU95
  324 0046 02FB03F3 		mul	r3, r2, r3
  325              		.loc 1 369 70 view .LVU96
- 326 004a 4FF43470 		mov	r0, #720
+ 326 004a 40F25230 		movw	r0, #850
  327 004e 00FB03F3 		mul	r3, r0, r3
- 328              		.loc 1 369 90 view .LVU97
- 329 0052 9B0C     		lsrs	r3, r3, #18
- 330              		.loc 1 369 28 view .LVU98
- 331 0054 C31A     		subs	r3, r0, r3
- 332              		.loc 1 369 9 view .LVU99
- 333 0056 3948     		ldr	r0, .L20+16
- 334 0058 0380     		strh	r3, [r0]	@ movhi
- 335              	.L15:
+ 328              		.loc 1 369 28 view .LVU97
+ 329 0052 A0EB9340 		sub	r0, r0, r3, lsr #18
+ 330              		.loc 1 369 9 view .LVU98
+ 331 0056 394B     		ldr	r3, .L20+16
+ 332 0058 1880     		strh	r0, [r3]	@ movhi
+ 333              	.L15:
  370:Drivers/CPP/Src/SVM.cpp **** 	else if ((phase < 300))
  371:Drivers/CPP/Src/SVM.cpp **** 		CCR_V = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase - 120] * setpoint * PWM_TIM_ARR_half) >> 18);
  372:Drivers/CPP/Src/SVM.cpp **** 	else
  373:Drivers/CPP/Src/SVM.cpp **** 		CCR_V = PWM_TIM_ARR_half - ((uint32_t)(SPWM[phase - 300] * setpoint * PWM_TIM_ARR_half) >> 18);
  374:Drivers/CPP/Src/SVM.cpp **** 
  375:Drivers/CPP/Src/SVM.cpp **** 	if (phase < 60)
- 336              		.loc 1 375 2 is_stmt 1 view .LVU100
- 337 005a 3B29     		cmp	r1, #59
- 338 005c 46DC     		bgt	.L17
+ 334              		.loc 1 375 2 is_stmt 1 view .LVU99
+ 335 005a 3B29     		cmp	r1, #59
+ 336 005c 46DC     		bgt	.L17
  376:Drivers/CPP/Src/SVM.cpp **** 		CCR_W = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase + 120] * setpoint * PWM_TIM_ARR_half) >> 18);
- 339              		.loc 1 376 3 view .LVU101
- 340              		.loc 1 376 53 is_stmt 0 view .LVU102
- 341 005e 7831     		adds	r1, r1, #120
- 342              	.LVL19:
- 343              		.loc 1 376 58 view .LVU103
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 17
+ 337              		.loc 1 376 3 view .LVU100
+ 338              		.loc 1 376 53 is_stmt 0 view .LVU101
+ 339 005e 7831     		adds	r1, r1, #120
+ 340              	.LVL19:
+ 341              		.loc 1 376 58 view .LVU102
+ 342 0060 344B     		ldr	r3, .L20+8
+ 343 0062 33F81130 		ldrh	r3, [r3, r1, lsl #1]
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 17
 
 
- 344 0060 344B     		ldr	r3, .L20+8
- 345 0062 33F81130 		ldrh	r3, [r3, r1, lsl #1]
- 346              		.loc 1 376 60 view .LVU104
- 347 0066 02FB03F3 		mul	r3, r2, r3
- 348              		.loc 1 376 71 view .LVU105
- 349 006a 4FF43472 		mov	r2, #720
- 350              	.LVL20:
- 351              		.loc 1 376 71 view .LVU106
- 352 006e 02FB03F3 		mul	r3, r2, r3
- 353              		.loc 1 376 91 view .LVU107
- 354 0072 9B0C     		lsrs	r3, r3, #18
- 355              		.loc 1 376 28 view .LVU108
- 356 0074 1344     		add	r3, r3, r2
- 357              		.loc 1 376 9 view .LVU109
- 358 0076 324A     		ldr	r2, .L20+20
- 359 0078 1380     		strh	r3, [r2]	@ movhi
- 360 007a 7047     		bx	lr
- 361              	.LVL21:
- 362              	.L10:
+ 344              		.loc 1 376 60 view .LVU103
+ 345 0066 02FB03F3 		mul	r3, r2, r3
+ 346              		.loc 1 376 71 view .LVU104
+ 347 006a 40F25232 		movw	r2, #850
+ 348              	.LVL20:
+ 349              		.loc 1 376 71 view .LVU105
+ 350 006e 02FB03F3 		mul	r3, r2, r3
+ 351              		.loc 1 376 91 view .LVU106
+ 352 0072 9B0C     		lsrs	r3, r3, #18
+ 353              		.loc 1 376 28 view .LVU107
+ 354 0074 1344     		add	r3, r3, r2
+ 355              		.loc 1 376 9 view .LVU108
+ 356 0076 324A     		ldr	r2, .L20+20
+ 357 0078 1380     		strh	r3, [r2]	@ movhi
+ 358 007a 7047     		bx	lr
+ 359              	.LVL21:
+ 360              	.L10:
  277:Drivers/CPP/Src/SVM.cpp **** 		phase = phase + 360;
- 363              		.loc 1 277 2 is_stmt 1 view .LVU110
- 364 007c 0029     		cmp	r1, #0
- 365 007e C5DA     		bge	.L11
+ 361              		.loc 1 277 2 is_stmt 1 view .LVU109
+ 362 007c 0029     		cmp	r1, #0
+ 363 007e C5DA     		bge	.L11
  278:Drivers/CPP/Src/SVM.cpp **** 
- 366              		.loc 1 278 3 view .LVU111
+ 364              		.loc 1 278 3 view .LVU110
  278:Drivers/CPP/Src/SVM.cpp **** 
- 367              		.loc 1 278 9 is_stmt 0 view .LVU112
- 368 0080 01F5B471 		add	r1, r1, #360
- 369              	.LVL22:
+ 365              		.loc 1 278 9 is_stmt 0 view .LVU111
+ 366 0080 01F5B471 		add	r1, r1, #360
+ 367              	.LVL22:
  278:Drivers/CPP/Src/SVM.cpp **** 
- 370              		.loc 1 278 9 view .LVU113
- 371 0084 C2E7     		b	.L11
- 372              	.L12:
+ 368              		.loc 1 278 9 view .LVU112
+ 369 0084 C2E7     		b	.L11
+ 370              	.L12:
  366:Drivers/CPP/Src/SVM.cpp **** 
- 373              		.loc 1 366 3 is_stmt 1 view .LVU114
+ 371              		.loc 1 366 3 is_stmt 1 view .LVU113
  366:Drivers/CPP/Src/SVM.cpp **** 
- 374              		.loc 1 366 53 is_stmt 0 view .LVU115
- 375 0086 A1F1B403 		sub	r3, r1, #180
+ 372              		.loc 1 366 53 is_stmt 0 view .LVU114
+ 373 0086 A1F1B403 		sub	r3, r1, #180
  366:Drivers/CPP/Src/SVM.cpp **** 
- 376              		.loc 1 366 58 view .LVU116
- 377 008a 2A48     		ldr	r0, .L20+8
- 378 008c 30F81330 		ldrh	r3, [r0, r3, lsl #1]
+ 374              		.loc 1 366 58 view .LVU115
+ 375 008a 2A48     		ldr	r0, .L20+8
+ 376 008c 30F81330 		ldrh	r3, [r0, r3, lsl #1]
  366:Drivers/CPP/Src/SVM.cpp **** 
- 379              		.loc 1 366 60 view .LVU117
- 380 0090 02FB03F3 		mul	r3, r2, r3
+ 377              		.loc 1 366 60 view .LVU116
+ 378 0090 02FB03F3 		mul	r3, r2, r3
  366:Drivers/CPP/Src/SVM.cpp **** 
- 381              		.loc 1 366 71 view .LVU118
- 382 0094 4FF43470 		mov	r0, #720
- 383 0098 00FB03F3 		mul	r3, r0, r3
+ 379              		.loc 1 366 71 view .LVU117
+ 380 0094 40F25230 		movw	r0, #850
+ 381 0098 00FB03F3 		mul	r3, r0, r3
  366:Drivers/CPP/Src/SVM.cpp **** 
- 384              		.loc 1 366 91 view .LVU119
- 385 009c 9B0C     		lsrs	r3, r3, #18
+ 382              		.loc 1 366 28 view .LVU118
+ 383 009c A0EB9340 		sub	r0, r0, r3, lsr #18
  366:Drivers/CPP/Src/SVM.cpp **** 
- 386              		.loc 1 366 28 view .LVU120
- 387 009e C31A     		subs	r3, r0, r3
- 366:Drivers/CPP/Src/SVM.cpp **** 
- 388              		.loc 1 366 9 view .LVU121
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 18
-
-
- 389 00a0 2548     		ldr	r0, .L20+12
- 390 00a2 0380     		strh	r3, [r0]	@ movhi
- 391 00a4 C8E7     		b	.L13
- 392              	.L14:
+ 384              		.loc 1 366 9 view .LVU119
+ 385 00a0 254B     		ldr	r3, .L20+12
+ 386 00a2 1880     		strh	r0, [r3]	@ movhi
+ 387 00a4 C8E7     		b	.L13
+ 388              	.L14:
  370:Drivers/CPP/Src/SVM.cpp **** 		CCR_V = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase - 120] * setpoint * PWM_TIM_ARR_half) >> 18);
- 393              		.loc 1 370 7 is_stmt 1 view .LVU122
- 394 00a6 B1F5967F 		cmp	r1, #300
- 395 00aa 0FDA     		bge	.L16
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 396              		.loc 1 371 3 view .LVU123
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 397              		.loc 1 371 53 is_stmt 0 view .LVU124
- 398 00ac A1F17803 		sub	r3, r1, #120
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 399              		.loc 1 371 58 view .LVU125
- 400 00b0 2048     		ldr	r0, .L20+8
- 401 00b2 30F81330 		ldrh	r3, [r0, r3, lsl #1]
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 402              		.loc 1 371 60 view .LVU126
- 403 00b6 02FB03F3 		mul	r3, r2, r3
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 404              		.loc 1 371 71 view .LVU127
- 405 00ba 4FF43470 		mov	r0, #720
- 406 00be 00FB03F3 		mul	r3, r0, r3
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 407              		.loc 1 371 91 view .LVU128
- 408 00c2 9B0C     		lsrs	r3, r3, #18
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 409              		.loc 1 371 28 view .LVU129
- 410 00c4 0344     		add	r3, r3, r0
- 371:Drivers/CPP/Src/SVM.cpp **** 	else
- 411              		.loc 1 371 9 view .LVU130
- 412 00c6 1D48     		ldr	r0, .L20+16
- 413 00c8 0380     		strh	r3, [r0]	@ movhi
- 414 00ca C6E7     		b	.L15
- 415              	.L16:
- 373:Drivers/CPP/Src/SVM.cpp **** 
- 416              		.loc 1 373 3 is_stmt 1 view .LVU131
- 373:Drivers/CPP/Src/SVM.cpp **** 
- 417              		.loc 1 373 53 is_stmt 0 view .LVU132
- 418 00cc A1F59673 		sub	r3, r1, #300
- 373:Drivers/CPP/Src/SVM.cpp **** 
- 419              		.loc 1 373 58 view .LVU133
- 420 00d0 1848     		ldr	r0, .L20+8
- 421 00d2 30F81330 		ldrh	r3, [r0, r3, lsl #1]
- 373:Drivers/CPP/Src/SVM.cpp **** 
- 422              		.loc 1 373 60 view .LVU134
- 423 00d6 02FB03F3 		mul	r3, r2, r3
- 373:Drivers/CPP/Src/SVM.cpp **** 
- 424              		.loc 1 373 71 view .LVU135
- 425 00da 4FF43470 		mov	r0, #720
- 426 00de 00FB03F3 		mul	r3, r0, r3
- 373:Drivers/CPP/Src/SVM.cpp **** 
- 427              		.loc 1 373 91 view .LVU136
- 428 00e2 9B0C     		lsrs	r3, r3, #18
- 373:Drivers/CPP/Src/SVM.cpp **** 
- 429              		.loc 1 373 28 view .LVU137
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 19
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 18
 
 
- 430 00e4 C31A     		subs	r3, r0, r3
+ 389              		.loc 1 370 7 is_stmt 1 view .LVU120
+ 390 00a6 B1F5967F 		cmp	r1, #300
+ 391 00aa 0FDA     		bge	.L16
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 392              		.loc 1 371 3 view .LVU121
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 393              		.loc 1 371 53 is_stmt 0 view .LVU122
+ 394 00ac A1F17803 		sub	r3, r1, #120
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 395              		.loc 1 371 58 view .LVU123
+ 396 00b0 2048     		ldr	r0, .L20+8
+ 397 00b2 30F81330 		ldrh	r3, [r0, r3, lsl #1]
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 398              		.loc 1 371 60 view .LVU124
+ 399 00b6 02FB03F3 		mul	r3, r2, r3
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 400              		.loc 1 371 71 view .LVU125
+ 401 00ba 40F25230 		movw	r0, #850
+ 402 00be 00FB03F3 		mul	r3, r0, r3
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 403              		.loc 1 371 91 view .LVU126
+ 404 00c2 9B0C     		lsrs	r3, r3, #18
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 405              		.loc 1 371 28 view .LVU127
+ 406 00c4 0344     		add	r3, r3, r0
+ 371:Drivers/CPP/Src/SVM.cpp **** 	else
+ 407              		.loc 1 371 9 view .LVU128
+ 408 00c6 1D48     		ldr	r0, .L20+16
+ 409 00c8 0380     		strh	r3, [r0]	@ movhi
+ 410 00ca C6E7     		b	.L15
+ 411              	.L16:
  373:Drivers/CPP/Src/SVM.cpp **** 
- 431              		.loc 1 373 9 view .LVU138
- 432 00e6 1548     		ldr	r0, .L20+16
- 433 00e8 0380     		strh	r3, [r0]	@ movhi
- 434 00ea B6E7     		b	.L15
- 435              	.L17:
+ 412              		.loc 1 373 3 is_stmt 1 view .LVU129
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 413              		.loc 1 373 53 is_stmt 0 view .LVU130
+ 414 00cc A1F59673 		sub	r3, r1, #300
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 415              		.loc 1 373 58 view .LVU131
+ 416 00d0 1848     		ldr	r0, .L20+8
+ 417 00d2 30F81330 		ldrh	r3, [r0, r3, lsl #1]
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 418              		.loc 1 373 60 view .LVU132
+ 419 00d6 02FB03F3 		mul	r3, r2, r3
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 420              		.loc 1 373 71 view .LVU133
+ 421 00da 40F25230 		movw	r0, #850
+ 422 00de 00FB03F3 		mul	r3, r0, r3
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 423              		.loc 1 373 28 view .LVU134
+ 424 00e2 A0EB9340 		sub	r0, r0, r3, lsr #18
+ 373:Drivers/CPP/Src/SVM.cpp **** 
+ 425              		.loc 1 373 9 view .LVU135
+ 426 00e6 154B     		ldr	r3, .L20+16
+ 427 00e8 1880     		strh	r0, [r3]	@ movhi
+ 428 00ea B6E7     		b	.L15
+ 429              	.L17:
  377:Drivers/CPP/Src/SVM.cpp **** 	else if ((phase < 240))
- 436              		.loc 1 377 7 is_stmt 1 view .LVU139
- 437 00ec EF29     		cmp	r1, #239
- 438 00ee 0EDC     		bgt	.L19
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 19
+
+
+ 430              		.loc 1 377 7 is_stmt 1 view .LVU136
+ 431 00ec EF29     		cmp	r1, #239
+ 432 00ee 0EDC     		bgt	.L19
  378:Drivers/CPP/Src/SVM.cpp **** 		CCR_W = PWM_TIM_ARR_half - ((uint32_t)(SPWM[phase - 60] * setpoint * PWM_TIM_ARR_half) >> 18);
- 439              		.loc 1 378 3 view .LVU140
- 440              		.loc 1 378 53 is_stmt 0 view .LVU141
- 441 00f0 3C39     		subs	r1, r1, #60
- 442              	.LVL23:
- 443              		.loc 1 378 57 view .LVU142
- 444 00f2 104B     		ldr	r3, .L20+8
- 445 00f4 33F81130 		ldrh	r3, [r3, r1, lsl #1]
- 446              		.loc 1 378 59 view .LVU143
- 447 00f8 02FB03F3 		mul	r3, r2, r3
- 448              		.loc 1 378 70 view .LVU144
- 449 00fc 4FF43472 		mov	r2, #720
- 450              	.LVL24:
- 451              		.loc 1 378 70 view .LVU145
- 452 0100 02FB03F3 		mul	r3, r2, r3
- 453              		.loc 1 378 90 view .LVU146
- 454 0104 9B0C     		lsrs	r3, r3, #18
- 455              		.loc 1 378 28 view .LVU147
- 456 0106 D31A     		subs	r3, r2, r3
- 457              		.loc 1 378 9 view .LVU148
- 458 0108 0D4A     		ldr	r2, .L20+20
- 459 010a 1380     		strh	r3, [r2]	@ movhi
- 460 010c 7047     		bx	lr
- 461              	.LVL25:
- 462              	.L19:
+ 433              		.loc 1 378 3 view .LVU137
+ 434              		.loc 1 378 53 is_stmt 0 view .LVU138
+ 435 00f0 3C39     		subs	r1, r1, #60
+ 436              	.LVL23:
+ 437              		.loc 1 378 57 view .LVU139
+ 438 00f2 104B     		ldr	r3, .L20+8
+ 439 00f4 33F81130 		ldrh	r3, [r3, r1, lsl #1]
+ 440              		.loc 1 378 59 view .LVU140
+ 441 00f8 02FB03F3 		mul	r3, r2, r3
+ 442              		.loc 1 378 70 view .LVU141
+ 443 00fc 40F25232 		movw	r2, #850
+ 444              	.LVL24:
+ 445              		.loc 1 378 70 view .LVU142
+ 446 0100 02FB03F3 		mul	r3, r2, r3
+ 447              		.loc 1 378 28 view .LVU143
+ 448 0104 A2EB9342 		sub	r2, r2, r3, lsr #18
+ 449              		.loc 1 378 9 view .LVU144
+ 450 0108 0D4B     		ldr	r3, .L20+20
+ 451 010a 1A80     		strh	r2, [r3]	@ movhi
+ 452 010c 7047     		bx	lr
+ 453              	.LVL25:
+ 454              	.L19:
  379:Drivers/CPP/Src/SVM.cpp **** 	else
  380:Drivers/CPP/Src/SVM.cpp **** 		CCR_W = PWM_TIM_ARR_half + ((uint32_t)(SPWM[phase - 240] * setpoint * PWM_TIM_ARR_half) >> 18);
- 463              		.loc 1 380 3 is_stmt 1 view .LVU149
- 464              		.loc 1 380 53 is_stmt 0 view .LVU150
- 465 010e F039     		subs	r1, r1, #240
- 466              	.LVL26:
- 467              		.loc 1 380 58 view .LVU151
- 468 0110 084B     		ldr	r3, .L20+8
- 469 0112 33F81130 		ldrh	r3, [r3, r1, lsl #1]
- 470              		.loc 1 380 60 view .LVU152
- 471 0116 02FB03F3 		mul	r3, r2, r3
- 472              		.loc 1 380 71 view .LVU153
- 473 011a 4FF43472 		mov	r2, #720
- 474              	.LVL27:
- 475              		.loc 1 380 71 view .LVU154
- 476 011e 02FB03F3 		mul	r3, r2, r3
- 477              		.loc 1 380 91 view .LVU155
- 478 0122 9B0C     		lsrs	r3, r3, #18
- 479              		.loc 1 380 28 view .LVU156
- 480 0124 1344     		add	r3, r3, r2
- 481              		.loc 1 380 9 view .LVU157
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 20
-
-
- 482 0126 064A     		ldr	r2, .L20+20
- 483 0128 1380     		strh	r3, [r2]	@ movhi
+ 455              		.loc 1 380 3 is_stmt 1 view .LVU145
+ 456              		.loc 1 380 53 is_stmt 0 view .LVU146
+ 457 010e F039     		subs	r1, r1, #240
+ 458              	.LVL26:
+ 459              		.loc 1 380 58 view .LVU147
+ 460 0110 084B     		ldr	r3, .L20+8
+ 461 0112 33F81130 		ldrh	r3, [r3, r1, lsl #1]
+ 462              		.loc 1 380 60 view .LVU148
+ 463 0116 02FB03F3 		mul	r3, r2, r3
+ 464              		.loc 1 380 71 view .LVU149
+ 465 011a 40F25232 		movw	r2, #850
+ 466              	.LVL27:
+ 467              		.loc 1 380 71 view .LVU150
+ 468 011e 02FB03F3 		mul	r3, r2, r3
+ 469              		.loc 1 380 91 view .LVU151
+ 470 0122 9B0C     		lsrs	r3, r3, #18
+ 471              		.loc 1 380 28 view .LVU152
+ 472 0124 1344     		add	r3, r3, r2
+ 473              		.loc 1 380 9 view .LVU153
+ 474 0126 064A     		ldr	r2, .L20+20
+ 475 0128 1380     		strh	r3, [r2]	@ movhi
  381:Drivers/CPP/Src/SVM.cpp **** 
  382:Drivers/CPP/Src/SVM.cpp **** 	// calculte the CCR5 und CCR6 register to determine when the current is sampled
  383:Drivers/CPP/Src/SVM.cpp **** 	// these CCR registers must be set in die middel of the active vectors
  384:Drivers/CPP/Src/SVM.cpp **** 
  385:Drivers/CPP/Src/SVM.cpp **** 	//	if(phase<)
  386:Drivers/CPP/Src/SVM.cpp **** }
- 484              		.loc 1 386 1 view .LVU158
- 485 012a 7047     		bx	lr
- 486              	.L21:
- 487              		.align	2
- 488              	.L20:
- 489 012c 89888888 		.word	-2004318071
- 490 0130 00000000 		.word	_ZL14current_sector
- 491 0134 00000000 		.word	_ZL4SPWM
- 492 0138 00000000 		.word	_ZL5CCR_U
- 493 013c 00000000 		.word	_ZL5CCR_V
- 494 0140 00000000 		.word	_ZL5CCR_W
- 495              		.cfi_endproc
- 496              	.LFE144:
- 498              		.section	.rodata._ZL4SPWM,"a"
- 499              		.align	2
- 502              	_ZL4SPWM:
- 503 0000 0000     		.short	0
- 504 0002 1E00     		.short	30
- 505 0004 3D00     		.short	61
- 506 0006 5B00     		.short	91
- 507 0008 7A00     		.short	122
- 508 000a 9800     		.short	152
- 509 000c B700     		.short	183
- 510 000e D500     		.short	213
- 511 0010 F300     		.short	243
- 512 0012 1101     		.short	273
- 513 0014 3001     		.short	304
- 514 0016 4E01     		.short	334
- 515 0018 6C01     		.short	364
- 516 001a 8A01     		.short	394
- 517 001c A801     		.short	424
- 518 001e C601     		.short	454
- 519 0020 E301     		.short	483
- 520 0022 0102     		.short	513
- 521 0024 1E02     		.short	542
- 522 0026 3C02     		.short	572
- 523 0028 5902     		.short	601
- 524 002a 7602     		.short	630
- 525 002c 9302     		.short	659
- 526 002e B002     		.short	688
- 527 0030 CD02     		.short	717
- 528 0032 E902     		.short	745
- 529 0034 0603     		.short	774
- 530 0036 2203     		.short	802
- 531 0038 3E03     		.short	830
- 532 003a 5A03     		.short	858
- 533 003c 7603     		.short	886
- 534 003e 7E03     		.short	894
- 535 0040 8603     		.short	902
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 21
+ 476              		.loc 1 386 1 view .LVU154
+ 477 012a 7047     		bx	lr
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 20
 
 
- 536 0042 8D03     		.short	909
- 537 0044 9503     		.short	917
- 538 0046 9C03     		.short	924
- 539 0048 A303     		.short	931
- 540 004a AA03     		.short	938
- 541 004c B003     		.short	944
- 542 004e B703     		.short	951
- 543 0050 BD03     		.short	957
- 544 0052 C303     		.short	963
- 545 0054 C803     		.short	968
- 546 0056 CE03     		.short	974
- 547 0058 D303     		.short	979
- 548 005a D703     		.short	983
- 549 005c DC03     		.short	988
- 550 005e E003     		.short	992
- 551 0060 E503     		.short	997
- 552 0062 E903     		.short	1001
- 553 0064 EC03     		.short	1004
- 554 0066 EF03     		.short	1007
- 555 0068 F203     		.short	1010
- 556 006a F503     		.short	1013
- 557 006c F703     		.short	1015
- 558 006e FA03     		.short	1018
- 559 0070 FC03     		.short	1020
- 560 0072 FD03     		.short	1021
- 561 0074 FE03     		.short	1022
- 562 0076 FF03     		.short	1023
- 563 0078 0004     		.short	1024
- 564 007a 0004     		.short	1024
- 565 007c 0004     		.short	1024
- 566 007e 0004     		.short	1024
- 567 0080 0004     		.short	1024
- 568 0082 FE03     		.short	1022
- 569 0084 FD03     		.short	1021
- 570 0086 FC03     		.short	1020
- 571 0088 FA03     		.short	1018
- 572 008a F703     		.short	1015
- 573 008c F503     		.short	1013
- 574 008e F203     		.short	1010
- 575 0090 EF03     		.short	1007
- 576 0092 EB03     		.short	1003
- 577 0094 E703     		.short	999
- 578 0096 E303     		.short	995
- 579 0098 DE03     		.short	990
- 580 009a D903     		.short	985
- 581 009c D403     		.short	980
- 582 009e CE03     		.short	974
- 583 00a0 C803     		.short	968
- 584 00a2 C103     		.short	961
- 585 00a4 BA03     		.short	954
- 586 00a6 B403     		.short	948
- 587 00a8 AC03     		.short	940
- 588 00aa A403     		.short	932
- 589 00ac 9C03     		.short	924
- 590 00ae 9303     		.short	915
- 591 00b0 8A03     		.short	906
- 592 00b2 8103     		.short	897
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 22
+ 478              	.L21:
+ 479              		.align	2
+ 480              	.L20:
+ 481 012c 89888888 		.word	-2004318071
+ 482 0130 00000000 		.word	_ZL14current_sector
+ 483 0134 00000000 		.word	_ZL4SPWM
+ 484 0138 00000000 		.word	_ZL5CCR_U
+ 485 013c 00000000 		.word	_ZL5CCR_V
+ 486 0140 00000000 		.word	_ZL5CCR_W
+ 487              		.cfi_endproc
+ 488              	.LFE144:
+ 490              		.section	.rodata._ZL4SPWM,"a"
+ 491              		.align	2
+ 494              	_ZL4SPWM:
+ 495 0000 0000     		.short	0
+ 496 0002 1E00     		.short	30
+ 497 0004 3D00     		.short	61
+ 498 0006 5B00     		.short	91
+ 499 0008 7A00     		.short	122
+ 500 000a 9800     		.short	152
+ 501 000c B700     		.short	183
+ 502 000e D500     		.short	213
+ 503 0010 F300     		.short	243
+ 504 0012 1101     		.short	273
+ 505 0014 3001     		.short	304
+ 506 0016 4E01     		.short	334
+ 507 0018 6C01     		.short	364
+ 508 001a 8A01     		.short	394
+ 509 001c A801     		.short	424
+ 510 001e C601     		.short	454
+ 511 0020 E301     		.short	483
+ 512 0022 0102     		.short	513
+ 513 0024 1E02     		.short	542
+ 514 0026 3C02     		.short	572
+ 515 0028 5902     		.short	601
+ 516 002a 7602     		.short	630
+ 517 002c 9302     		.short	659
+ 518 002e B002     		.short	688
+ 519 0030 CD02     		.short	717
+ 520 0032 E902     		.short	745
+ 521 0034 0603     		.short	774
+ 522 0036 2203     		.short	802
+ 523 0038 3E03     		.short	830
+ 524 003a 5A03     		.short	858
+ 525 003c 7603     		.short	886
+ 526 003e 7E03     		.short	894
+ 527 0040 8603     		.short	902
+ 528 0042 8D03     		.short	909
+ 529 0044 9503     		.short	917
+ 530 0046 9C03     		.short	924
+ 531 0048 A303     		.short	931
+ 532 004a AA03     		.short	938
+ 533 004c B003     		.short	944
+ 534 004e B703     		.short	951
+ 535 0050 BD03     		.short	957
+ 536 0052 C303     		.short	963
+ 537 0054 C803     		.short	968
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 21
 
 
- 593 00b4 7703     		.short	887
- 594 00b6 8103     		.short	897
- 595 00b8 8A03     		.short	906
- 596 00ba 9303     		.short	915
- 597 00bc 9C03     		.short	924
- 598 00be A403     		.short	932
- 599 00c0 AC03     		.short	940
- 600 00c2 B403     		.short	948
- 601 00c4 BA03     		.short	954
- 602 00c6 C103     		.short	961
- 603 00c8 C803     		.short	968
- 604 00ca CE03     		.short	974
- 605 00cc D403     		.short	980
- 606 00ce D903     		.short	985
- 607 00d0 DE03     		.short	990
- 608 00d2 E303     		.short	995
- 609 00d4 E703     		.short	999
- 610 00d6 EB03     		.short	1003
- 611 00d8 EF03     		.short	1007
- 612 00da F203     		.short	1010
- 613 00dc F503     		.short	1013
- 614 00de F703     		.short	1015
- 615 00e0 FA03     		.short	1018
- 616 00e2 FC03     		.short	1020
- 617 00e4 FD03     		.short	1021
- 618 00e6 FE03     		.short	1022
- 619 00e8 0004     		.short	1024
- 620 00ea 0004     		.short	1024
- 621 00ec 0004     		.short	1024
- 622 00ee 0004     		.short	1024
- 623 00f0 0004     		.short	1024
- 624 00f2 FF03     		.short	1023
- 625 00f4 FE03     		.short	1022
- 626 00f6 FD03     		.short	1021
- 627 00f8 FC03     		.short	1020
- 628 00fa FA03     		.short	1018
- 629 00fc F703     		.short	1015
- 630 00fe F503     		.short	1013
- 631 0100 F203     		.short	1010
- 632 0102 EF03     		.short	1007
- 633 0104 EC03     		.short	1004
- 634 0106 E903     		.short	1001
- 635 0108 E503     		.short	997
- 636 010a E003     		.short	992
- 637 010c DC03     		.short	988
- 638 010e D703     		.short	983
- 639 0110 D303     		.short	979
- 640 0112 CE03     		.short	974
- 641 0114 C803     		.short	968
- 642 0116 C303     		.short	963
- 643 0118 BD03     		.short	957
- 644 011a B703     		.short	951
- 645 011c B003     		.short	944
- 646 011e AA03     		.short	938
- 647 0120 A303     		.short	931
- 648 0122 9C03     		.short	924
- 649 0124 9503     		.short	917
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 23
+ 538 0056 CE03     		.short	974
+ 539 0058 D303     		.short	979
+ 540 005a D703     		.short	983
+ 541 005c DC03     		.short	988
+ 542 005e E003     		.short	992
+ 543 0060 E503     		.short	997
+ 544 0062 E903     		.short	1001
+ 545 0064 EC03     		.short	1004
+ 546 0066 EF03     		.short	1007
+ 547 0068 F203     		.short	1010
+ 548 006a F503     		.short	1013
+ 549 006c F703     		.short	1015
+ 550 006e FA03     		.short	1018
+ 551 0070 FC03     		.short	1020
+ 552 0072 FD03     		.short	1021
+ 553 0074 FE03     		.short	1022
+ 554 0076 FF03     		.short	1023
+ 555 0078 0004     		.short	1024
+ 556 007a 0004     		.short	1024
+ 557 007c 0004     		.short	1024
+ 558 007e 0004     		.short	1024
+ 559 0080 0004     		.short	1024
+ 560 0082 FE03     		.short	1022
+ 561 0084 FD03     		.short	1021
+ 562 0086 FC03     		.short	1020
+ 563 0088 FA03     		.short	1018
+ 564 008a F703     		.short	1015
+ 565 008c F503     		.short	1013
+ 566 008e F203     		.short	1010
+ 567 0090 EF03     		.short	1007
+ 568 0092 EB03     		.short	1003
+ 569 0094 E703     		.short	999
+ 570 0096 E303     		.short	995
+ 571 0098 DE03     		.short	990
+ 572 009a D903     		.short	985
+ 573 009c D403     		.short	980
+ 574 009e CE03     		.short	974
+ 575 00a0 C803     		.short	968
+ 576 00a2 C103     		.short	961
+ 577 00a4 BA03     		.short	954
+ 578 00a6 B403     		.short	948
+ 579 00a8 AC03     		.short	940
+ 580 00aa A403     		.short	932
+ 581 00ac 9C03     		.short	924
+ 582 00ae 9303     		.short	915
+ 583 00b0 8A03     		.short	906
+ 584 00b2 8103     		.short	897
+ 585 00b4 7703     		.short	887
+ 586 00b6 8103     		.short	897
+ 587 00b8 8A03     		.short	906
+ 588 00ba 9303     		.short	915
+ 589 00bc 9C03     		.short	924
+ 590 00be A403     		.short	932
+ 591 00c0 AC03     		.short	940
+ 592 00c2 B403     		.short	948
+ 593 00c4 BA03     		.short	954
+ 594 00c6 C103     		.short	961
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 22
 
 
- 650 0126 8D03     		.short	909
- 651 0128 8603     		.short	902
- 652 012a 7E03     		.short	894
- 653 012c 7603     		.short	886
- 654 012e 5A03     		.short	858
- 655 0130 3E03     		.short	830
- 656 0132 2203     		.short	802
- 657 0134 0603     		.short	774
- 658 0136 E902     		.short	745
- 659 0138 CD02     		.short	717
- 660 013a B002     		.short	688
- 661 013c 9302     		.short	659
- 662 013e 7602     		.short	630
- 663 0140 5902     		.short	601
- 664 0142 3C02     		.short	572
- 665 0144 1E02     		.short	542
- 666 0146 0102     		.short	513
- 667 0148 E301     		.short	483
- 668 014a C601     		.short	454
- 669 014c A801     		.short	424
- 670 014e 8A01     		.short	394
- 671 0150 6C01     		.short	364
- 672 0152 4E01     		.short	334
- 673 0154 3001     		.short	304
- 674 0156 1101     		.short	273
- 675 0158 F300     		.short	243
- 676 015a D500     		.short	213
- 677 015c B700     		.short	183
- 678 015e 9800     		.short	152
- 679 0160 7A00     		.short	122
- 680 0162 5B00     		.short	91
- 681 0164 3D00     		.short	61
- 682 0166 1E00     		.short	30
- 683              		.section	.bss._ZL14current_sector,"aw",%nobits
- 684              		.align	1
- 687              	_ZL14current_sector:
- 688 0000 0000     		.space	2
- 689              		.section	.bss._ZL5CCR_W,"aw",%nobits
- 690              		.align	1
- 693              	_ZL5CCR_W:
- 694 0000 0000     		.space	2
- 695              		.section	.bss._ZL5CCR_V,"aw",%nobits
- 696              		.align	1
- 699              	_ZL5CCR_V:
- 700 0000 0000     		.space	2
- 701              		.section	.bss._ZL5CCR_U,"aw",%nobits
- 702              		.align	1
- 705              	_ZL5CCR_U:
- 706 0000 0000     		.space	2
- 707              		.text
- 708              	.Letext0:
- 709              		.file 3 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 710              		.file 4 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
- 711              		.file 5 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
- 712              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
- 713              		.file 7 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/in
- 714              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 24
+ 595 00c8 C803     		.short	968
+ 596 00ca CE03     		.short	974
+ 597 00cc D403     		.short	980
+ 598 00ce D903     		.short	985
+ 599 00d0 DE03     		.short	990
+ 600 00d2 E303     		.short	995
+ 601 00d4 E703     		.short	999
+ 602 00d6 EB03     		.short	1003
+ 603 00d8 EF03     		.short	1007
+ 604 00da F203     		.short	1010
+ 605 00dc F503     		.short	1013
+ 606 00de F703     		.short	1015
+ 607 00e0 FA03     		.short	1018
+ 608 00e2 FC03     		.short	1020
+ 609 00e4 FD03     		.short	1021
+ 610 00e6 FE03     		.short	1022
+ 611 00e8 0004     		.short	1024
+ 612 00ea 0004     		.short	1024
+ 613 00ec 0004     		.short	1024
+ 614 00ee 0004     		.short	1024
+ 615 00f0 0004     		.short	1024
+ 616 00f2 FF03     		.short	1023
+ 617 00f4 FE03     		.short	1022
+ 618 00f6 FD03     		.short	1021
+ 619 00f8 FC03     		.short	1020
+ 620 00fa FA03     		.short	1018
+ 621 00fc F703     		.short	1015
+ 622 00fe F503     		.short	1013
+ 623 0100 F203     		.short	1010
+ 624 0102 EF03     		.short	1007
+ 625 0104 EC03     		.short	1004
+ 626 0106 E903     		.short	1001
+ 627 0108 E503     		.short	997
+ 628 010a E003     		.short	992
+ 629 010c DC03     		.short	988
+ 630 010e D703     		.short	983
+ 631 0110 D303     		.short	979
+ 632 0112 CE03     		.short	974
+ 633 0114 C803     		.short	968
+ 634 0116 C303     		.short	963
+ 635 0118 BD03     		.short	957
+ 636 011a B703     		.short	951
+ 637 011c B003     		.short	944
+ 638 011e AA03     		.short	938
+ 639 0120 A303     		.short	931
+ 640 0122 9C03     		.short	924
+ 641 0124 9503     		.short	917
+ 642 0126 8D03     		.short	909
+ 643 0128 8603     		.short	902
+ 644 012a 7E03     		.short	894
+ 645 012c 7603     		.short	886
+ 646 012e 5A03     		.short	858
+ 647 0130 3E03     		.short	830
+ 648 0132 2203     		.short	802
+ 649 0134 0603     		.short	774
+ 650 0136 E902     		.short	745
+ 651 0138 CD02     		.short	717
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 23
 
 
- 715              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 716              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 717              		.file 11 "Drivers/BSP/STM32G4xx_Nucleo/stm32g4xx_nucleo.h"
- 718              		.file 12 "Drivers/CPP/Inc/global_var.h"
- 719              		.file 13 "Core/Inc/tim.h"
- 720              		.file 14 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 721              		.file 15 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 722              		.file 16 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 723              		.file 17 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 724              		.file 18 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 725              		.file 19 "Drivers/CPP/Inc/Park_u_Clark.h"
- 726              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h"
- 727              		.file 21 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s 			page 25
+ 652 013a B002     		.short	688
+ 653 013c 9302     		.short	659
+ 654 013e 7602     		.short	630
+ 655 0140 5902     		.short	601
+ 656 0142 3C02     		.short	572
+ 657 0144 1E02     		.short	542
+ 658 0146 0102     		.short	513
+ 659 0148 E301     		.short	483
+ 660 014a C601     		.short	454
+ 661 014c A801     		.short	424
+ 662 014e 8A01     		.short	394
+ 663 0150 6C01     		.short	364
+ 664 0152 4E01     		.short	334
+ 665 0154 3001     		.short	304
+ 666 0156 1101     		.short	273
+ 667 0158 F300     		.short	243
+ 668 015a D500     		.short	213
+ 669 015c B700     		.short	183
+ 670 015e 9800     		.short	152
+ 671 0160 7A00     		.short	122
+ 672 0162 5B00     		.short	91
+ 673 0164 3D00     		.short	61
+ 674 0166 1E00     		.short	30
+ 675              		.section	.bss._ZL14current_sector,"aw",%nobits
+ 676              		.align	1
+ 679              	_ZL14current_sector:
+ 680 0000 0000     		.space	2
+ 681              		.section	.bss._ZL5CCR_W,"aw",%nobits
+ 682              		.align	1
+ 685              	_ZL5CCR_W:
+ 686 0000 0000     		.space	2
+ 687              		.section	.bss._ZL5CCR_V,"aw",%nobits
+ 688              		.align	1
+ 691              	_ZL5CCR_V:
+ 692 0000 0000     		.space	2
+ 693              		.section	.bss._ZL5CCR_U,"aw",%nobits
+ 694              		.align	1
+ 697              	_ZL5CCR_U:
+ 698 0000 0000     		.space	2
+ 699              		.text
+ 700              	.Letext0:
+ 701              		.file 3 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 702              		.file 4 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 703              		.file 5 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 704              		.file 6 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h"
+ 705              		.file 7 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/in
+ 706              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 707              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 708              		.file 10 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 709              		.file 11 "Drivers/BSP/STM32G4xx_Nucleo/stm32g4xx_nucleo.h"
+ 710              		.file 12 "Drivers/CPP/Inc/global_var.h"
+ 711              		.file 13 "Core/Inc/tim.h"
+ 712              		.file 14 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 713              		.file 15 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 714              		.file 16 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 715              		.file 17 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 716              		.file 18 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 24
+
+
+ 717              		.file 19 "Drivers/CPP/Inc/Park_u_Clark.h"
+ 718              		.file 20 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h"
+ 719              		.file 21 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h"
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 SVM.cpp
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:21     .text.initSVM:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:27     .text.initSVM:00000000 initSVM
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:145    .text.initSVM:0000007c $d
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:151    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:157    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:240    .text.HAL_TIM_PeriodElapsedCallback:00000058 $d
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:705    .bss._ZL5CCR_U:00000000 _ZL5CCR_U
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:699    .bss._ZL5CCR_V:00000000 _ZL5CCR_V
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:693    .bss._ZL5CCR_W:00000000 _ZL5CCR_W
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:251    .text.setVoltageVector:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:257    .text.setVoltageVector:00000000 setVoltageVector
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:489    .text.setVoltageVector:0000012c $d
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:687    .bss._ZL14current_sector:00000000 _ZL14current_sector
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:502    .rodata._ZL4SPWM:00000000 _ZL4SPWM
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:499    .rodata._ZL4SPWM:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:684    .bss._ZL14current_sector:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:690    .bss._ZL5CCR_W:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:696    .bss._ZL5CCR_V:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\ccpXc0cd.s:702    .bss._ZL5CCR_U:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:21     .text.initSVM:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:27     .text.initSVM:00000000 initSVM
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:145    .text.initSVM:0000007c $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:151    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:157    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:240    .text.HAL_TIM_PeriodElapsedCallback:00000058 $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:697    .bss._ZL5CCR_U:00000000 _ZL5CCR_U
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:691    .bss._ZL5CCR_V:00000000 _ZL5CCR_V
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:685    .bss._ZL5CCR_W:00000000 _ZL5CCR_W
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:251    .text.setVoltageVector:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:257    .text.setVoltageVector:00000000 setVoltageVector
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:481    .text.setVoltageVector:0000012c $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:679    .bss._ZL14current_sector:00000000 _ZL14current_sector
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:494    .rodata._ZL4SPWM:00000000 _ZL4SPWM
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:491    .rodata._ZL4SPWM:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:676    .bss._ZL14current_sector:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:682    .bss._ZL5CCR_W:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:688    .bss._ZL5CCR_V:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\ccfJ3PQa.s:694    .bss._ZL5CCR_U:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_EnableIRQ

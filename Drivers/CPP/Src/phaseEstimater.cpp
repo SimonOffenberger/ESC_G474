@@ -47,11 +47,14 @@ uint16_t  HallSector_Averages[8]={1};
 uint16_t HallSector_phase_offset[8]={255};
 uint16_t HallSector_phase_span[8]={0};
 
+uint32_t Hall_Tim=0;
+
 void init_phase_estimater(){
 	__HAL_TIM_DISABLE(&SectorTIM);
 	SectorTIM.Instance->ARR=65535;
 	SectorTIM.Instance->PSC=6;
 	__HAL_TIM_ENABLE(&SectorTIM);
+	HAL_TIMEx_HallSensor_Start(&htim8);
 }
 
 uint16_t time_between_sectors=0;
@@ -81,102 +84,102 @@ uint16_t initialize_Hallsensor_phase_estimator(uint16_t setpoint){
 	if(!init){
 		// configure Sector Tim to Output a 10Hz Sinewave;
 		SectorTIM.Instance-> ARR= 360;
-		SectorTIM.Instance-> PSC = 10000;
+		SectorTIM.Instance-> PSC = 20000;
 		init=1;
 	}
-
+	Hall_Tim = TIM8->CNT;
 	voltage_phase = SectorTIM.Instance->CNT;
 	Motor.rotorphase=voltage_phase;
-	HALL1 = (HALL1<<1)|HAL_GPIO_ReadPin(HALL1_GPIO_Port,HALL1_Pin);
-	HALL2 = (HALL2<<1)|HAL_GPIO_ReadPin(HALL2_GPIO_Port,HALL2_Pin);
-	HALL3 = (HALL3<<1)|HAL_GPIO_ReadPin(HALL3_GPIO_Port,HALL3_Pin);
+	// HALL1 = (HALL1<<1)|HAL_GPIO_ReadPin(HALL1_GPIO_Port,HALL1_Pin);
+	// HALL2 = (HALL2<<1)|HAL_GPIO_ReadPin(HALL2_GPIO_Port,HALL2_Pin);
+	// HALL3 = (HALL3<<1)|HAL_GPIO_ReadPin(HALL3_GPIO_Port,HALL3_Pin);
 
-	uint8_t HALL1_rising_edge =		  (HALL1&0x0F)==3;
-	uint8_t HALL1_falling_edge=	    (HALL1&0x0F)==14;
-	uint8_t HALL2_rising_edge =		  (HALL2&0x0F)==3;
-	uint8_t HALL2_falling_edge=	    (HALL2&0x0F)==14;
-	uint8_t HALL3_rising_edge =		  (HALL3&0x0F)==3;
-	uint8_t HALL3_falling_edge=	    (HALL3&0x0F)==14;
+	// uint8_t HALL1_rising_edge =		  (HALL1&0x0F)==3;
+	// uint8_t HALL1_falling_edge=	    (HALL1&0x0F)==14;
+	// uint8_t HALL2_rising_edge =		  (HALL2&0x0F)==3;
+	// uint8_t HALL2_falling_edge=	    (HALL2&0x0F)==14;
+	// uint8_t HALL3_rising_edge =		  (HALL3&0x0F)==3;
+	// uint8_t HALL3_falling_edge=	    (HALL3&0x0F)==14;
 
-	uint8_t valid_signals=0;
+	// uint8_t valid_signals=0;
 
-	//Bei einer Flanke wenn diese nicht gerade gelockt ist
-	if((HALL1_falling_edge||HALL1_rising_edge)&&!lock_HALL1){
-		lock_HALL1=1;
-		lock_HALL2=0;
-		lock_HALL3=0;
-		valid_signals = (HALL1_rising_edge<<7) || (HALL1_falling_edge<<6) || (HALL2_rising_edge<<5) || (HALL2_falling_edge<<4) || (HALL3_rising_edge<<3) || (HALL3_falling_edge<<2);
-	}
-	//Bei einer Flanke wenn diese nicht gerade gelockt ist
-	if((HALL2_falling_edge||HALL2_rising_edge)&&!lock_HALL2){
-		lock_HALL1=0;
-		lock_HALL2=1;
-		lock_HALL3=0;
-		valid_signals = (HALL1_rising_edge<<7) || (HALL1_falling_edge<<6) || (HALL2_rising_edge<<5) || (HALL2_falling_edge<<4) || (HALL3_rising_edge<<3) || (HALL3_falling_edge<<2);
-	}
-	//Bei einer Flanke wenn diese nicht gerade gelockt ist
-	if((HALL3_falling_edge||HALL3_rising_edge)&&!lock_HALL3){
-		lock_HALL1=0;
-		lock_HALL2=0;
-		lock_HALL3=1;
-		valid_signals = (HALL1_rising_edge<<7) || (HALL1_falling_edge<<6) || (HALL2_rising_edge<<5) || (HALL2_falling_edge<<4) || (HALL3_rising_edge<<3) || (HALL3_falling_edge<<2);
-	}
+	// //Bei einer Flanke wenn diese nicht gerade gelockt ist
+	// if((HALL1_falling_edge||HALL1_rising_edge)&&!lock_HALL1){
+	// 	lock_HALL1=1;
+	// 	lock_HALL2=0;
+	// 	lock_HALL3=0;
+	// 	valid_signals = (HALL1_rising_edge<<7) || (HALL1_falling_edge<<6) || (HALL2_rising_edge<<5) || (HALL2_falling_edge<<4) || (HALL3_rising_edge<<3) || (HALL3_falling_edge<<2);
+	// }
+	// //Bei einer Flanke wenn diese nicht gerade gelockt ist
+	// if((HALL2_falling_edge||HALL2_rising_edge)&&!lock_HALL2){
+	// 	lock_HALL1=0;
+	// 	lock_HALL2=1;
+	// 	lock_HALL3=0;
+	// 	valid_signals = (HALL1_rising_edge<<7) || (HALL1_falling_edge<<6) || (HALL2_rising_edge<<5) || (HALL2_falling_edge<<4) || (HALL3_rising_edge<<3) || (HALL3_falling_edge<<2);
+	// }
+	// //Bei einer Flanke wenn diese nicht gerade gelockt ist
+	// if((HALL3_falling_edge||HALL3_rising_edge)&&!lock_HALL3){
+	// 	lock_HALL1=0;
+	// 	lock_HALL2=0;
+	// 	lock_HALL3=1;
+	// 	valid_signals = (HALL1_rising_edge<<7) || (HALL1_falling_edge<<6) || (HALL2_rising_edge<<5) || (HALL2_falling_edge<<4) || (HALL3_rising_edge<<3) || (HALL3_falling_edge<<2);
+	// }
 
 
-	if(valid_signals){
-		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_12);
+	// if(valid_signals){
+	// 	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_12);
 
-		if(phase_old < voltage_phase){
-			time_between_sectors = voltage_phase - phase_old;
-		}
-		else{
-			time_between_sectors =360 - (phase_old - voltage_phase);
-		}
-		phase_old = voltage_phase;
-		// Get the current Hallsektor 
-		HallSector = (HAL_GPIO_ReadPin(HALL3_GPIO_Port,HALL3_Pin)<<2)|(HAL_GPIO_ReadPin(HALL2_GPIO_Port,HALL2_Pin)<<1)|(HAL_GPIO_ReadPin(HALL1_GPIO_Port,HALL1_Pin));
+	// 	if(phase_old < voltage_phase){
+	// 		time_between_sectors = voltage_phase - phase_old;
+	// 	}
+	// 	else{
+	// 		time_between_sectors =360 - (phase_old - voltage_phase);
+	// 	}
+	// 	phase_old = voltage_phase;
+	// 	// Get the current Hallsektor 
+	// 	HallSector = (HAL_GPIO_ReadPin(HALL3_GPIO_Port,HALL3_Pin)<<2)|(HAL_GPIO_ReadPin(HALL2_GPIO_Port,HALL2_Pin)<<1)|(HAL_GPIO_ReadPin(HALL1_GPIO_Port,HALL1_Pin));
 
-		// Check if the sector is actually possible, the sectors should be spaced apart by 60�
-		if(time_between_sectors>45 && time_between_sectors <75){
+	// 	// Check if the sector is actually possible, the sectors should be spaced apart by 60�
+	// 	if(time_between_sectors>45 && time_between_sectors <75){
 
-			HallSector_phase_offset[HallSector] = (HallSector_Averages[HallSector] * voltage_phase) /(HallSector_Averages[HallSector] +1);
-			HallSector_Averages[HallSector] ++;
+	// 		HallSector_phase_offset[HallSector] = (HallSector_Averages[HallSector] * voltage_phase) /(HallSector_Averages[HallSector] +1);
+	// 		HallSector_Averages[HallSector] ++;
 
-			if( HallSector_phase_offset[HallSector]>HallSector_phase_offset[prev_Sector]){
-				// calculate the phase span of the previous Sektor
-				HallSector_phase_span[HallSector] = HallSector_phase_offset[HallSector]-HallSector_phase_offset[prev_Sector];
-			}
-			else {
-				HallSector_phase_span[HallSector] =(360 + HallSector_phase_offset[HallSector]) - HallSector_phase_offset[prev_Sector];
-			}
+	// 		if( HallSector_phase_offset[HallSector]>HallSector_phase_offset[prev_Sector]){
+	// 			// calculate the phase span of the previous Sektor
+	// 			HallSector_phase_span[HallSector] = HallSector_phase_offset[HallSector]-HallSector_phase_offset[prev_Sector];
+	// 		}
+	// 		else {
+	// 			HallSector_phase_span[HallSector] =(360 + HallSector_phase_offset[HallSector]) - HallSector_phase_offset[prev_Sector];
+	// 		}
 
-		}
-		prev_Sector = HallSector;
-	}
+	// 	}
+	// 	prev_Sector = HallSector;
+	// }
 
-	for(int i=0; i<8;i++){
-		if(HallSector_Averages[i] >= 256) {
-			in_toleranz_count++;
-		}
-	}
+	// for(int i=0; i<8;i++){
+	// 	if(HallSector_Averages[i] >= 256) {
+	// 		in_toleranz_count++;
+	// 	}
+	// }
 
-	if(in_toleranz_count==6){
-		init_done=1;
-		for(int i=0;i<8;i++){
-			if(HallSector_Averages[i]<256){
-				HallSector_phase_offset[i]=255;	// Für ungültige Sektoren wird die Zahl 255 verwendet
-			}
-			else{
-				// UART_transmit_string("Hallsektor: ");
-				// UART_transmit_ui32(i);
-				// UART_transmit_string(" Offset: ");
-				// UART_transmit_ui32(HallSector_phase_offset[i]);
-				// UART_transmit_string(" Phasespan: ");
-				// UART_transmit_ui32(HallSector_phase_span[i]);
-				// UART_transmit_crlf();
-			}
-		}
-	}
+	// if(in_toleranz_count==6){
+	// 	init_done=1;
+	// 	for(int i=0;i<8;i++){
+	// 		if(HallSector_Averages[i]<256){
+	// 			HallSector_phase_offset[i]=255;	// Für ungültige Sektoren wird die Zahl 255 verwendet
+	// 		}
+	// 		else{
+	// 			// UART_transmit_string("Hallsektor: ");
+	// 			// UART_transmit_ui32(i);
+	// 			// UART_transmit_string(" Offset: ");
+	// 			// UART_transmit_ui32(HallSector_phase_offset[i]);
+	// 			// UART_transmit_string(" Phasespan: ");
+	// 			// UART_transmit_ui32(HallSector_phase_span[i]);
+	// 			// UART_transmit_crlf();
+	// 		}
+	// 	}
+	// }
 
 	setVoltageVector(voltage_phase, 0, setpoint);
 

@@ -4,6 +4,7 @@
       "name": "windows-gcc-x64",
       "includePath": [
         "Drivers\\BSP\\STM32G4xx_Nucleo",
+        "STM32G4xx_HAL_Driver\\Inc",
         "${workspaceFolder}/**"
       ],
       "compilerPath": "C:/ST/STM32CubeCLT_1.20.0/GNU-tools-for-STM32/bin/arm-none-eabi-gcc.exe",

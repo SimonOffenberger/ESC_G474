@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
   28:Core/Src/main.c **** 
   29:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
   30:Core/Src/main.c **** /* USER CODE BEGIN PTD */
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 2
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 2
 
 
   31:Core/Src/main.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
   85:Core/Src/main.c **** 
   86:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
   87:Core/Src/main.c **** 
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 3
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 3
 
 
   88:Core/Src/main.c ****   /* USER CODE END SysInit */
@@ -159,7 +159,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  123:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
  124:Core/Src/main.c ****   while (1)
  125:Core/Src/main.c ****   {
- 126:Core/Src/main.c **** 
+ 126:Core/Src/main.c ****   
  127:Core/Src/main.c ****     /* USER CODE END WHILE */
  128:Core/Src/main.c **** 
  129:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  142:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  143:Core/Src/main.c **** 
  144:Core/Src/main.c ****   /** Configure the main internal regulator output voltage
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 4
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 4
 
 
  145:Core/Src/main.c ****   */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  193:Core/Src/main.c ****   __disable_irq();
   35              		.loc 1 193 3 view .LVU1
   36              	.LBB4:
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 5
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 5
 
 
   37              	.LBI4:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
   53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
   54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 6
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 6
 
 
   56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
  111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
  112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 7
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 7
 
 
  113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  167:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  168:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  169:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __INITIAL_SP
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 8
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 8
 
 
  170:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __INITIAL_SP              __StackTop
@@ -474,15 +474,15 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
   49              	.LBE5:
   50              	.LBE4:
  194:Core/Src/main.c ****   while (1)
-  51              		.loc 1 194 3 view .LVU4
+  51              		.loc 1 194 3 discriminator 1 view .LVU4
  195:Core/Src/main.c ****   {
  196:Core/Src/main.c ****   }
-  52              		.loc 1 196 3 view .LVU5
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 9
+  52              		.loc 1 196 3 discriminator 1 view .LVU5
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 9
 
 
  194:Core/Src/main.c ****   while (1)
-  53              		.loc 1 194 9 view .LVU6
+  53              		.loc 1 194 9 discriminator 1 view .LVU6
   54 0002 FEE7     		b	.L2
   55              		.cfi_endproc
   56              	.LFE137:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  152:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
  100              		.loc 1 152 3 is_stmt 1 view .LVU15
  152:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 10
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 10
 
 
  101              		.loc 1 152 30 is_stmt 0 view .LVU16
@@ -595,10 +595,10 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  134 0040 FFF7FEFF 		bl	HAL_RCC_OscConfig
  135              	.LVL2:
  161:Core/Src/main.c ****   {
- 136              		.loc 1 161 6 discriminator 1 view .LVU35
+ 136              		.loc 1 161 6 view .LVU35
  137 0044 80B9     		cbnz	r0, .L7
  168:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 11
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 11
 
 
  138              		.loc 1 168 3 is_stmt 1 view .LVU36
@@ -637,7 +637,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  160 005c FFF7FEFF 		bl	HAL_RCC_ClockConfig
  161              	.LVL3:
  175:Core/Src/main.c ****   {
- 162              		.loc 1 175 6 discriminator 1 view .LVU48
+ 162              		.loc 1 175 6 view .LVU48
  163 0060 20B9     		cbnz	r0, .L8
  179:Core/Src/main.c **** 
  164              		.loc 1 179 1 view .LVU49
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  177:Core/Src/main.c ****   }
  178              		.loc 1 177 5 view .LVU51
  179 006c FFF7FEFF 		bl	Error_Handler
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 12
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 12
 
 
  180              	.LVL5:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  102:Core/Src/main.c ****   /* USER CODE END 2 */
  227              		.loc 1 102 3 view .LVU61
  228 0022 FFF7FEFF 		bl	App_Init
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 13
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 13
 
 
  229              	.LVL14:
@@ -768,20 +768,20 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  259 0046 FFF7FEFF 		bl	BSP_COM_Init
  260              	.LVL17:
  117:Core/Src/main.c ****   {
- 261              		.loc 1 117 6 discriminator 1 view .LVU76
+ 261              		.loc 1 117 6 view .LVU76
  262 004a 10B9     		cbnz	r0, .L12
  263              	.L10:
  124:Core/Src/main.c ****   {
- 264              		.loc 1 124 3 is_stmt 1 view .LVU77
+ 264              		.loc 1 124 3 is_stmt 1 discriminator 1 view .LVU77
  130:Core/Src/main.c ****   }
  265              		.loc 1 130 5 discriminator 1 view .LVU78
  266 004c FFF7FEFF 		bl	App_Process
  267              	.LVL18:
  124:Core/Src/main.c ****   {
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 14
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 14
 
 
- 268              		.loc 1 124 9 view .LVU79
+ 268              		.loc 1 124 9 discriminator 1 view .LVU79
  269 0050 FCE7     		b	.L10
  270              	.L12:
  119:Core/Src/main.c ****   }
@@ -804,8 +804,8 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  287      00000000 
  288              		.text
  289              	.Letext0:
- 290              		.file 3 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
- 291              		.file 4 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 290              		.file 3 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 291              		.file 4 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
  292              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
  293              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h"
  294              		.file 7 "Drivers/BSP/STM32G4xx_Nucleo/stm32g4xx_nucleo.h"
@@ -815,20 +815,20 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 1
  298              		.file 11 "Core/Inc/gpio.h"
  299              		.file 12 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
  300              		.file 13 "<built-in>"
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s 			page 15
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cclklc2m.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:21     .text.Error_Handler:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:27     .text.Error_Handler:00000000 Error_Handler
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:59     .text.SystemClock_Config:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:65     .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:185    .text.main:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:191    .text.main:00000000 main
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:277    .text.main:00000058 $d
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:286    .bss.BspCOMInit:00000000 BspCOMInit
-C:\Users\Simon\AppData\Local\Temp\cc6xt9qX.s:283    .bss.BspCOMInit:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:21     .text.Error_Handler:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:27     .text.Error_Handler:00000000 Error_Handler
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:59     .text.SystemClock_Config:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:65     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:185    .text.main:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:191    .text.main:00000000 main
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:277    .text.main:00000058 $d
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:286    .bss.BspCOMInit:00000000 BspCOMInit
+C:\Users\Simio\AppData\Local\Temp\cclklc2m.s:283    .bss.BspCOMInit:00000000 $d
 
 UNDEFINED SYMBOLS
 memset

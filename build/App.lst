@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 1
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -28,7 +28,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 1
   25              		.thumb_func
   27              	_Z10PI_controll:
   28              	.LVL0:
-  29              	.LFB1273:
+  29              	.LFB1252:
    1:Core/CPP/Src/App.cpp **** #include "App.hpp"
    2:Core/CPP/Src/App.cpp **** #include "main.h"
    3:Core/CPP/Src/App.cpp **** 
@@ -58,11 +58,11 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 1
   38              	.LVL1:
   39              		.loc 1 18 1 view .LVU3
   40 0004 7047     		bx	lr
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 2
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 2
 
 
   41              		.cfi_endproc
-  42              	.LFE1273:
+  42              	.LFE1252:
   44              		.section	.text.App_Init,"ax",%progbits
   45              		.align	1
   46              		.global	App_Init
@@ -70,7 +70,7 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 1
   48              		.thumb
   49              		.thumb_func
   51              	App_Init:
-  52              	.LFB1274:
+  52              	.LFB1253:
   19:Core/CPP/Src/App.cpp **** 
   20:Core/CPP/Src/App.cpp **** uint16_t TIM_PSC = 0;
   21:Core/CPP/Src/App.cpp **** int32_t phaseshift = 90;
@@ -80,291 +80,335 @@ ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 1
   25:Core/CPP/Src/App.cpp **** {
   53              		.loc 1 25 1 is_stmt 1 view -0
   54              		.cfi_startproc
-  55              		@ args = 0, pretend = 0, frame = 0
+  55              		@ args = 0, pretend = 0, frame = 24
   56              		@ frame_needed = 0, uses_anonymous_args = 0
-  57 0000 08B5     		push	{r3, lr}
+  57 0000 00B5     		push	{lr}
   58              	.LCFI0:
-  59              		.cfi_def_cfa_offset 8
-  60              		.cfi_offset 3, -8
-  61              		.cfi_offset 14, -4
+  59              		.cfi_def_cfa_offset 4
+  60              		.cfi_offset 14, -4
+  61 0002 87B0     		sub	sp, sp, #28
+  62              	.LCFI1:
+  63              		.cfi_def_cfa_offset 32
   26:Core/CPP/Src/App.cpp ****   initSVM(PWM_Frequency);
-  62              		.loc 1 26 3 view .LVU5
-  63              		.loc 1 26 10 is_stmt 0 view .LVU6
-  64 0002 4CF25030 		movw	r0, #50000
-  65 0006 FFF7FEFF 		bl	initSVM
-  66              	.LVL2:
+  64              		.loc 1 26 3 view .LVU5
+  65              		.loc 1 26 10 is_stmt 0 view .LVU6
+  66 0004 4CF25030 		movw	r0, #50000
+  67 0008 FFF7FEFF 		bl	initSVM
+  68              	.LVL2:
   27:Core/CPP/Src/App.cpp ****   init_phase_estimater();
-  67              		.loc 1 27 3 is_stmt 1 view .LVU7
-  68              		.loc 1 27 23 is_stmt 0 view .LVU8
-  69 000a FFF7FEFF 		bl	init_phase_estimater
-  70              	.LVL3:
-  28:Core/CPP/Src/App.cpp **** }
-  71              		.loc 1 28 1 view .LVU9
-  72 000e 08BD     		pop	{r3, pc}
-  73              		.cfi_endproc
-  74              	.LFE1274:
-  76              		.section	.text.App_Process,"ax",%progbits
-  77              		.align	1
-  78              		.global	App_Process
-  79              		.syntax unified
-  80              		.thumb
-  81              		.thumb_func
-  83              	App_Process:
-  84              	.LFB1275:
-  29:Core/CPP/Src/App.cpp **** 
-  30:Core/CPP/Src/App.cpp **** extern "C" void App_Process(void)
-  31:Core/CPP/Src/App.cpp **** {
-  85              		.loc 1 31 1 is_stmt 1 view -0
-  86              		.cfi_startproc
-  87              		@ args = 0, pretend = 0, frame = 0
-  88              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 3
+  69              		.loc 1 27 3 is_stmt 1 view .LVU7
+  70              		.loc 1 27 23 is_stmt 0 view .LVU8
+  71 000c FFF7FEFF 		bl	init_phase_estimater
+  72              	.LVL3:
+  28:Core/CPP/Src/App.cpp **** 
+  29:Core/CPP/Src/App.cpp ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  73              		.loc 1 29 3 is_stmt 1 view .LVU9
+  74              		.loc 1 29 20 is_stmt 0 view .LVU10
+  75 0010 0023     		movs	r3, #0
+  76 0012 0193     		str	r3, [sp, #4]
+  77 0014 0293     		str	r3, [sp, #8]
+  78 0016 0393     		str	r3, [sp, #12]
+  79 0018 0493     		str	r3, [sp, #16]
+  80 001a 0593     		str	r3, [sp, #20]
+  30:Core/CPP/Src/App.cpp **** 
+  31:Core/CPP/Src/App.cpp ****   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+  81              		.loc 1 31 3 is_stmt 1 view .LVU11
+  82              		.loc 1 31 23 is_stmt 0 view .LVU12
+  83 001c 0323     		movs	r3, #3
+  84 001e 0193     		str	r3, [sp, #4]
+  32:Core/CPP/Src/App.cpp ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  85              		.loc 1 32 3 is_stmt 1 view .LVU13
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 3
 
 
-  89 0000 10B5     		push	{r4, lr}
-  90              	.LCFI1:
-  91              		.cfi_def_cfa_offset 8
-  92              		.cfi_offset 4, -8
-  93              		.cfi_offset 14, -4
-  94 0002 82B0     		sub	sp, sp, #8
-  95              	.LCFI2:
-  96              		.cfi_def_cfa_offset 16
-  32:Core/CPP/Src/App.cpp ****     static uint8_t init_done = 0;
-  97              		.loc 1 32 5 view .LVU11
-  33:Core/CPP/Src/App.cpp **** 
-  34:Core/CPP/Src/App.cpp ****     setpoint = (uint16_t)readEncoder(GPIOA, GPIO_PIN_0,
-  98              		.loc 1 34 5 view .LVU12
-  99              		.loc 1 34 37 is_stmt 0 view .LVU13
- 100 0004 0023     		movs	r3, #0
- 101 0006 0193     		str	r3, [sp, #4]
- 102 0008 FF23     		movs	r3, #255
- 103 000a 0093     		str	r3, [sp]
- 104 000c 0223     		movs	r3, #2
- 105 000e 4FF09042 		mov	r2, #1207959552
- 106 0012 0121     		movs	r1, #1
- 107 0014 1046     		mov	r0, r2
- 108 0016 FFF7FEFF 		bl	readEncoder
- 109              	.LVL4:
- 110              		.loc 1 34 14 discriminator 1 view .LVU14
- 111 001a 80B2     		uxth	r0, r0
- 112 001c 174B     		ldr	r3, .L10
- 113 001e 1880     		strh	r0, [r3]	@ movhi
-  35:Core/CPP/Src/App.cpp ****                                      GPIOA, GPIO_PIN_1, 255, 0);
+  33:Core/CPP/Src/App.cpp ****   GPIO_InitStruct.Pull = GPIO_PULLUP;
+  86              		.loc 1 33 3 view .LVU14
+  87              		.loc 1 33 24 is_stmt 0 view .LVU15
+  88 0020 0123     		movs	r3, #1
+  89 0022 0393     		str	r3, [sp, #12]
+  34:Core/CPP/Src/App.cpp ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  90              		.loc 1 34 3 is_stmt 1 view .LVU16
+  35:Core/CPP/Src/App.cpp ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  91              		.loc 1 35 3 view .LVU17
+  92              		.loc 1 35 16 is_stmt 0 view .LVU18
+  93 0024 01A9     		add	r1, sp, #4
+  94 0026 4FF09040 		mov	r0, #1207959552
+  95 002a FFF7FEFF 		bl	HAL_GPIO_Init
+  96              	.LVL4:
   36:Core/CPP/Src/App.cpp **** 
-  37:Core/CPP/Src/App.cpp ****     if (!init_done)
- 114              		.loc 1 37 5 is_stmt 1 view .LVU15
- 115              		.loc 1 37 9 is_stmt 0 view .LVU16
- 116 0020 174B     		ldr	r3, .L10+4
- 117 0022 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 118              		.loc 1 37 5 view .LVU17
- 119 0024 2BB9     		cbnz	r3, .L5
-  38:Core/CPP/Src/App.cpp ****     {
-  39:Core/CPP/Src/App.cpp ****       init_done = initialize_Hallsensor_phase_estimator(setpoint);
- 120              		.loc 1 39 7 is_stmt 1 view .LVU18
- 121              		.loc 1 39 56 is_stmt 0 view .LVU19
- 122 0026 FFF7FEFF 		bl	initialize_Hallsensor_phase_estimator
- 123              	.LVL5:
- 124              		.loc 1 39 17 discriminator 1 view .LVU20
- 125 002a 154B     		ldr	r3, .L10+4
- 126 002c 1870     		strb	r0, [r3]
- 127              	.L4:
-  40:Core/CPP/Src/App.cpp ****     }
-  41:Core/CPP/Src/App.cpp ****     else
-  42:Core/CPP/Src/App.cpp ****     {
-  43:Core/CPP/Src/App.cpp **** 
-  44:Core/CPP/Src/App.cpp ****       estimate_rotor_phase(&Motor);
+  37:Core/CPP/Src/App.cpp **** }
+  97              		.loc 1 37 1 view .LVU19
+  98 002e 07B0     		add	sp, sp, #28
+  99              	.LCFI2:
+ 100              		.cfi_def_cfa_offset 4
+ 101              		@ sp needed
+ 102 0030 5DF804FB 		ldr	pc, [sp], #4
+ 103              		.cfi_endproc
+ 104              	.LFE1253:
+ 106              		.section	.text.App_Process,"ax",%progbits
+ 107              		.align	1
+ 108              		.global	App_Process
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ 113              	App_Process:
+ 114              	.LFB1254:
+  38:Core/CPP/Src/App.cpp **** 
+  39:Core/CPP/Src/App.cpp **** extern "C" void App_Process(void)
+  40:Core/CPP/Src/App.cpp **** {
+ 115              		.loc 1 40 1 is_stmt 1 view -0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119 0000 10B5     		push	{r4, lr}
+ 120              	.LCFI3:
+ 121              		.cfi_def_cfa_offset 8
+ 122              		.cfi_offset 4, -8
+ 123              		.cfi_offset 14, -4
+ 124 0002 82B0     		sub	sp, sp, #8
+ 125              	.LCFI4:
+ 126              		.cfi_def_cfa_offset 16
+  41:Core/CPP/Src/App.cpp ****     static uint8_t init_done = 0;
+ 127              		.loc 1 41 5 view .LVU21
+  42:Core/CPP/Src/App.cpp **** 
+  43:Core/CPP/Src/App.cpp ****     setpoint = (uint16_t)readEncoder(GPIOA, GPIO_PIN_0,
+ 128              		.loc 1 43 5 view .LVU22
+ 129              		.loc 1 43 37 is_stmt 0 view .LVU23
+ 130 0004 0023     		movs	r3, #0
+ 131 0006 0193     		str	r3, [sp, #4]
+ 132 0008 FF23     		movs	r3, #255
+ 133 000a 0093     		str	r3, [sp]
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 4
+
+
+ 134 000c 0223     		movs	r3, #2
+ 135 000e 4FF09042 		mov	r2, #1207959552
+ 136 0012 0121     		movs	r1, #1
+ 137 0014 1046     		mov	r0, r2
+ 138 0016 FFF7FEFF 		bl	readEncoder
+ 139              	.LVL5:
+ 140              		.loc 1 43 14 view .LVU24
+ 141 001a 80B2     		uxth	r0, r0
+ 142 001c 174B     		ldr	r3, .L10
+ 143 001e 1880     		strh	r0, [r3]	@ movhi
+  44:Core/CPP/Src/App.cpp ****                                      GPIOA, GPIO_PIN_1, 255, 0);
   45:Core/CPP/Src/App.cpp **** 
-  46:Core/CPP/Src/App.cpp ****       phaseshift += PI_control(-Motor.MotorCurrents.DQCurrenst[1]);
-  47:Core/CPP/Src/App.cpp **** 
-  48:Core/CPP/Src/App.cpp ****       if (phaseshift > 100)
-  49:Core/CPP/Src/App.cpp ****         phaseshift = 80;
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 4
-
-
-  50:Core/CPP/Src/App.cpp ****       if (phaseshift < 80)
-  51:Core/CPP/Src/App.cpp ****         phaseshift = 60;
+  46:Core/CPP/Src/App.cpp ****     if (!init_done)
+ 144              		.loc 1 46 5 is_stmt 1 view .LVU25
+ 145              		.loc 1 46 9 is_stmt 0 view .LVU26
+ 146 0020 174B     		ldr	r3, .L10+4
+ 147 0022 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 148              		.loc 1 46 5 view .LVU27
+ 149 0024 2BB9     		cbnz	r3, .L5
+  47:Core/CPP/Src/App.cpp ****     {
+  48:Core/CPP/Src/App.cpp ****       init_done = initialize_Hallsensor_phase_estimator(setpoint);
+ 150              		.loc 1 48 7 is_stmt 1 view .LVU28
+ 151              		.loc 1 48 56 is_stmt 0 view .LVU29
+ 152 0026 FFF7FEFF 		bl	initialize_Hallsensor_phase_estimator
+ 153              	.LVL6:
+ 154              		.loc 1 48 17 view .LVU30
+ 155 002a 154B     		ldr	r3, .L10+4
+ 156 002c 1870     		strb	r0, [r3]
+ 157              	.L4:
+  49:Core/CPP/Src/App.cpp ****     }
+  50:Core/CPP/Src/App.cpp ****     else
+  51:Core/CPP/Src/App.cpp ****     {
   52:Core/CPP/Src/App.cpp **** 
-  53:Core/CPP/Src/App.cpp ****       setVoltageVector(Motor.rotorphase, phaseshift, setpoint);
+  53:Core/CPP/Src/App.cpp ****       estimate_rotor_phase(&Motor);
   54:Core/CPP/Src/App.cpp **** 
-  55:Core/CPP/Src/App.cpp ****       //UART_transmit_buffer();
+  55:Core/CPP/Src/App.cpp ****       phaseshift += PI_control(-Motor.MotorCurrents.DQCurrenst[1]);
   56:Core/CPP/Src/App.cpp **** 
-  57:Core/CPP/Src/App.cpp ****       TIM_PSC = SectorTIM.Instance->ARR;
-  58:Core/CPP/Src/App.cpp ****     }
-  59:Core/CPP/Src/App.cpp **** }
- 128              		.loc 1 59 1 view .LVU21
- 129 002e 02B0     		add	sp, sp, #8
- 130              	.LCFI3:
- 131              		.cfi_remember_state
- 132              		.cfi_def_cfa_offset 8
- 133              		@ sp needed
- 134 0030 10BD     		pop	{r4, pc}
- 135              	.L5:
- 136              	.LCFI4:
- 137              		.cfi_restore_state
-  44:Core/CPP/Src/App.cpp **** 
- 138              		.loc 1 44 7 is_stmt 1 view .LVU22
-  44:Core/CPP/Src/App.cpp **** 
- 139              		.loc 1 44 27 is_stmt 0 view .LVU23
- 140 0032 144C     		ldr	r4, .L10+8
- 141 0034 2046     		mov	r0, r4
- 142 0036 FFF7FEFF 		bl	estimate_rotor_phase
- 143              	.LVL6:
-  46:Core/CPP/Src/App.cpp **** 
- 144              		.loc 1 46 7 is_stmt 1 view .LVU24
-  46:Core/CPP/Src/App.cpp **** 
- 145              		.loc 1 46 65 is_stmt 0 view .LVU25
- 146 003a A068     		ldr	r0, [r4, #8]
-  46:Core/CPP/Src/App.cpp **** 
- 147              		.loc 1 46 31 view .LVU26
- 148 003c 4042     		rsbs	r0, r0, #0
- 149 003e FFF7FEFF 		bl	_Z10PI_controll
- 150              	.LVL7:
-  46:Core/CPP/Src/App.cpp **** 
- 151              		.loc 1 46 18 discriminator 1 view .LVU27
- 152 0042 114B     		ldr	r3, .L10+12
- 153 0044 1A68     		ldr	r2, [r3]
- 154 0046 1044     		add	r0, r0, r2
- 155 0048 1860     		str	r0, [r3]
-  48:Core/CPP/Src/App.cpp ****         phaseshift = 80;
- 156              		.loc 1 48 7 is_stmt 1 view .LVU28
- 157 004a 6428     		cmp	r0, #100
- 158 004c 01DD     		ble	.L7
-  49:Core/CPP/Src/App.cpp ****       if (phaseshift < 80)
- 159              		.loc 1 49 9 view .LVU29
-  49:Core/CPP/Src/App.cpp ****       if (phaseshift < 80)
- 160              		.loc 1 49 20 is_stmt 0 view .LVU30
- 161 004e 5022     		movs	r2, #80
- 162 0050 1A60     		str	r2, [r3]
- 163              	.L7:
-  50:Core/CPP/Src/App.cpp ****         phaseshift = 60;
- 164              		.loc 1 50 7 is_stmt 1 view .LVU31
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 5
+  57:Core/CPP/Src/App.cpp ****       if (phaseshift > 100)
+  58:Core/CPP/Src/App.cpp ****         phaseshift = 80;
+  59:Core/CPP/Src/App.cpp ****       if (phaseshift < 80)
+  60:Core/CPP/Src/App.cpp ****         phaseshift = 60;
+  61:Core/CPP/Src/App.cpp **** 
+  62:Core/CPP/Src/App.cpp ****       setVoltageVector(Motor.rotorphase, phaseshift, setpoint);
+  63:Core/CPP/Src/App.cpp **** 
+  64:Core/CPP/Src/App.cpp ****       //UART_transmit_buffer();
+  65:Core/CPP/Src/App.cpp **** 
+  66:Core/CPP/Src/App.cpp ****       TIM_PSC = SectorTIM.Instance->ARR;
+  67:Core/CPP/Src/App.cpp ****     }
+  68:Core/CPP/Src/App.cpp **** }
+ 158              		.loc 1 68 1 view .LVU31
+ 159 002e 02B0     		add	sp, sp, #8
+ 160              	.LCFI5:
+ 161              		.cfi_remember_state
+ 162              		.cfi_def_cfa_offset 8
+ 163              		@ sp needed
+ 164 0030 10BD     		pop	{r4, pc}
+ 165              	.L5:
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 5
 
 
-  50:Core/CPP/Src/App.cpp ****         phaseshift = 60;
- 165              		.loc 1 50 22 is_stmt 0 view .LVU32
- 166 0052 0D4B     		ldr	r3, .L10+12
- 167 0054 1B68     		ldr	r3, [r3]
-  50:Core/CPP/Src/App.cpp ****         phaseshift = 60;
- 168              		.loc 1 50 7 view .LVU33
- 169 0056 4F2B     		cmp	r3, #79
- 170 0058 02DC     		bgt	.L8
-  51:Core/CPP/Src/App.cpp **** 
- 171              		.loc 1 51 9 is_stmt 1 view .LVU34
-  51:Core/CPP/Src/App.cpp **** 
- 172              		.loc 1 51 20 is_stmt 0 view .LVU35
- 173 005a 0B4B     		ldr	r3, .L10+12
- 174 005c 3C22     		movs	r2, #60
- 175 005e 1A60     		str	r2, [r3]
- 176              	.L8:
+ 166              	.LCFI6:
+ 167              		.cfi_restore_state
   53:Core/CPP/Src/App.cpp **** 
- 177              		.loc 1 53 7 is_stmt 1 view .LVU36
+ 168              		.loc 1 53 7 is_stmt 1 view .LVU32
   53:Core/CPP/Src/App.cpp **** 
- 178              		.loc 1 53 23 is_stmt 0 view .LVU37
- 179 0060 064B     		ldr	r3, .L10
- 180 0062 1A88     		ldrh	r2, [r3]
- 181 0064 084B     		ldr	r3, .L10+12
- 182 0066 1968     		ldr	r1, [r3]
- 183 0068 064B     		ldr	r3, .L10+8
- 184 006a 1888     		ldrh	r0, [r3]
- 185 006c FFF7FEFF 		bl	setVoltageVector
- 186              	.LVL8:
-  57:Core/CPP/Src/App.cpp ****     }
- 187              		.loc 1 57 7 is_stmt 1 view .LVU38
-  57:Core/CPP/Src/App.cpp ****     }
- 188              		.loc 1 57 27 is_stmt 0 view .LVU39
- 189 0070 064B     		ldr	r3, .L10+16
- 190 0072 1B68     		ldr	r3, [r3]
-  57:Core/CPP/Src/App.cpp ****     }
- 191              		.loc 1 57 37 view .LVU40
- 192 0074 DA6A     		ldr	r2, [r3, #44]
-  57:Core/CPP/Src/App.cpp ****     }
- 193              		.loc 1 57 15 view .LVU41
- 194 0076 064B     		ldr	r3, .L10+20
- 195 0078 1A80     		strh	r2, [r3]	@ movhi
- 196              		.loc 1 59 1 view .LVU42
- 197 007a D8E7     		b	.L4
- 198              	.L11:
- 199              		.align	2
- 200              	.L10:
- 201 007c 00000000 		.word	setpoint
- 202 0080 00000000 		.word	_ZZ11App_ProcessE9init_done
- 203 0084 00000000 		.word	Motor
- 204 0088 00000000 		.word	phaseshift
- 205 008c 00000000 		.word	htim6
- 206 0090 00000000 		.word	TIM_PSC
- 207              		.cfi_endproc
- 208              	.LFE1275:
- 210              		.section	.bss._ZZ11App_ProcessE9init_done,"aw",%nobits
- 213              	_ZZ11App_ProcessE9init_done:
- 214 0000 00       		.space	1
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 6
+ 169              		.loc 1 53 27 is_stmt 0 view .LVU33
+ 170 0032 144C     		ldr	r4, .L10+8
+ 171 0034 2046     		mov	r0, r4
+ 172 0036 FFF7FEFF 		bl	estimate_rotor_phase
+ 173              	.LVL7:
+  55:Core/CPP/Src/App.cpp **** 
+ 174              		.loc 1 55 7 is_stmt 1 view .LVU34
+  55:Core/CPP/Src/App.cpp **** 
+ 175              		.loc 1 55 65 is_stmt 0 view .LVU35
+ 176 003a A068     		ldr	r0, [r4, #8]
+  55:Core/CPP/Src/App.cpp **** 
+ 177              		.loc 1 55 31 view .LVU36
+ 178 003c 4042     		rsbs	r0, r0, #0
+ 179 003e FFF7FEFF 		bl	_Z10PI_controll
+ 180              	.LVL8:
+  55:Core/CPP/Src/App.cpp **** 
+ 181              		.loc 1 55 18 view .LVU37
+ 182 0042 114B     		ldr	r3, .L10+12
+ 183 0044 1A68     		ldr	r2, [r3]
+ 184 0046 1044     		add	r0, r0, r2
+ 185 0048 1860     		str	r0, [r3]
+  57:Core/CPP/Src/App.cpp ****         phaseshift = 80;
+ 186              		.loc 1 57 7 is_stmt 1 view .LVU38
+ 187 004a 6428     		cmp	r0, #100
+ 188 004c 01DD     		ble	.L7
+  58:Core/CPP/Src/App.cpp ****       if (phaseshift < 80)
+ 189              		.loc 1 58 9 view .LVU39
+  58:Core/CPP/Src/App.cpp ****       if (phaseshift < 80)
+ 190              		.loc 1 58 20 is_stmt 0 view .LVU40
+ 191 004e 5022     		movs	r2, #80
+ 192 0050 1A60     		str	r2, [r3]
+ 193              	.L7:
+  59:Core/CPP/Src/App.cpp ****         phaseshift = 60;
+ 194              		.loc 1 59 7 is_stmt 1 view .LVU41
+  59:Core/CPP/Src/App.cpp ****         phaseshift = 60;
+ 195              		.loc 1 59 22 is_stmt 0 view .LVU42
+ 196 0052 0D4B     		ldr	r3, .L10+12
+ 197 0054 1B68     		ldr	r3, [r3]
+  59:Core/CPP/Src/App.cpp ****         phaseshift = 60;
+ 198              		.loc 1 59 7 view .LVU43
+ 199 0056 4F2B     		cmp	r3, #79
+ 200 0058 02DC     		bgt	.L8
+  60:Core/CPP/Src/App.cpp **** 
+ 201              		.loc 1 60 9 is_stmt 1 view .LVU44
+  60:Core/CPP/Src/App.cpp **** 
+ 202              		.loc 1 60 20 is_stmt 0 view .LVU45
+ 203 005a 0B4B     		ldr	r3, .L10+12
+ 204 005c 3C22     		movs	r2, #60
+ 205 005e 1A60     		str	r2, [r3]
+ 206              	.L8:
+  62:Core/CPP/Src/App.cpp **** 
+ 207              		.loc 1 62 7 is_stmt 1 view .LVU46
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 6
 
 
- 215              		.global	setpoint
- 216              		.section	.data.setpoint,"aw"
- 217              		.align	1
- 220              	setpoint:
- 221 0000 1400     		.short	20
- 222              		.global	phaseshift
- 223              		.section	.data.phaseshift,"aw"
- 224              		.align	2
- 227              	phaseshift:
- 228 0000 5A000000 		.word	90
- 229              		.global	TIM_PSC
- 230              		.section	.bss.TIM_PSC,"aw",%nobits
- 231              		.align	1
- 234              	TIM_PSC:
- 235 0000 0000     		.space	2
- 236              		.text
- 237              	.Letext0:
- 238              		.file 2 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
- 239              		.file 3 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
- 240              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
- 241              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 242              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 243              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
- 244              		.file 8 "Drivers/CPP/Inc/global_var.h"
- 245              		.file 9 "Core/Inc/tim.h"
- 246              		.file 10 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 247              		.file 11 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 248              		.file 12 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 249              		.file 13 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 250              		.file 14 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 251              		.file 15 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 252              		.file 16 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 253              		.file 17 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 254              		.file 18 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 255              		.file 19 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 256              		.file 20 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 257              		.file 21 "C:\\ST\\STM32CubeCLT_1.20.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/.
- 258              		.file 22 "Drivers/CPP/Inc/SVM.h"
- 259              		.file 23 "Drivers/CPP/Inc/phaseEstimater.h"
- 260              		.file 24 "Drivers/CPP/Inc/encoder.h"
-ARM GAS  C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s 			page 7
+  62:Core/CPP/Src/App.cpp **** 
+ 208              		.loc 1 62 23 is_stmt 0 view .LVU47
+ 209 0060 064B     		ldr	r3, .L10
+ 210 0062 1A88     		ldrh	r2, [r3]
+ 211 0064 084B     		ldr	r3, .L10+12
+ 212 0066 1968     		ldr	r1, [r3]
+ 213 0068 064B     		ldr	r3, .L10+8
+ 214 006a 1888     		ldrh	r0, [r3]
+ 215 006c FFF7FEFF 		bl	setVoltageVector
+ 216              	.LVL9:
+  66:Core/CPP/Src/App.cpp ****     }
+ 217              		.loc 1 66 7 is_stmt 1 view .LVU48
+  66:Core/CPP/Src/App.cpp ****     }
+ 218              		.loc 1 66 27 is_stmt 0 view .LVU49
+ 219 0070 064B     		ldr	r3, .L10+16
+ 220 0072 1B68     		ldr	r3, [r3]
+  66:Core/CPP/Src/App.cpp ****     }
+ 221              		.loc 1 66 37 view .LVU50
+ 222 0074 DA6A     		ldr	r2, [r3, #44]
+  66:Core/CPP/Src/App.cpp ****     }
+ 223              		.loc 1 66 15 view .LVU51
+ 224 0076 064B     		ldr	r3, .L10+20
+ 225 0078 1A80     		strh	r2, [r3]	@ movhi
+ 226              		.loc 1 68 1 view .LVU52
+ 227 007a D8E7     		b	.L4
+ 228              	.L11:
+ 229              		.align	2
+ 230              	.L10:
+ 231 007c 00000000 		.word	setpoint
+ 232 0080 00000000 		.word	_ZZ11App_ProcessE9init_done
+ 233 0084 00000000 		.word	Motor
+ 234 0088 00000000 		.word	phaseshift
+ 235 008c 00000000 		.word	htim6
+ 236 0090 00000000 		.word	TIM_PSC
+ 237              		.cfi_endproc
+ 238              	.LFE1254:
+ 240              		.section	.bss._ZZ11App_ProcessE9init_done,"aw",%nobits
+ 243              	_ZZ11App_ProcessE9init_done:
+ 244 0000 00       		.space	1
+ 245              		.global	setpoint
+ 246              		.section	.data.setpoint,"aw"
+ 247              		.align	1
+ 250              	setpoint:
+ 251 0000 1400     		.short	20
+ 252              		.global	phaseshift
+ 253              		.section	.data.phaseshift,"aw"
+ 254              		.align	2
+ 257              	phaseshift:
+ 258 0000 5A000000 		.word	90
+ 259              		.global	TIM_PSC
+ 260              		.section	.bss.TIM_PSC,"aw",%nobits
+ 261              		.align	1
+ 264              	TIM_PSC:
+ 265 0000 0000     		.space	2
+ 266              		.text
+ 267              	.Letext0:
+ 268              		.file 2 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 7
+
+
+ 269              		.file 3 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/..
+ 270              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g474xx.h"
+ 271              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 272              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 273              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 274              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 275              		.file 9 "Drivers/CPP/Inc/global_var.h"
+ 276              		.file 10 "Core/Inc/tim.h"
+ 277              		.file 11 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 278              		.file 12 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 279              		.file 13 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 280              		.file 14 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 281              		.file 15 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 282              		.file 16 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 283              		.file 17 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 284              		.file 18 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 285              		.file 19 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 286              		.file 20 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 287              		.file 21 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 288              		.file 22 "C:\\ST\\STM32CubeCLT_1.15.1\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/12.3.1/.
+ 289              		.file 23 "Drivers/CPP/Inc/SVM.h"
+ 290              		.file 24 "Drivers/CPP/Inc/phaseEstimater.h"
+ 291              		.file 25 "Drivers/CPP/Inc/encoder.h"
+ARM GAS  C:\Users\Simio\AppData\Local\Temp\cc7aj135.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 App.cpp
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:21     .text._Z10PI_controll:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:27     .text._Z10PI_controll:00000000 _Z10PI_controll
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:45     .text.App_Init:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:51     .text.App_Init:00000000 App_Init
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:77     .text.App_Process:00000000 $t
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:83     .text.App_Process:00000000 App_Process
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:201    .text.App_Process:0000007c $d
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:220    .data.setpoint:00000000 setpoint
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:213    .bss._ZZ11App_ProcessE9init_done:00000000 _ZZ11App_ProcessE9init_done
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:227    .data.phaseshift:00000000 phaseshift
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:234    .bss.TIM_PSC:00000000 TIM_PSC
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:214    .bss._ZZ11App_ProcessE9init_done:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:217    .data.setpoint:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:224    .data.phaseshift:00000000 $d
-C:\Users\Simon\AppData\Local\Temp\ccBVDL31.s:231    .bss.TIM_PSC:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:21     .text._Z10PI_controll:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:27     .text._Z10PI_controll:00000000 _Z10PI_controll
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:45     .text.App_Init:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:51     .text.App_Init:00000000 App_Init
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:107    .text.App_Process:00000000 $t
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:113    .text.App_Process:00000000 App_Process
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:231    .text.App_Process:0000007c $d
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:250    .data.setpoint:00000000 setpoint
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:243    .bss._ZZ11App_ProcessE9init_done:00000000 _ZZ11App_ProcessE9init_done
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:257    .data.phaseshift:00000000 phaseshift
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:264    .bss.TIM_PSC:00000000 TIM_PSC
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:244    .bss._ZZ11App_ProcessE9init_done:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:247    .data.setpoint:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:254    .data.phaseshift:00000000 $d
+C:\Users\Simio\AppData\Local\Temp\cc7aj135.s:261    .bss.TIM_PSC:00000000 $d
 
 UNDEFINED SYMBOLS
 initSVM
 init_phase_estimater
+HAL_GPIO_Init
 readEncoder
 initialize_Hallsensor_phase_estimator
 estimate_rotor_phase
